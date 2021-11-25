@@ -6,6 +6,14 @@
 using namespace std;
 
 
+// ayyoo
+
+
+
+
+
+
+
 class Book {
     friend ostream& operator<<(ostream&, const Book&);
 
