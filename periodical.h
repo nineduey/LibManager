@@ -6,21 +6,23 @@
 #include "book.h"
 using namespace std;
 
-class Periodical : public Book {
+class Periodical : public Book
+{
+    friend ostream& operator<<( ostream&, const Item& );
 
-protected:
+private:
     int month;
 
 public:
     Periodical();
     ~Periodical();
-    virtual Item& operator=(const Item&);
-    virtual bool operator==(const Item&);
-    virtual bool operator!=(const Item&);
-    virtual bool operator<(const Item&);
-    virtual bool operator>(const Item&);
-    virtual Item* create() const { return new Item; }; // need to change this definition
-    virtual void setData(istream&); // need to change params
+    virtual Item& operator=( const Item& );
+    virtual bool operator==( const Item& );
+    virtual bool operator!=( const Item& );
+    virtual bool operator<( const Item& );
+    virtual bool operator>( const Item& );
+    virtual Item* create() const;
+    virtual void setData( istream& ); // need to change params
 };
 
 #endif

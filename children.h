@@ -1,12 +1,8 @@
 /*
 @File contents: Children class function definitions
-
 @Purpose:
-
 @Assumptions:
-
 @Authors: Shushmitha Radjaram and Amanda Todakonzie
-
 @How code is used:
 */
 //-----------------------------------------------------------------------------
@@ -18,22 +14,24 @@
 #include "book.h"
 using namespace std;
 
-class Children : public Book {
+class Children : public Book 
+{
+    friend ostream& operator<<( ostream&, const Item& );
 
-protected:
-    string authorFirst;
-    string authorLast;
+private:
+    string author;
 
 public:
     Children();
     ~Children();
-    virtual Item& operator=(const Item&);
-    virtual bool operator==(const Item&);
-    virtual bool operator!=(const Item&);
-    virtual bool operator<(const Item&);
-    virtual bool operator>(const Item&);
-    virtual Item* create() const { return new Item; };
-    virtual void setData(ifstream&);
+    virtual Item& operator=( const Item& );
+    virtual bool operator==( const Item& );
+    virtual bool operator!=( const Item& );
+    virtual bool operator<( const Item& );
+    virtual bool operator>( const Item& );
+    virtual Item* create() const;  //{ return new Children; };
+    virtual void setData( istream& );
 };
 
 #endif
+

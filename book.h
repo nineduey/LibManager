@@ -1,11 +1,8 @@
 /*
 @File contents: Book class function and variable declarations
-@Purpose: 
-
+@Purpose:
 @Assumptions:
-
 @Authors: Shushmitha Radjaram and Amanda Todakonzie
-
 @How code is used:
 */
 //-----------------------------------------------------------------------------
@@ -17,13 +14,14 @@
 #include <string>
 using namespace std;
 
-class Item;
-class Fiction;
-class Children;
-class Periodical;
+//class Item;
+//class Fiction;
+//class Children;
+//class Periodical;
 
-class Book: public Item {
-    friend ostream& operator<<(ostream&, const Book&);
+class Book : public Item
+{
+    friend ostream& operator<<( ostream&, const Item& );
 
 protected:
     string title;
@@ -33,13 +31,13 @@ protected:
 public:
     Book();
     ~Book();
-    virtual Item& operator=(const Item&) const = 0;
-    virtual bool operator==(const Item&) const = 0;
-    virtual bool operator!=(const Item&) const = 0;
-    virtual bool operator<(const Item&) const = 0;
-    virtual bool operator>(const Item&) const = 0;
+    virtual Item& operator=( const Item& ) = 0;
+    virtual bool operator==( const Item& ) const = 0;
+    virtual bool operator!=( const Item& ) const = 0;
+    virtual bool operator<( const Item& ) const = 0;
+    virtual bool operator>( const Item& ) const = 0;
     virtual Item* create() const = 0;
-    virtual void setData(ifstream&) const = 0; // need to change params
+    virtual void setData( istream& ) = 0; // need to change params
 
 };
 
