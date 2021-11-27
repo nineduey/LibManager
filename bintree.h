@@ -1,82 +1,74 @@
-/**
- * @file bintree.h
- * @brief BinTee Class Header file
- * A binary search tree structure that uses a Node class to hold a container
- * class called NodeData. Binary Tree class does not know the nature of or
- * deals with the NodeData class.
- * @author Amanda Todakonzie
- */
-// -----------------------------------------------------------------------------
+
 #ifndef BINTREE_H
 #define BINTREE_H
 #include <iostream>
-#include "nodedata.h"
 using namespace std;
 
-class BinTree;
+/*File contents: Function and variable declarations of the BookBinTree class
+Purpose: Binary Search Tree to store and retrieve Book objects of a specific
+book type
+Assumptions: The Book objects stored in the BookBinTree are properly intialized
+and contain the data they need to determine where they should be store in the tree.
+Authors: Shushmitha Radjaram, Phuong K Vu, Monica King, Amanda Todakonzie,
+Brennan Richards
+How code is used: A BookBinTree object holds book objects which are all one
+specfic type.Books objects are compared against other books objects in the
+BookBinTree (if there are other books objects in the tree) and are stored in the
+appropriate, sortedlocation. An inorder traversal of the tree displays the book
+objects in sorted order.
+*/
 
-class Node {
+//forward referencing for Item Class
+class Item;
+
+class BinTree
+{
+
+	 friend class Item;
+
+	 friend ostream& operator<<(ostream&, const BinTree&); // ostream<< operator, uses inorderhelper() 
 
 public:
-	Node();					//constructor
-	~Node();				//destructor
-	Node(NodeData* objPtr); // copy constructor
-	NodeData* dataPtr;		// pointer to data object
-	Node* left;				// left subtree pointer
-	Node* right;			// right subtree pointer
-};
+	 BinTree(); // Default Constructor
+	 ~BinTree(); // Destructor
 
-
-// -----------------------------------------------------------------------------
-class BinTree {
-	friend class Node;
-	// operator<<
-	friend ostream& operator<<(ostream& out, const BinTree& T);
-
-public:
-	BinTree();				// constructor
-	BinTree(const BinTree& toCopy); // copy constructor
-	~BinTree();				// destructor, calls makeEmpty()
-	bool isEmpty() const;	// true if tree is empty, otherwise false
-	void makeEmpty(); // removes and deletes all tree nodes
-	bool insert(NodeData* input); // inserts a Node of NodeData's input
-	bool find(NodeData* target); // search for NodeData*
-	bool retrieve(const NodeData&, NodeData*&) const;
-	BinTree& operator=(const BinTree&); // assignment operator=
-	bool operator==(const BinTree&) const;
-	bool operator!=(const BinTree&) const;
-	bool getSibling(const NodeData&, NodeData&) const;
-	bool getParent(const NodeData&, NodeData&) const;
-	void bstreeToArray(NodeData* []);
-	void arrayToBSTree(NodeData* []);
-	Node* createBalancedTree(NodeData* array[], int min, int max);
-	void displaySideways() const; // displays the tree sideways
+	 bool insert(Item*); // Inserts Book object into BinTree 
+	 bool find(Item*); //Conducts a search an item object from the BinTree
+	 Item*& retrieve(const Item*) const; // Retrieves an Item from the BinTree - **QUESTION: Does this param need to be passed by reference? My code only passes in a pointer
+	 void makeEmpty(Item*& ptr); // Deletes Items from BinTree
+	 bool isEmpty() const; // Returns boolean if BinTree is empty or not
+	 char returnObjectType() const; // Returns  bookType within Book class
 
 private:
-	Node* root;		// root of the tree
 
-	// utility functions
-	Node* copyTree(const Node* treePtr) const; // copy constr & op= helper
-	void destroy(Node*& nodePtr); // private destructor function
-	Node* retrieveHelper(Node* root, NodeData target) const; //retrieve helper
-	// equality helper function
-	bool compare(Node* current, Node* compare) const;
-	// recursive search helper for getSibling & getParent
-	Node* preorderSearch(Node* curr, Node* prev, const NodeData& target) const;
-	// recursive helper for operator<<
-	void sidewaysHelper(Node* current, int level) const {
-		if (current != nullptr) {
-			level++;
-			sidewaysHelper(current->right, level);
-			// indent for readability, same number of spaces per depth level
-			for (int i = level; i >= 0; i--) {
-				cout << "      ";
-			}
-			cout << *current->dataPtr << endl; // display information of obj
-			sidewaysHelper(current->left, level);
-		}
-	}
+	 Item* root;		//root of BinTree
+
+	 //----------------------------------------------------------------------------
+	 //inorderHelper(): Private helper function of operator<<, displays tree data
+	 //via recursive inorder traversal
+	 //Pre-conditions: Pointer to the root of the BookBinTree or root of subtree
+	 //must be passed in as function's argument
+	 //Post-conditions: Book objects' details are displayed inorder - defined by 
+	 //the sorting criteria of the type of Book object
+	 //BookBinTree remains unchanged.
+	 void inorderHelper(Item*) const;	//recursive helper for operator<<
+
+	 //----------------------------------------------------------------------------
+	 //makeEmptyHelper(): Private helper function of makeEmpty. Recursively deletes 
+	 //data in the BookBinTree.
+	 //Pre-conditions: Pointer to reference of 'current' node is passed in as argument
+	 //to keep track of position while traversing and emptying BookBinTree
+	 //Post-conditions: BookBinTree is empty/does not contain any data
+	 void makeEmptyHelper(Item*&);	//helper function for makeEmptyHelper function
+
+	 //----------------------------------------------------------------------------
+	 //retrieveHelper(): Private helper function of retrieve, recursively searches
+	 // the Bintree to find target
+	 // Pre-conditions: Pointer to an item needs to be passed in as arguement
+	 // to keep track of root of Bintre, and another pointer referenced Item arguement
+	 // which is the target
+	 // Post-conditions: Returns an referenced Item pointer to the Item that was found
+	 // in the BinTree
+	 Item*& retrieveHelper( const Item*, const Item*) const;
 };
-// -----------------------------------------------------------------------------
-
 #endif

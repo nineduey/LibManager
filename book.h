@@ -2,19 +2,11 @@
 #define BOOK_H
 
 #include <iostream>
+#include "item.h"
 #include <string>
 using namespace std;
 
-
-// ayyoo
-
-
-
-
-
-
-
-class Book {
+class Book: public Item {
     friend ostream& operator<<(ostream&, const Book&);
 
 protected:
@@ -25,24 +17,14 @@ protected:
 public:
     Book();
     virtual ~Book();
-    void checkOut();
-    void checkIn();
-    virtual Book& operator=(const Book&);
-    virtual bool operator==(const Book&) const = 0;
-    virtual bool operator!=(const Book&) const = 0;
-    virtual bool operator<(const Book&) const = 0;
-    virtual bool operator>(const Book&) const = 0;
-    int getNumInLib() const;
-    void setNumInLib(int);
-    virtual Book* create() const = 0;
-    virtual void setData(string) = 0;
+    virtual Item& operator=(const Item&);
+    virtual bool operator==(const Item&) const = 0;
+    virtual bool operator!=(const Item&) const = 0;
+    virtual bool operator<(const Item&) const = 0;
+    virtual bool operator>(const Item&) const = 0;
+    virtual Item* create() const = 0;
+    virtual void setData(string) const = 0; // need to change params
 
-private:
-    int numInLib;
-    int maxNumInLib;
-    bool checkContent() const; // may want to consider making this 
-                            // protected since we can not access
-                            // private function in childeren class?
 };
 
 #endif
