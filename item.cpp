@@ -1,12 +1,25 @@
-#include "item.h"
+/*
+@File contents: Item.cpp function definitions
 
+@Purpose:
+
+@Assumptions:
+
+@Authors: Shushmitha Radjaram and Amanda Todakonzie
+
+@How code is used:
+*/
+//-----------------------------------------------------------------------------
+
+#include "item.h"
+#include "book.h"
 
 Item::Item() {
 	 left = nullptr;
     right = nullptr;
 	 numInLib = 5;
 	 maxNumInLib = 5;
-	 objectType = 'I';
+	 itemType = 'I';
 }
 
 Item::~Item() {
@@ -28,6 +41,6 @@ void Item::checkIn() {
 	 cout << "Error: Cannot check in, no room in Library." << endl;
 }
 
-char Item::returnObjectType() const {
-	 return objectType;
+char Item::returnItemType() const {
+	 return itemType;
 }

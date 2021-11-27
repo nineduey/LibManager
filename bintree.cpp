@@ -1,3 +1,15 @@
+/*
+@File contents: BinTree.cpp function definitions
+
+@Purpose:
+
+@Assumptions:
+
+@Authors: Shushmitha Radjaram and Amanda Todakonzie
+
+@How code is used:
+*/
+//-----------------------------------------------------------------------------
 #include "bintree.h"
 #include "item.h"
 #include <stack>
@@ -11,8 +23,29 @@
 //Post-conditions: Book objects' details are displayed inorder - defined by 
 //the sorting criteria of the type of Book object
 //BinTree remains unchanged.
-ostream& operator<<(ostream&, const BinTree& T) {
-
+ostream& operator<<(ostream& out, const BinTree& T) {
+	 stack<Item*> itemStack;
+	 Item* current = T.root;
+	 bool done = false;
+	 while (!done) {
+		  if (current != nullptr) {
+				itemStack.push(current);
+				current = current->left;
+		  }
+		  else {
+				if (!itemStack.empty()) {
+					 current = itemStack.top();
+					 out << " " << *current;
+					 itemStack.pop();
+					 current = current->right;
+				}
+				else {
+					 done = true;
+				}
+		  }
+	 }
+	 out << endl;
+	 return out;
 }
 
 //----------------------------------------------------------------------------

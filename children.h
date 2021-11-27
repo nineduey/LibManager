@@ -1,3 +1,15 @@
+/*
+@File contents: Children class function definitions
+
+@Purpose:
+
+@Assumptions:
+
+@Authors: Shushmitha Radjaram and Amanda Todakonzie
+
+@How code is used:
+*/
+//-----------------------------------------------------------------------------
 #ifndef CHILDREN_H
 #define CHILDREN_H
 
@@ -7,18 +19,21 @@
 using namespace std;
 
 class Children : public Book {
+
 protected:
     string authorFirst;
     string authorLast;
 
 public:
-    virtual Children& operator=(const Children&);
-    virtual bool operator==(const Children&);
-    virtual bool operator!=(const Children&);
-    virtual bool operator<(const Children&);
-    virtual bool operator>(const Children&);
-    virtual Book* create() const { return new Children; };
-    virtual void setData(string);
+    Children();
+    ~Children();
+    virtual Item& operator=(const Item&);
+    virtual bool operator==(const Item&);
+    virtual bool operator!=(const Item&);
+    virtual bool operator<(const Item&);
+    virtual bool operator>(const Item&);
+    virtual Item* create() const { return new Item; };
+    virtual void setData(ifstream&);
 };
 
 #endif

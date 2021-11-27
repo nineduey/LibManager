@@ -7,17 +7,20 @@
 using namespace std;
 
 class Periodical : public Book {
+
 protected:
     int month;
 
 public:
-    virtual Periodical& operator=(const Periodical&);
-    virtual bool operator==(const Periodical&);
-    virtual bool operator!=(const Periodical&);
-    virtual bool operator<(const Periodical&);
-    virtual bool operator>(const Periodical&);
-    virtual Book* create() const { return new Periodical; };
-    virtual void setData(string);
+    Periodical();
+    ~Periodical();
+    virtual Item& operator=(const Item&);
+    virtual bool operator==(const Item&);
+    virtual bool operator!=(const Item&);
+    virtual bool operator<(const Item&);
+    virtual bool operator>(const Item&);
+    virtual Item* create() const { return new Item; }; // need to change this definition
+    virtual void setData(istream&); // need to change params
 };
 
 #endif

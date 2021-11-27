@@ -7,18 +7,21 @@
 using namespace std;
 
 class Fiction : public Book {
+
 protected:
     string authorFirst;
     string authorLast;
 
 public:
-    virtual Fiction& operator=(const Fiction&);
-    virtual bool operator==(const Fiction&);
-    virtual bool operator!=(const Fiction&);
-    virtual bool operator<(const Fiction&);
-    virtual bool operator>(const Fiction&);
-    virtual Book* create() const { return new Fiction; };
-    virtual void setData(string);
+    Fiction();
+    ~Fiction();
+    virtual Item& operator=(const Item&);
+    virtual bool operator==(const Item&);
+    virtual bool operator!=(const Item&);
+    virtual bool operator<(const Item&);
+    virtual bool operator>(const Item&);
+    virtual Item* create() const { return new Item; };
+    virtual void setData(ifstream&);
 };
 
 #endif
