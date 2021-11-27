@@ -27,7 +27,7 @@ public:
 	 ~Item(); // destructor
 	 void checkOut();
 	 void checkIn();
-	 char returnObjectType() const;
+	 char returnItemType() const;
 	 virtual Item* create() const = 0;
 	 virtual void setData(string) const = 0; // need to change params
 
@@ -36,7 +36,6 @@ public:
 	 virtual bool operator!=(const Item&) const = 0;
 	 virtual bool operator<(const Item&) const = 0;
 	 virtual bool operator>(const Item&) const = 0;
-
 
 private: 
 	 Item* left;
