@@ -165,10 +165,10 @@ Item*& BinTree::retrieve(const Item* target) const {
 //makeEmpty(): Deletes data from BinTree 
 //Pre-conditions: None
 //Post-conditions: BookBinTree is empty/does not contain any data
-void BinTree::makeEmpty(Item*& ptr) {
-	 if (ptr != nullptr) {
-		  makeEmpty(ptr->left);
-		  makeEmpty(ptr->right);
+void BinTree::makeEmpty(Item*& itemPtr) {
+	 if (itemPtr != nullptr) {
+		  makeEmpty(itemPtr->left);
+		  makeEmpty(itemPtr->right);
 		  delete ptr;
 	 }
 }
@@ -192,8 +192,31 @@ bool BinTree::isEmpty() const {
 //Post-conditions: Returns an uppercase character corresponding to the type of 
 //objects in the BookBinTree
 char BinTree::returnObjectType() const {
-	 // ** ADDED objectType data member to Item class, which will aid in returning the object type that is being held in the Item instance
-	 return root->returnObjectType();
+	 return root->returnItemType();
+}
+
+//----------------------------------------------------------------------------
+//retrieveHelper(): Private helper function of retrieve, recursively searches
+// the Bintree to find target
+// Pre-conditions: Pointer to an item needs to be passed in as arguement
+// to keep track of root of Bintre, and another pointer referenced Item arguement
+// which is the target
+// Post-conditions: Returns an referenced Item pointer to the Item that was found
+// in the BinTree
+Item*& BinTree::retrieveHelper(const Item* current, const Item* target) const { //** Question: not sure if the Item* current needs to be passed in by reference?
+																				// perhaps its more efficient?
+	if (current == nullptr) {
+		return nullptr;
+	}
+	else if (*current == target) {
+		return current;
+	}
+	else if (*current > target) {
+		return retrieveHelper(current->left, target);
+	}
+	else {
+		return retrieveHelper(current->right, target);
+	}
 }
 
 

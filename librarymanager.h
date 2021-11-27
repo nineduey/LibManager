@@ -45,7 +45,7 @@ public:
 //in passed in ifstream& object and stores initialized Book objects 
 //in sorted order in Library's catalogue
 
-    void readInventory(ifstream&);
+    void readInventory(istream&);
 
 //-----------------------------------------------------------------------------
 //readCustomer(): reads in customer and builds the customers  
@@ -55,7 +55,7 @@ public:
 //customers given in passed in ifstream& object and stores 
 //initialized Customer objects in sorted order in Library's catalogue
 
-	 void readCustomer(ifstream&);
+	 void readCustomer(istream&);
 //-----------------------------------------------------------------------------
 //readTransaction(): reads in transaction data & performs   
 //transactions
@@ -64,7 +64,7 @@ public:
 //Post-conditions: Performs transactions on data of objects in the
 //Library using details of transactions given in passed in .txt file
 
-	 void readTransaction(ifstream&);
+	 void readTransaction(istream&);
 
 private:
 
