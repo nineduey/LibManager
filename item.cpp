@@ -15,14 +15,16 @@
 #include "book.h"
 
 Item::Item() {
-	 left = nullptr;
+	left = nullptr;
     right = nullptr;
-	 numInLib = 5;
-	 maxNumInLib = 5;
-	 itemType = 'I';
+	numInLib = 5;
+	maxNumInLib = 5;
+	//itemType is set in derived class constructors
 }
 
 Item::~Item() {
+	left = nullptr;
+	right = nullptr;
 }
 
 void Item::checkOut() {

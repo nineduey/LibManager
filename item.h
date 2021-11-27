@@ -37,13 +37,14 @@ protected: // not sure of the purpose of protected here?
 public:
 
 	 Item(); // default constructor
-	 virtual ~Item(); // destructor
 	 void checkOut();
 	 void checkIn();
 	 char returnItemType() const;
+
+	 //virtual functions
+	 virtual ~Item(); // destructor
 	 virtual Item* create() const = 0;
 	 virtual void setData(ifstream&) const = 0;
-
 	 virtual Item& operator=(const Item&) const = 0;
 	 virtual bool operator==(const Item&) const = 0;
 	 virtual bool operator!=(const Item&) const = 0;

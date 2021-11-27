@@ -32,6 +32,8 @@ protected:
 
 public:
     Book();
+
+    //virtual functions
     ~Book();
     virtual Item& operator=(const Item&) const = 0;
     virtual bool operator==(const Item&) const = 0;
