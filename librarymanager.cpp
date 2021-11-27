@@ -21,7 +21,7 @@
 
 
 //-----------------------------------------------------------------------------
-void LibraryManager::readInventory(ifstream& inFile){
+void LibraryManager::readInventory(istream& inFile){
 
     Book* tempBook;
 	 char bookType;
@@ -35,11 +35,11 @@ void LibraryManager::readInventory(ifstream& inFile){
 }
 
 //-----------------------------------------------------------------------------
-void LibraryManager::readCustomer(ifstream& inFile) {
+void LibraryManager::readCustomer(istream& inFile) {
 
 }
 
 //-----------------------------------------------------------------------------
-void LibraryManager::readTransaction(ifstream& inFile) {
+void LibraryManager::readTransaction(istream& inFile) {
 
 }
