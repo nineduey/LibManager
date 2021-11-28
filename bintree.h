@@ -27,26 +27,24 @@ class Item;
 
 class BinTree
 {
-	 friend class Item;
-
-	 friend ostream& operator<<(ostream&, const BinTree&); // ostream<< operator, uses inorderhelper() 
+    friend class Item;
+    // ostream<< operator
+    friend ostream& operator<<(ostream&, const BinTree&);  
 
 public:
-	 BinTree(); // Default Constructor
-	 ~BinTree(); // Destructor
-
-	 bool insert(Item*); // Inserts Book object into BinTree 
-	 bool find(Item*); //Conducts a search an item object from the BinTree
-	 Item*& retrieve(const Item*) const; // Retrieves an Item from the BinTree - **QUESTION: Does this param need to be passed by reference? My code only passes in a pointer
-	 bool isEmpty() const; // Returns boolean if BinTree is empty or not
-	 char returnObjectType() const; // Returns  bookType within Book class
+    BinTree();        // Default Constructor
+    ~BinTree();       // Destructor
+    bool insert(Item*); // Inserts Book object into BinTree 
+    bool find(Item*);   //Conducts a search an item object from the BinTree
+    Item*& retrieve(const Item*) const; // Retrieves an Item from the BinTree
+    bool isEmpty() const;               // Returns bool if BinTree is empty
+    char returnItemType() const;      // Returns itemType within Item class
 
 private:
-
-	 Item* root;		//root of BinTree
-
-	 void makeEmpty(Item*& ptr); // Deletes Items from BinTree
-
-	 Item*& retrieveHelper( const Item*, const Item*) const;
+    Item* root;		//root of BinTree
+    void makeEmpty(Item*& ptr); // Deletes Items from BinTree
+    //recursive helper for retrieve function
+    Item*& retrieveHelper( const Item*, const Item*) const;
+    void print(ostream& out);
 };
 #endif

@@ -1,14 +1,41 @@
-#include "Book.h"
+/*
+@File contents: Book.cpp function definitions
 
-Book::Book()
-{
+@Purpose:
+
+@Assumptions:
+
+@Authors: Shushmitha Radjaram and Amanda Todakonzie
+
+@How code is used:
+*/
+//-----------------------------------------------------------------------------
+
+#include "book.h"
+
+
+// ostream operator<<
+ostream& operator<<(ostream& out, const Book& aBook) {
+    aBook.print(out);
+    return out;
 }
 
-Book::~Book()
-{
+//----------------------------------------------------------------------------
+// Default Constructor: sets default values when creating a new instance
+Book::Book() {
+<<<<<<< Updated upstream
+    title = "";
+    year = 1000;
+    bookType = 'B';
+    itemType = 'B'
 }
 
-char Book::returnItemType() const
-{
-	return itemType;
+//----------------------------------------------------------------------------
+// Destructor
+Book::~Book() {}
+
+//----------------------------------------------------------------------------
+// print() : Virtual print function, will display data members of Book object
+void Book::print(ostream& os) const {
+    this->print(os);
 }
