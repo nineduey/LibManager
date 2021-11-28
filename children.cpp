@@ -107,7 +107,7 @@ void Children::setData(istream& infile) {
     getline(infile, title, ','); // input title
     infile >> year;              // input year
 
-    itemType = 'Book';     // setting itemType -> Item class
+    itemType = 'B';     // setting itemType -> Item class
     numInLib = 5;          // setting numer of Book copies -> Item class
     bookType = 'C';        // setting bookType -> Book class
     
