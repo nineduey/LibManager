@@ -19,7 +19,11 @@ class Children : public Book
     friend ostream& operator<<( ostream&, const Item& );
 
 private:
+
     string author;
+
+    const int AUTHOR_SPACE_LENGTH = 9; //size of the space after author output
+    const int TITLE_SPACE_LENGTH = 9;  //size of the space after title output
 
 public:
     Children();

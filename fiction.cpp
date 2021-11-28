@@ -4,6 +4,8 @@ Fiction::Fiction()
 {
 	//set default values here!
 
+	//example code:
+
 	//itemType = 'B';
 
 	bookType = 'F';
@@ -68,7 +70,7 @@ bool Fiction::operator>( const Item& item )
 {
 	const Fiction& aFiction = static_cast<const Fiction&>(item);
 
-	if (this->operator==( aFiction ) || this->operator<( aFiction ))
+	if (this->operator==( item ) || this->operator<( item ))
 	{
 		return false;
 	}
@@ -107,9 +109,12 @@ void Fiction::setData( istream& infile)
 
 }
 
-ostream& operator<<( ostream&, const Item& item)
+ostream& operator<<( ostream& out, const Item& item)
 {
 	const Fiction& aFiction = static_cast<const Fiction&>(item);
 
-	cout << aFiction.numInLib << setw(AVAILABILITY_LENGTH) <<
+	out << aFiction.author << setw( aFiction.AUTHOR_SPACE_LENGTH )
+		<< aFiction.title << setw( aFiction.TITLE_SPACE_LENGTH ) << aFiction.year;
+
+	return out;
 }

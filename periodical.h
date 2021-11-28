@@ -13,6 +13,9 @@ class Periodical : public Book
 private:
     int month;
 
+    const int MONTH_SPACE_LENGTH = 4; //size of the space after month output
+    const int YEAR_SPACE_LENGTH = 4;  //size of the space after year output
+
 public:
     Periodical();
     ~Periodical();

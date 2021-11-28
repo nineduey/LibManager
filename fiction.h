@@ -16,9 +16,9 @@ private:
     
     //consts for output (TODO: put in a dictionary)
     //const string fictionBookDeclar = "FICTION BOOK";
-    const int AVAILABILITY_LENGTH = 6;
-    const int AUTHOR_LENGTH = 9;
-    const int TITLE_LENGTH = 9;
+
+    const int AUTHOR_SPACE_LENGTH = 9; //size of the space after author output
+    const int TITLE_SPACE_LENGTH = 9;  //size of the space after title output
 
 public:
     Fiction();

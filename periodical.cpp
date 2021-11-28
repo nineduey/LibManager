@@ -98,3 +98,13 @@ void Periodical::setData( istream& infile)
 
 	maxNumInLib = 5;
 }
+
+ostream& operator<<( ostream& out, const Item& item )
+{
+	const Periodical& aPeriodical = static_cast<const Periodical&>(item);
+
+	out << aPeriodical.month << setw( aPeriodical.MONTH_SPACE_LENGTH )
+		<< aPeriodical.year << setw( aPeriodical.YEAR_SPACE_LENGTH ) << aPeriodical.title;
+
+	return out;
+}
