@@ -13,9 +13,14 @@ BookFactory::BookFactory()
 
 Item* BookFactory::createItem( char bookType ) const
 {
-	//if the bookType isn't associated with an existed char in bookMap, then don't create;
-
-	int subscript = bookMap.at( bookType );
-	return bookFac[subscript]->create();
+	if(bookMap.find( bookType ) == bookMap.end())
+	{
+		return nullptr;
+	}
+	else
+	{
+		int subscript = bookMap.at( bookType );
+		return bookFac[subscript]->create();
+	}
 }
 
