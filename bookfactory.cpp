@@ -11,8 +11,10 @@ BookFactory::BookFactory()
 	bookMap.insert( { 'P', 2 } );
 }
 
-Item* BookFactory::create( char itemType, char bookType ) const
+Item* BookFactory::createItem( char bookType ) const
 {
+	//if the bookType isn't associated with an existed char in bookMap, then don't create;
+
 	int subscript = bookMap.at( bookType );
 	return bookFac[subscript]->createItem();
 }

@@ -8,9 +8,9 @@ using namespace std;
 
 class Periodical : public Book
 {
-    friend ostream& operator<<( ostream&, const Item& );
-
+  
 private:
+
     int month;
 
     const int MONTH_SPACE_LENGTH = 4; //size of the space after month output
@@ -19,6 +19,8 @@ private:
 public:
     Periodical();
     ~Periodical();
+    virtual char returnItemType() const;
+    virtual char returnBookType() const;
     virtual Item& operator=( const Item& );
     virtual bool operator==( const Item& ) const;
     virtual bool operator!=( const Item& ) const;
@@ -26,6 +28,8 @@ public:
     virtual bool operator>( const Item& ) const;
     virtual Item* create() const;
     virtual void setData( istream& ); // need to change params
+
+    virtual void display( const Item& ) const;
 };
 
 #endif

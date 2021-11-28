@@ -7,8 +7,8 @@ FactoryDriver::FactoryDriver()
     factories.push_back( new BookFactory );
 }
 
-Item* FactoryDriver::create( char itemType, char itemType_type) const
+Item* FactoryDriver::createItem( char itemType, char itemType_type) const
 {
     int subscript = factoryTypeMap.at( itemType );
-    return factories[subscript]->create( itemType, itemType_type );
+    return factories[subscript]->createItem( itemType_type );
 }

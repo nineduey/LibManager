@@ -30,12 +30,14 @@ protected:
 public:
     Book();
     ~Book();
+    virtual char returnItemType() const;
+    virtual char returnBookType() const = 0;
     virtual Item& operator=( const Item& ) = 0;
     virtual bool operator==( const Item& ) const = 0;
     virtual bool operator!=( const Item& ) const = 0;
     virtual bool operator<( const Item& ) const = 0;
     virtual bool operator>( const Item& ) const = 0;
-    virtual Item* createItem() const = 0;
+    virtual Item* create() const = 0;
     virtual void setData( istream& ) = 0; // need to change params
 
     virtual void display( const Item& ) const = 0;

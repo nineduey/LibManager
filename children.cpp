@@ -10,6 +10,16 @@ Children::~Children()
 {
 }
 
+char Children::returnItemType() const
+{
+	return itemType;
+}
+
+char Children::returnBookType() const
+{
+	return bookType;
+}
+
 Item& Children::operator=( const Item& item)
 {
 	const Children& aChildren = static_cast<const Children&>(item);
@@ -102,13 +112,11 @@ void Children::setData( istream& infile)
 	maxNumInLib = 5;
 }
 
-ostream& operator<<( ostream& out, const Item& item )
+void Children::display( const Item& item) const
 {
 	const Children& aChildren = static_cast<const Children&>(item);
 
-	out << aChildren.author << setw( aChildren.AUTHOR_SPACE_LENGTH )
+	cout << aChildren.author << setw( aChildren.AUTHOR_SPACE_LENGTH )
 		<< aChildren.title << setw( aChildren.TITLE_SPACE_LENGTH ) << aChildren.year;
-
-	return out;
 }
 

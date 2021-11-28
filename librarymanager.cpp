@@ -24,15 +24,16 @@ void LibraryManager::readInventory(istream& inFile){
 
 			inFile >> itemType_type;
 
-			if (itemType_type != 'C' || itemType_type != 'F' || itemType_type != 'P')
+			if (itemType_type == 'C' || itemType_type == 'F' || itemType_type == 'P')
 			{
-			itemType = 'B';
-			item = this->facdriver.create( itemType, itemType_type );
-			inFile.get();
-			item->setData( inFile );
+				itemType = 'B';
+				item = this->facdriver.createItem( itemType, itemType_type );
+				inFile.get();
+				item->setData( inFile );
 			}
 			else
 			{
+				//insert error message
 				continue;
 			}
 	 }

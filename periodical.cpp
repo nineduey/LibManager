@@ -2,10 +2,21 @@
 
 Periodical::Periodical()
 {
+	month = 0;
 }
 
 Periodical::~Periodical()
 {
+}
+
+char Periodical::returnItemType() const
+{
+	return itemType;
+}
+
+char Periodical::returnBookType() const
+{
+	return bookType;
 }
 
 Item& Periodical::operator=( const Item& item )
@@ -15,13 +26,15 @@ Item& Periodical::operator=( const Item& item )
 	this->title = aPeriodical.title;
 	this->month = aPeriodical.month;
 	this->year = aPeriodical.year;
+
+	return *this;
 }
 
 bool Periodical::operator==( const Item& item ) const
 {
 	const Periodical& aPeriodical = static_cast<const Periodical&>(item);
 
-	return (this->year == aPeriodical.year && this->month == aPeriodical.month)
+	return (this->year == aPeriodical.year && this->month == aPeriodical.month);
 }
 
 bool Periodical::operator!=( const Item& item ) const
@@ -48,6 +61,8 @@ bool Periodical::operator<( const Item& item ) const
 	{
 		return this->month < aPeriodical.month;
 	}
+
+	return false;
 }
 
 bool Periodical::operator>( const Item& item ) const
@@ -69,6 +84,8 @@ bool Periodical::operator>( const Item& item ) const
 	{
 		return this->month > aPeriodical.month;
 	}
+
+	return false;
 }
 
 Item* Periodical::create() const
@@ -90,7 +107,7 @@ void Periodical::setData( istream& infile)
 
 	//do we set numInLib and maxNumInLib here?
 
-	itemType = 'Book';
+	itemType = 'B';
 
 	bookType = 'P';
 
@@ -99,12 +116,10 @@ void Periodical::setData( istream& infile)
 	maxNumInLib = 5;
 }
 
-ostream& operator<<( ostream& out, const Item& item )
+void Periodical::display( const Item& item) const
 {
 	const Periodical& aPeriodical = static_cast<const Periodical&>(item);
 
-	out << aPeriodical.month << setw( aPeriodical.MONTH_SPACE_LENGTH )
+	cout << aPeriodical.month << setw( aPeriodical.MONTH_SPACE_LENGTH )
 		<< aPeriodical.year << setw( aPeriodical.YEAR_SPACE_LENGTH ) << aPeriodical.title;
-
-	return out;
 }

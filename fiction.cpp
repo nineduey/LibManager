@@ -21,6 +21,16 @@ Fiction::~Fiction()
 {
 }
 
+char Fiction::returnItemType() const
+{
+	return itemType;
+}
+
+char Fiction::returnBookType() const
+{
+	return bookType;
+}
+
 Item& Fiction::operator=( const Item& item)
 {
 	const Fiction& aFiction = static_cast<const Fiction&>(item);
@@ -64,6 +74,8 @@ bool Fiction::operator<( const Item& item ) const
 	{
 		return this->title < aFiction.title;
 	}
+
+	return false;
 }
 
 bool Fiction::operator>( const Item& item ) const
@@ -83,6 +95,8 @@ bool Fiction::operator>( const Item& item ) const
 	{
 		return this->title > aFiction.title;
 	}
+
+	return false;
 }
 
 Item* Fiction::create() const
@@ -109,12 +123,10 @@ void Fiction::setData( istream& infile)
 
 }
 
-ostream& operator<<( ostream& out, const Item& item)
+void Fiction::display( const Item& item) const
 {
 	const Fiction& aFiction = static_cast<const Fiction&>(item);
 
-	out << aFiction.author << setw( aFiction.AUTHOR_SPACE_LENGTH )
+	cout << aFiction.author << setw( aFiction.AUTHOR_SPACE_LENGTH )
 		<< aFiction.title << setw( aFiction.TITLE_SPACE_LENGTH ) << aFiction.year;
-
-	return out;
 }

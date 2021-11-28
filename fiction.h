@@ -8,7 +8,6 @@ using namespace std;
 
 class Fiction : public Book
 {
-    friend ostream& operator<<( ostream&, const Item& );
 
 private:
 
@@ -23,6 +22,8 @@ private:
 public:
     Fiction();
     ~Fiction();
+    virtual char returnItemType() const;
+    virtual char returnBookType() const;
     virtual Item& operator=( const Item& );
     virtual bool operator==( const Item& ) const;
     virtual bool operator!=( const Item& ) const;
@@ -30,6 +31,10 @@ public:
     virtual bool operator>( const Item& ) const;
     virtual Item* create() const;
     virtual void setData( istream& );
+
+    virtual void display( const Item& ) const;
+
+    
 };
 
 #endif

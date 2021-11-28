@@ -27,15 +27,15 @@ using namespace std;
 class Item
 {
 	friend class BinTree;
-	friend ostream& operator<<( ostream&, const Item& );
+	//friend ostream& operator<<( ostream&, const Item& );
 
 public:
 
 	Item(); // default constructor
 	virtual ~Item(); // destructor
-	void checkOut();
-	void checkIn();
-	char returnItemType() const;
+	//void checkOut();
+	//void checkIn();
+	virtual char returnItemType() const = 0;
 	virtual Item* create() const = 0;
 	virtual void setData( istream& ) = 0;
 
@@ -44,6 +44,8 @@ public:
 	virtual bool operator!=( const Item& ) const = 0;
 	virtual bool operator<( const Item& ) const = 0;
 	virtual bool operator>( const Item& ) const = 0;
+	
+	virtual void display( const Item& ) const = 0; 
 
 private:
 	Item* left;
@@ -55,7 +57,7 @@ protected:
 	int maxNumInLib; // max number of copies of item in library - QUESTION** : Should we make this a constant?
 	char itemType;	 // added this data member to store the type of item the instance is
 
-	bool validate() const; 
+	//bool validate() const; 
 	// check whether the input content is valid - **QUESTION: not sure how this is used? this was in book.h? should this stay in book.h?
 };
 

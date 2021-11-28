@@ -1,1 +1,9 @@
-#include "Item.h"
+#include "item.h"
+
+Item::Item()
+{
+}
+
+Item::~Item()
+{
+}

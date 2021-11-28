@@ -42,7 +42,7 @@ public:
 	//the char variable passed as the function's argument AND map contains a 
 	//key-value pair in which the key is equal passed in char variable 
 	//Post-conditions: 
-	Item* create( char, char ) const;
+	Item* createItem( char, char ) const;
 
 private:
 

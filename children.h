@@ -16,7 +16,6 @@ using namespace std;
 
 class Children : public Book 
 {
-    friend ostream& operator<<( ostream&, const Item& );
 
 private:
 
@@ -28,13 +27,17 @@ private:
 public:
     Children();
     ~Children();
+    virtual char returnItemType() const;
+    virtual char returnBookType() const;
     virtual Item& operator=( const Item& );
     virtual bool operator==( const Item& ) const;
     virtual bool operator!=( const Item& ) const;
     virtual bool operator<( const Item& ) const;
     virtual bool operator>( const Item& ) const;
-    virtual Item* create() const { return new Children; };
+    virtual Item* create() const;
     virtual void setData( istream& );
+
+    virtual void display( const Item& ) const;
 };
 
 #endif
