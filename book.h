@@ -19,8 +19,7 @@ using namespace std;
 //class Children;
 //class Periodical;
 
-class Book : public Item
-{
+class Book : public Item {
 
 protected:
     string title;
@@ -30,6 +29,9 @@ protected:
 public:
     Book();
     ~Book();
+    virtual Item* create() const = 0;
+    virtual void setData( istream& ) = 0;
+    virtual void print(ostream&) const = 0;
     virtual char returnItemType() const;
     virtual char returnBookType() const = 0;
     virtual Item& operator=( const Item& ) = 0;
@@ -37,11 +39,6 @@ public:
     virtual bool operator!=( const Item& ) const = 0;
     virtual bool operator<( const Item& ) const = 0;
     virtual bool operator>( const Item& ) const = 0;
-    virtual Item* create() const = 0;
-    virtual void setData( istream& ) = 0; // need to change params
-
-    virtual void display( const Item& ) const = 0;
-
 };
 
 #endif
