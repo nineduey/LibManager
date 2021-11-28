@@ -193,7 +193,11 @@ bool BinTree::isEmpty() const {
 //Pre-conditions: The BinTree is not empty, it contains Item objects
 //Post-conditions: Returns an uppercase character corresponding to the type of 
 //objects in the BookBinTree
+<<<<<<< Updated upstream
 char BinTree::returnObjectType() const {
+=======
+char BinTree::returnItemType() const {
+>>>>>>> Stashed changes
 	 // ** ADDED objectType data member to Item class, which will aid in returning the object type that is being held in the Item instance
 	 return root->returnItemType();
 }
@@ -220,4 +224,8 @@ Item*& BinTree::retrieveHelper(Item*& current, Item* target) const {
 	 else {
 		  return retrieveHelper(current->right, target);
 	 }
+<<<<<<< Updated upstream
 }
+=======
+}
+>>>>>>> Stashed changes

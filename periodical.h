@@ -14,8 +14,11 @@
 #include "book.h"
 using namespace std;
 
+<<<<<<< Updated upstream
 const int MONTH_SPACE_LENGTH = 4; //size of the space after month output
 const int YEAR_SPACE_LENGTH = 4;  //size of the space after year output
+=======
+>>>>>>> Stashed changes
 
 class Periodical : public Book
 {

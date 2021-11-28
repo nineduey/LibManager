@@ -55,6 +55,10 @@ private:
 	 Item* right;
 
 protected: 
+<<<<<<< Updated upstream
+=======
+
+>>>>>>> Stashed changes
 	 int numInLib; // number of current copies of item in library
 	 int maxNumInLib; // max number of copies of item in library - QUESTION** : Should we make this a constant?
 	 char itemType;	// added this data member to store the type of item the instance is

@@ -21,9 +21,17 @@ class Fiction : public Book {
 private:
 
     string author;
+<<<<<<< Updated upstream
     //consts for output (TODO: put in a dictionary)
     //const string fictionBookDeclar = "FICTION BOOK";
     
+=======
+
+    //consts for output (TODO: put in a dictionary)
+    //const string fictionBookDeclar = "FICTION BOOK";
+    
+
+>>>>>>> Stashed changes
 public:
     Fiction();
     ~Fiction();
@@ -35,6 +43,11 @@ public:
     virtual Item* create() const;
     virtual void setData(istream&);
     virtual void print(ostream& os) const;
+<<<<<<< Updated upstream
+=======
+
+
+>>>>>>> Stashed changes
 };
 
 #endif

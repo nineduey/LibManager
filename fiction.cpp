@@ -112,6 +112,7 @@ Item* Fiction::create() const {
 void Fiction::setData(istream& infile)
 {
 	 getline(infile, author, ',');     // input author, looks for comma terminator
+<<<<<<< Updated upstream
 
 	 /*infile.get();
 	 getline( infile, authorLast, ',' );*/
@@ -123,6 +124,22 @@ void Fiction::setData(istream& infile)
 	 itemType = 'B';     // setting itemType -> Item class
 	 numInLib = 5;       // setting numer of Book copies -> Item class
 	 bookType = 'F';     // setting bookType -> Book class
+=======
+
+	 /*infile.get();
+
+	 getline( infile, authorLast, ',' );*/
+
+	 infile.get();                     // get (and ignore) blank before title
+
+	 getline(infile, title, ',');      // input title
+
+	 infile >> year;                   // input year
+
+	 itemType = 'B';     // setting itemType -> Item class
+	 numInLib = 5;          // setting numer of Book copies -> Item class
+	 bookType = 'F';        // setting bookType -> Book class
+>>>>>>> Stashed changes
 }
 
 //----------------------------------------------------------------------------

@@ -12,8 +12,13 @@ Periodical::Periodical()
 //----------------------------------------------------------------------------
 // Destructor
 Periodical::~Periodical(){}
+<<<<<<< Updated upstream
 
 
+=======
+
+
+>>>>>>> Stashed changes
 //----------------------------------------------------------------------------
 // operator = : Assignment operator, creates deep copy of the Item& anItem
 // passed in
@@ -96,6 +101,7 @@ bool Periodical::operator>(const Item& item)
 Item* Periodical::create() const {
 	 return new aPeriodical;
 }
+<<<<<<< Updated upstream
 
 
 //----------------------------------------------------------------------------
@@ -117,6 +123,34 @@ ostream& operator<<(ostream& out, const Periodical& aPeriodicalBook)
 {
 	 aPeriodicalBook.print(out);
 	 return out;
+}
+
+//----------------------------------------------------------------------------
+void Periodical::print(ostream& os) const {
+	 cout << numInLib << "     " << title << ",     " << month << " " << year;
+=======
+
+
+//----------------------------------------------------------------------------
+void Periodical::setData(istream& infile)
+{
+	 getline(infile, title, ',');    // input author, looks for comma terminator
+	 infile.get();                   // get (and ignore) blank before month
+	 infile >> month;						// input month
+	 infile.get();                   // get (and ignore) blank before year
+	 infile >> year;                 // input year
+
+	 itemType = 'B';     // setting itemType -> Item class
+	 numInLib = 5;          // setting numer of Book copies -> Item class
+	 bookType = 'P';        // setting bookType -> Book class
+}
+
+//----------------------------------------------------------------------------
+ostream& operator<<(ostream& out, const Periodical& aPeriodicalBook)
+{
+	 aPeriodicalBook.print(out);
+	 return out;
+>>>>>>> Stashed changes
 }
 
 //----------------------------------------------------------------------------

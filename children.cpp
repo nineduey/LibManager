@@ -11,7 +11,11 @@ Children::Children()
 
 //----------------------------------------------------------------------------
 // Destructor
+<<<<<<< Updated upstream
 Children::~Children(){}
+=======
+Children::~Children() {}
+>>>>>>> Stashed changes
 
 //----------------------------------------------------------------------------
 // operator = : Assignment operator, creates deep copy of the Item& anItem
@@ -79,7 +83,11 @@ bool Children::operator>(const Item& item) {
 
     if (this->title > aChildren.title) {
         return true;
+<<<<<<< Updated upstream
     } 
+=======
+    }
+>>>>>>> Stashed changes
     else if (this->title == aChildren.title) {
         return this->author > aChildren.author;
     }
@@ -90,7 +98,11 @@ bool Children::operator>(const Item& item) {
 //@pre:
 //@post:
 Item* Children::create() const {
+<<<<<<< Updated upstream
 	 return new Children;
+=======
+    return new Children;
+>>>>>>> Stashed changes
 }
 
 //----------------------------------------------------------------------------
@@ -110,6 +122,7 @@ void Children::setData(istream& infile) {
     itemType = 'B';     // setting itemType -> Item class
     numInLib = 5;          // setting numer of Book copies -> Item class
     bookType = 'C';        // setting bookType -> Book class
+<<<<<<< Updated upstream
     
 }
 
@@ -122,4 +135,18 @@ ostream& operator<<(ostream& out, const Children& aChildrenBook) {
 //----------------------------------------------------------------------------
 void Children::print(ostream& os) const {
 	 cout << numInLib << "     " << author << "     " << title << "     " << year;
+=======
+
+}
+
+//----------------------------------------------------------------------------
+ostream& operator<<(ostream& out, const Children& aChildrenBook) {
+    aChildrenBook.print(out);
+    return out;
+>>>>>>> Stashed changes
+}
+
+//----------------------------------------------------------------------------
+void Children::print(ostream& os) const {
+    cout << numInLib << "     " << author << "     " << title << "     " << year;
 }
