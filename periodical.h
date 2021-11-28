@@ -1,3 +1,11 @@
+/*
+@File contents: Periodical class function definitions
+@Purpose:
+@Assumptions:
+@Authors: Shushmitha Radjaram and Amanda Todakonzie
+@How code is used:
+*/
+//-----------------------------------------------------------------------------
 #ifndef PERIODICAL_H
 #define PERIODICAL_H
 
@@ -6,26 +14,27 @@
 #include "book.h"
 using namespace std;
 
+const int MONTH_SPACE_LENGTH = 4; //size of the space after month output
+const int YEAR_SPACE_LENGTH = 4;  //size of the space after year output
+
 class Periodical : public Book
 {
-    friend ostream& operator<<( ostream&, const Item& );
+    friend ostream& operator<<(ostream&, const Item&);
 
 private:
     int month;
 
-    const int MONTH_SPACE_LENGTH = 4; //size of the space after month output
-    const int YEAR_SPACE_LENGTH = 4;  //size of the space after year output
-
 public:
     Periodical();
     ~Periodical();
-    virtual Item& operator=( const Item& );
-    virtual bool operator==( const Item& ) const;
-    virtual bool operator!=( const Item& ) const;
-    virtual bool operator<( const Item& ) const;
-    virtual bool operator>( const Item& ) const;
+    virtual Item& operator=(const Item&);
+    virtual bool operator==(const Item&);
+    virtual bool operator!=(const Item&);
+    virtual bool operator<(const Item&);
+    virtual bool operator>(const Item&);
     virtual Item* create() const;
-    virtual void setData( istream& ); // need to change params
+    virtual void setData(istream&);
+    virtual void print(ostream& os) const;
 };
 
 #endif
