@@ -20,7 +20,7 @@ objects in sorted order.
 #ifndef BINTREE_H
 #define BINTREE_H
 #include <iostream>
-using namespace std;
+
 
 //forward referencing for Item Class
 class Item;
@@ -29,7 +29,7 @@ class BinTree
 {
 	 friend class Item;
 
-	 friend ostream& operator<<(ostream&, const BinTree&); // ostream<< operator, uses inorderhelper() 
+	 friend ostream& operator<<(ostream&, const BinTree&);
 
 public:
 	 BinTree(); // Default Constructor
@@ -37,16 +37,14 @@ public:
 
 	 bool insert(Item*); // Inserts Book object into BinTree 
 	 bool find(Item*); //Conducts a search an item object from the BinTree
-	 Item*& retrieve(const Item*) const; // Retrieves an Item from the BinTree - **QUESTION: Does this param need to be passed by reference? My code only passes in a pointer
+	 Item*& retrieve(Item*) const; // Retrieves an Item from the BinTree 
 	 bool isEmpty() const; // Returns boolean if BinTree is empty or not
-	 char returnObjectType() const; // Returns  bookType within Book class
+	 char returnItemType() const; // Returns  bookType within Book class
+	 
 
 private:
-
 	 Item* root;		//root of BinTree
-
 	 void makeEmpty(Item*& ptr); // Deletes Items from BinTree
-
-	 Item*& retrieveHelper( const Item*, const Item*) const;
+	 Item*& retrieveHelper(Item*&, Item*) const; // recursive retrive helper function
 };
 #endif
