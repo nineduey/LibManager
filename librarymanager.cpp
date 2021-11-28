@@ -12,25 +12,29 @@
 //-----------------------------------------------------------------------------
 
 #include "librarymanager.h"
-#include "storage.h"
-#include "hashmap.h"
-#include "bookfactory.h"
-#include "book.h"
-#include "transaction.h"
-
-
 
 //-----------------------------------------------------------------------------
 void LibraryManager::readInventory(istream& inFile){
 
-    Book* tempBook;
-	 char bookType;
+    Item* item;
+	char itemType;
+	char itemType_type;
 	
 	 while (!inFile.eof()) {
-		  inFile >> bookType;
-		  tempBook = bf.createBook(bookType);
-		  inFile.get();
-		  tempBook.setData(inFile);
+
+			inFile >> itemType_type;
+
+			if (itemType_type != 'C' || itemType_type != 'F' || itemType_type != 'P')
+			{
+			itemType = 'B';
+			item = this->facdriver.create( itemType, itemType_type );
+			inFile.get();
+			item->setData( inFile );
+			}
+			else
+			{
+				continue;
+			}
 	 }
 }
 
