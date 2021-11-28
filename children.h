@@ -14,27 +14,24 @@
 #include "book.h"
 using namespace std;
 
-class Children : public Book 
+class Children : public Book
 {
-    friend ostream& operator<<( ostream&, const Item& );
+    friend ostream& operator<<(ostream&, const Item&);
 
 private:
-
     string author;
-
-    const int AUTHOR_SPACE_LENGTH = 9; //size of the space after author output
-    const int TITLE_SPACE_LENGTH = 9;  //size of the space after title output
 
 public:
     Children();
     ~Children();
-    virtual Item& operator=( const Item& );
-    virtual bool operator==( const Item& ) const;
-    virtual bool operator!=( const Item& ) const;
-    virtual bool operator<( const Item& ) const;
-    virtual bool operator>( const Item& ) const;
-    virtual Item* create() const { return new Children; };
-    virtual void setData( istream& );
+    virtual Item& operator=(const Item&);
+    virtual bool operator==(const Item&);
+    virtual bool operator!=(const Item&);
+    virtual bool operator<(const Item&);
+    virtual bool operator>(const Item&);
+    virtual Item* create() const;
+    virtual void setData(istream&);
+    virtual void print(ostream& os) const;
 };
 
 #endif
