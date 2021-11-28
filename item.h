@@ -35,10 +35,10 @@ public:
     virtual ~Item(); // destructor
     //void checkOut();
     //void checkIn();
-    virtual char returnItemType() const = 0;
     virtual Item* create() const = 0;
     virtual void setData( istream& ) = 0;
     virtual void print(ostream& os) const;
+    virtual char returnItemType() const = 0;
     virtual Item& operator=( const Item& ) = 0;
     virtual bool operator==( const Item& ) const = 0;
     virtual bool operator!=( const Item& ) const = 0;
