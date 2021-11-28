@@ -24,6 +24,7 @@ const int AVAILABILITY_LENGTH = 6;
 const int AUTHOR_LENGTH = 9; // size of the space after author output
 const int TITLE_LENGTH = 9; // size of the space after title output
 
+
 class Book : public Item
 {
     friend ostream& operator<<( ostream&, const Item& );
