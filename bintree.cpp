@@ -24,27 +24,7 @@
 //the sorting criteria of the type of Book object
 //BinTree remains unchanged.
 ostream& operator<<(ostream& out, const BinTree& T) {
-	 stack<Item*> itemStack;
-	 Item* current = T.root;
-	 bool done = false;
-	 while (!done) {
-		  if (current != nullptr) {
-				itemStack.push(current);
-				current = current->left;
-		  }
-		  else {
-				if (!itemStack.empty()) {
-					 current = itemStack.top();
-					 out << " " << *current;
-					 itemStack.pop();
-					 current = current->right;
-				}
-				else {
-					 done = true;
-				}
-		  }
-	 }
-	 out << endl;
+	 T.print(out);
 	 return out;
 }
 
@@ -217,6 +197,30 @@ Item*& BinTree::retrieveHelper(const Item* current, const Item* target) const { 
 	else {
 		return retrieveHelper(current->right, target);
 	}
+}
+
+void BinTree::print(ostream& out) {
+    stack<Item*> itemStack;
+    Item* current = T.root;
+    bool done = false;
+        while (!done) {
+            if (current != nullptr) {
+                itemStack.push(current);
+		current = current->left;
+            }
+            else {
+                if (!itemStack.empty()) {
+                    current = itemStack.top();
+                    out << " " << *current;
+                    itemStack.pop();
+                    current = current->right;
+                }
+                else {
+                    done = true;
+                }
+	    }
+	}
+   out << endl;
 }
 
 
