@@ -17,19 +17,19 @@ Item& Periodical::operator=( const Item& item )
 	this->year = aPeriodical.year;
 }
 
-bool Periodical::operator==( const Item& item )
+bool Periodical::operator==( const Item& item ) const
 {
 	const Periodical& aPeriodical = static_cast<const Periodical&>(item);
 
 	return (this->year == aPeriodical.year && this->month == aPeriodical.month)
 }
 
-bool Periodical::operator!=( const Item& item )
+bool Periodical::operator!=( const Item& item ) const
 {
 	return !operator==(item);
 }
 
-bool Periodical::operator<( const Item& item )
+bool Periodical::operator<( const Item& item ) const
 {
 	//sorted by date (year, then month), then by title 
 	
@@ -50,7 +50,7 @@ bool Periodical::operator<( const Item& item )
 	}
 }
 
-bool Periodical::operator>( const Item& item )
+bool Periodical::operator>( const Item& item ) const
 {
 	//sorted by date (year, then month), then by title 
 

@@ -24,10 +24,10 @@ public:
     Fiction();
     ~Fiction();
     virtual Item& operator=( const Item& );
-    virtual bool operator==( const Item& );
-    virtual bool operator!=( const Item& );
-    virtual bool operator<( const Item& );
-    virtual bool operator>( const Item& );
+    virtual bool operator==( const Item& ) const;
+    virtual bool operator!=( const Item& ) const;
+    virtual bool operator<( const Item& ) const;
+    virtual bool operator>( const Item& ) const;
     virtual Item* create() const;
     virtual void setData( istream& );
 };

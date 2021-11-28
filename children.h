@@ -29,11 +29,11 @@ public:
     Children();
     ~Children();
     virtual Item& operator=( const Item& );
-    virtual bool operator==( const Item& );
-    virtual bool operator!=( const Item& );
-    virtual bool operator<( const Item& );
-    virtual bool operator>( const Item& );
-    virtual Item* create() const;  //{ return new Children; };
+    virtual bool operator==( const Item& ) const;
+    virtual bool operator!=( const Item& ) const;
+    virtual bool operator<( const Item& ) const;
+    virtual bool operator>( const Item& ) const;
+    virtual Item* create() const { return new Children; };
     virtual void setData( istream& );
 };
 

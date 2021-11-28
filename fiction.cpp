@@ -33,19 +33,19 @@ Item& Fiction::operator=( const Item& item)
 	return *this;
 }
 
-bool Fiction::operator==( const Item& item )
+bool Fiction::operator==( const Item& item ) const
 {
 	const Fiction& aFiction = static_cast<const Fiction&>(item);
 
 	return (this->title == aFiction.title && this->author == aFiction.author);
 }
 
-bool Fiction::operator!=( const Item& item )
+bool Fiction::operator!=( const Item& item ) const
 {
 	return !this->operator==( item );
 }
 
-bool Fiction::operator<( const Item& item )
+bool Fiction::operator<( const Item& item ) const
 {
 	//sorted by author, then title
 
@@ -66,7 +66,7 @@ bool Fiction::operator<( const Item& item )
 	}
 }
 
-bool Fiction::operator>( const Item& item )
+bool Fiction::operator>( const Item& item ) const
 {
 	const Fiction& aFiction = static_cast<const Fiction&>(item);
 

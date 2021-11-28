@@ -22,19 +22,19 @@ Item& Children::operator=( const Item& item)
 	return *this;
 }
 
-bool Children::operator==( const Item& item)
+bool Children::operator==( const Item& item) const
 {
 	const Children& aChildren = static_cast<const Children&>(item);
 
 	return (this->title == aChildren.title && this->author == aChildren.author);
 }
 
-bool Children::operator!=( const Item& item)
+bool Children::operator!=( const Item& item) const
 {
 	return !this->operator==( item );
 }
 
-bool Children::operator<( const Item& item)
+bool Children::operator<( const Item& item) const
 {
 	if(this->operator==( item ))
 	{
@@ -53,7 +53,7 @@ bool Children::operator<( const Item& item)
 	}
 }
 
-bool Children::operator>( const Item& item)
+bool Children::operator>( const Item& item) const
 {
 	if(this->operator==(item) || this->operator<(item))
 	{
