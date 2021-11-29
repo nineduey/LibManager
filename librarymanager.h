@@ -1,7 +1,7 @@
 #ifndef LIBRARYMANAGER_H
 #define LIBRARYMANAGER_H
 #include "factorydriver.h"
-//#include "storage.h"
+#include "storage.h"
 //#include "hashmap.h"
 #include "item.h"
 #include <iostream>
@@ -62,7 +62,7 @@ private:
 
 	//HashMap patrons;	//calling object of method that further processes customer data 
 
-	//Storage catalogue;	//linked list of BookBinTree objects that each contain books of 
+	Storage catalogue;	//linked list of BookBinTree objects that each contain books of 
 						//a specific genre
 };
 #endif

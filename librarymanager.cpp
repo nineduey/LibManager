@@ -32,7 +32,8 @@ void LibraryManager::readInventory(istream& inFile){
 		}
 		inFile.get();
 		item->setData( inFile );
-		item->display();
+		//item->display();
+		catalogue.append( item );
 	 }
 }
 

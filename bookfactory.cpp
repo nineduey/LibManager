@@ -11,6 +11,15 @@ BookFactory::BookFactory()
 	bookMap.insert( { 'P', 2 } );
 }
 
+BookFactory::~BookFactory()
+{
+	for (int i = 0; i < bookFac.size(); i++)
+	{
+		delete bookFac[i];
+		bookFac[i] = NULL;
+	}
+}
+
 Item* BookFactory::createItem( char bookType ) const
 {
 	if(bookMap.find( bookType ) == bookMap.end())

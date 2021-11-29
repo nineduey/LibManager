@@ -42,9 +42,6 @@ public:
 	//Post-conditions: 
 	virtual Item* createItem( char ) const = 0;
 
-	//std::map<char, int> itemTypeMap;
-
-	//vector<Item*> itemFac;
 };
 #endif
 

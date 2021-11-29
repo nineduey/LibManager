@@ -35,6 +35,8 @@ public:
 	//Post-conditions: Elements of map and bookFac are initialized.
 	FactoryDriver();
 
+	~FactoryDriver();
+
 	//----------------------------------------------------------------------------
 	//create(): Instantiates book object to equal book object of the type 
 	//associated with the char variable passed in as the function's argument
