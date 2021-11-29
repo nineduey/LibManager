@@ -22,20 +22,17 @@ void LibraryManager::readInventory(istream& inFile){
 	
 	 while (!inFile.eof()) {
 
-			inFile >> itemType_type;
+		inFile >> itemType_type;
 
-			if (itemType_type == 'C' || itemType_type == 'F' || itemType_type == 'P')
-			{
-				itemType = 'B';
-				item = this->facdriver.createItem( itemType, itemType_type );
-				inFile.get();
-				item->setData( inFile );
-			}
-			else
-			{
-				//insert error message
-				continue;
-			}
+		itemType = 'B';
+		item = this->facdriver.createItem( itemType, itemType_type );
+		if(item == nullptr)
+		{
+			continue;
+		}
+		inFile.get();
+		item->setData( inFile );
+		item->display();
 	 }
 }
 
