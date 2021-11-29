@@ -3,3 +3,4 @@ Debug/*
 *.user
 .vs/*
 *.vcxproj
+*.sln
