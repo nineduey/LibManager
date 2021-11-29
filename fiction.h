@@ -1,3 +1,11 @@
+/*
+@File contents: Fiction class function definitions
+@Purpose:
+@Assumptions:
+@Authors: Shushmitha Radjaram and Amanda Todakonzie
+@How code is used:
+*/
+//-----------------------------------------------------------------------------
 #ifndef FICTION_H
 #define FICTION_H
 
@@ -22,19 +30,16 @@ private:
 public:
     Fiction();
     ~Fiction();
+    virtual Item* create() const;
+    virtual void setData( istream& );
+    virtual void print(ostream& os) const;
     virtual char returnItemType() const;
     virtual char returnBookType() const;
     virtual Item& operator=( const Item& );
     virtual bool operator==( const Item& ) const;
     virtual bool operator!=( const Item& ) const;
     virtual bool operator<( const Item& ) const;
-    virtual bool operator>( const Item& ) const;
-    virtual Item* create() const;
-    virtual void setData( istream& );
-
-    virtual void display( const Item& ) const;
-
-    
+    virtual bool operator>( const Item& ) const;    
 };
 
 #endif

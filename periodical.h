@@ -1,3 +1,12 @@
+
+/*
+@File contents: Periodical class function definitions
+@Purpose:
+@Assumptions:
+@Authors: Shushmitha Radjaram and Amanda Todakonzie
+@How code is used:
+*/
+//-----------------------------------------------------------------------------
 #ifndef PERIODICAL_H
 #define PERIODICAL_H
 
@@ -19,6 +28,9 @@ private:
 public:
     Periodical();
     ~Periodical();
+    virtual Item* create() const;
+    virtual void setData( istream& ); 
+    virtual void print(ostream& os) const;
     virtual char returnItemType() const;
     virtual char returnBookType() const;
     virtual Item& operator=( const Item& );
@@ -26,10 +38,7 @@ public:
     virtual bool operator!=( const Item& ) const;
     virtual bool operator<( const Item& ) const;
     virtual bool operator>( const Item& ) const;
-    virtual Item* create() const;
-    virtual void setData( istream& ); // need to change params
 
-    virtual void display( const Item& ) const;
 };
 
 #endif
