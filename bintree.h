@@ -19,21 +19,19 @@ objects in sorted order.
 
 #ifndef BINTREE_H
 #define BINTREE_H
+#include "item.h"
 #include <iostream>
-
 
 //forward referencing for Item Class
 class Item;
 
 class BinTree
 {
-	 friend class Item;
+	friend class Item;
 
-	 friend ostream& operator<<(ostream&, const BinTree&);
+	friend ostream& operator<<( ostream&, const BinTree& );
 
 public:
-	 BinTree(); // Default Constructor
-	 ~BinTree(); // Destructor
 	BinTree(); // Default Constructor
 	~BinTree(); // Destructor
 
@@ -44,17 +42,8 @@ public:
 	char returnItemType() const; // Returns  bookType within Book class
 	char returnItemType_Genre() const;
 
-	 bool insert(Item*); // Inserts Book object into BinTree 
-	 bool find(Item*); //Conducts a search an item object from the BinTree
-	 Item*& retrieve(Item*) const; // Retrieves an Item from the BinTree 
-	 bool isEmpty() const; // Returns boolean if BinTree is empty or not
-	 char returnItemType() const; // Returns  bookType within Book class
-	 
 
 private:
-	 Item* root;		//root of BinTree
-	 void makeEmpty(Item*& ptr); // Deletes Items from BinTree
-	 Item*& retrieveHelper(Item*&, Item*) const; // recursive retrive helper function
 	Item* root;		//root of BinTree
 	void makeEmpty( Item*& ptr ); // Deletes Items from BinTree
 	Item*& retrieveHelper( Item*&, Item* ) const; // recursive retrive helper function
