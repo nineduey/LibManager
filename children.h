@@ -32,6 +32,24 @@ public:
     virtual Item* create() const;
     virtual void setData(istream&);
     virtual void print(ostream& os) const;
+public:
+    Children();
+    ~Children();
+    virtual char returnItemType() const;
+    virtual char returnItemType_Genre() const;
+    virtual Item* create() const;
+    virtual void setData(istream&);
+    virtual void print(ostream& os) const;
+
+    //virtual comparison operators
+    virtual Item& operator=( const Item& );
+    virtual bool operator==( const Item& ) const;
+    virtual bool operator!=( const Item& ) const;
+    virtual bool operator<( const Item& ) const;
+    virtual bool operator>( const Item& ) const;
+
+private:
+    string author; // author of children book
 };
 
 #endif

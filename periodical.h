@@ -1,5 +1,6 @@
 /*
 @File contents: Periodical class function definitions
+@File contents: Periodical.h class Function and Variable Declarations
 @Purpose:
 @Assumptions:
 @Authors: Shushmitha Radjaram and Amanda Todakonzie
@@ -38,6 +39,26 @@ public:
     virtual Item* create() const;
     virtual void setData(istream&);
     virtual void print(ostream& os) const;
+  
+public:
+    Periodical();  // constructor
+    ~Periodical(); // destructor
+    virtual char returnItemType() const;
+    virtual char returnItemType_Genre() const;
+    virtual Item* create() const;
+    virtual void setData(istream&);
+    virtual void print(ostream& os) const;
+
+    // virtual comparison operators
+    virtual Item& operator=( const Item& );
+    virtual bool operator==( const Item& ) const;
+    virtual bool operator!=( const Item& ) const;
+    virtual bool operator<( const Item& ) const;
+    virtual bool operator>( const Item& ) const;
+
+private:
+    int month; // month of book published
+
 };
 
 #endif

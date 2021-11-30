@@ -51,4 +51,28 @@ void Book::print(ostream& os) const {
 =======
 	 this->print(os);
 >>>>>>> Stashed changes
+@File contents: Book class function definitions
+
+@Purpose:
+
+@Assumptions:
+
+@Authors: Shushmitha Radjaram and Amanda Todakonzie
+
+@How code is used:
+*/
+//-----------------------------------------------------------------------------
+#include "book.h"
+
+//----------------------------------------------------------------------------
+// Default Constructor
+Book::Book()
+{
+	 title = "";
+	 year = 0000;
+	 bookType = 'B';
 }
+
+//----------------------------------------------------------------------------
+// Destructor
+Book::~Book() {}

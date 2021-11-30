@@ -20,6 +20,8 @@ Item::Item() {
 =======
 
 
+//-----------------------------------------------------------------------------
+// Default Constrcutor: method to initialize private & protected data members
 Item::Item() {
 	 left = nullptr;
     right = nullptr;
@@ -34,6 +36,7 @@ Item::Item() {
 // Destructor
 =======
 >>>>>>> Stashed changes
+// Destructor: sets the left and right Item pointers to null
 Item::~Item() {
 	 left = nullptr;
 	 right = nullptr;
@@ -45,6 +48,9 @@ Item::~Item() {
 // checkOut() : method to check out a book from the library
 =======
 >>>>>>> Stashed changes
+// checkOut(): method to check out an Item contained in Library catalogue
+// @pre:
+// @post:
 void Item::checkOut() {
 	 if (numInLib > 0) {
 		  numInLib--;
@@ -59,6 +65,9 @@ void Item::checkOut() {
 // checkIn() : method to check in a book from the library
 =======
 >>>>>>> Stashed changes
+// checkIn(): method to check out an Item contained in Library catalogue
+// @pre:
+// @post:
 void Item::checkIn() {
 	 if (numInLib < maxNumInLib) {
 		  numInLib++;
@@ -86,13 +95,14 @@ char Item::returnItemType() const {
 // Item object class
 =======
 >>>>>>> Stashed changes
+//----------------------------------------------------------------------------
+// validate(): method to validate contained within object is valid
+// @pre:
+// @post:
 bool Item::validate() const {
 
 }
 
-void Item::print(ostream& os) const {
-	 this->print(os);
-}
 
 ostream& operator<<(ostream& out, const Item& anItem) {
 	 anItem.print(out);
