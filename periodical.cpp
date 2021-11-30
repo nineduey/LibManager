@@ -14,24 +14,15 @@
 #include <iomanip>
 
 
-//----------------------------------------------------------------------------
-
-
 
 // Default Constructor
 Periodical::Periodical()
 {
-	 month = 01;
+	month = 0;
 }
 
 //----------------------------------------------------------------------------
 // Destructor
-Periodical::~Periodical(){}
-<<<<<<< Updated upstream
-
-
-=======
-
 Periodical::~Periodical()
 {
 }
@@ -63,70 +54,58 @@ Item& Periodical::operator=( const Item& item )
 {
 	const Periodical& aPeriodical = static_cast<const Periodical&>(item);
 
->>>>>>> Stashed changes
-//----------------------------------------------------------------------------
-// operator = : Assignment operator, creates deep copy of the Item& anItem
-// passed in
-// @pre:
-//@post:
-Item& Periodical::operator=(const Item& item)
-{
-	 const Periodical& aPeriodical = static_cast<const Periodical&>(item);
+	this->title = aPeriodical.title;
+	this->month = aPeriodical.month;
+	this->year = aPeriodical.year;
 
-	 this->title = aPeriodical.title;
-	 this->month = aPeriodical.month;
-	 this->year = aPeriodical.year;
+	return *this;
 }
 
 //----------------------------------------------------------------------------
-//operator == : 
-//@pre:
-//@post:
-bool Periodical::operator==(const Item& item)
 // operator == : 
 // @pre:
 // @post:
 bool Periodical::operator==( const Item& item ) const
 {
-	 const Periodical& aPeriodical = static_cast<const Periodical&>(item);
+	const Periodical& aPeriodical = static_cast<const Periodical&>(item);
 
-	 return (this->year == aPeriodical.year && this->month == aPeriodical.month);
+	return (this->year == aPeriodical.year && this->month == aPeriodical.month);
 }
 
 //----------------------------------------------------------------------------
-bool Periodical::operator!=(const Item& item)
 // operator != : 
 // @pre:
 // @post:
 bool Periodical::operator!=( const Item& item ) const
 {
-	 return !operator==(item);
+	return !operator==(item);
 }
 
 //----------------------------------------------------------------------------
-bool Periodical::operator<(const Item& item)
 // operator < : 
 // @pre:
 // @post:
 bool Periodical::operator<( const Item& item ) const
 {
-	 //sorted by date (year, then month), then by title 
+	//sorted by date (year, then month), then by title 
+	
+	if (this->operator==( item ))
+	{
+		return false;
+	}
 
-	 if (this->operator==(item))
-	 {
-		  return false;
-	 }
+	const Periodical& aPeriodical = static_cast<const Periodical&>(item);
 
-	 const Periodical& aPeriodical = static_cast<const Periodical&>(item);
+	if (this->year < aPeriodical.year)
+	{
+		return true;
+	}
+	else if (this->month == aPeriodical.month)
+	{
+		return this->month < aPeriodical.month;
+	}
 
-	 if (this->year < aPeriodical.year)
-	 {
-		  return true;
-	 }
-	 else if (this->month == aPeriodical.month)
-	 {
-		  return this->month < aPeriodical.month;
-	 }
+	return false;
 }
 
 //----------------------------------------------------------------------------
@@ -142,88 +121,30 @@ bool Periodical::operator>( const Item& item ) const
 		return false;
 	}
 
-//----------------------------------------------------------------------------
-bool Periodical::operator>(const Item& item)
-{
-	 //sorted by date (year, then month), then by title 
+	const Periodical& aPeriodical = static_cast<const Periodical&>(item);
 
-	 if (this->operator==(item) || this->operator<(item))
-	 {
-		  return false;
-	 }
+	if (this->year > aPeriodical.year)
+	{
+		return true;
+	}
+	else if (this->month == aPeriodical.month)
+	{
+		return this->month > aPeriodical.month;
+	}
 
-	 const Periodical& aPeriodical = static_cast<const Periodical&>(item);
-
-	 if (this->year > aPeriodical.year)
-	 {
-		  return true;
-	 }
-	 else if (this->month == aPeriodical.month)
-	 {
-		  return this->month > aPeriodical.month;
-	 }
-}
-
-
-//----------------------------------------------------------------------------
-// create() : method to create new Periodical object
-Item* Periodical::create() const {
-	 return new aPeriodical;
-}
-<<<<<<< Updated upstream
-
-
-//----------------------------------------------------------------------------
-void Periodical::setData(istream& infile)
-{
-	 getline(infile, title, ',');    // input author, looks for comma terminator
-	 infile.get();                   // get (and ignore) blank before month
-	 infile >> month;						// input month
-	 infile.get();                   // get (and ignore) blank before year
-	 infile >> year;                 // input year
-
-	 itemType = 'B';     // setting itemType -> Item class
-	 numInLib = 5;          // setting numer of Book copies -> Item class
-	 bookType = 'P';        // setting bookType -> Book class
+	return false;
 }
 
 //----------------------------------------------------------------------------
-ostream& operator<<(ostream& out, const Periodical& aPeriodicalBook)
-{
-	 aPeriodicalBook.print(out);
-	 return out;
-}
-
-//----------------------------------------------------------------------------
-void Periodical::print(ostream& os) const {
-	 cout << numInLib << "     " << title << ",     " << month << " " << year;
-=======
-
-
-//----------------------------------------------------------------------------
-void Periodical::setData(istream& infile)
 // create() : 
 // @pre:
 // @post:
 Item* Periodical::create() const
 {
-	 getline(infile, title, ',');    // input author, looks for comma terminator
-	 infile.get();                   // get (and ignore) blank before month
-	 infile >> month;						// input month
-	 infile.get();                   // get (and ignore) blank before year
-	 infile >> year;                 // input year
-
-	 itemType = 'B';     // setting itemType -> Item class
-	 numInLib = 5;          // setting numer of Book copies -> Item class
-	 bookType = 'P';        // setting bookType -> Book class
+	return new Periodical;
 }
 
 //----------------------------------------------------------------------------
-ostream& operator<<(ostream& out, const Periodical& aPeriodicalBook)
-{
-	 aPeriodicalBook.print(out);
-	 return out;
->>>>>>> Stashed changes
 // setData():
 // data members
 // @pre:
@@ -253,9 +174,4 @@ void Periodical::setData( istream& infile)
 void Periodical::print( ostream& os ) const
 {
 	os << numInLib << "     " << title << ",     " << month << " " << year;
-}
-
-//----------------------------------------------------------------------------
-void Periodical::print(ostream& os) const {
-	 cout << numInLib << "     " << title << ",     " << month << " " << year;
 }
