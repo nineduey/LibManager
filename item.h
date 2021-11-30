@@ -40,8 +40,7 @@ public:
 	void checkOut(); // check out an Item from the BinTree
 	void checkIn();  // check in an Item from the BinTree
 	virtual char returnItemType() const = 0; // returns ItemType
-	virtual char returnItemType_Genre() const = 0;// returns the Type
-																// of ItemType
+	virtual char returnItemType_Genre() const = 0;// returns the Type of ItemType
 	virtual Item* create() const = 0;		  // virtual create function
 	virtual void setData( istream& ) = 0;	  // virtual setData function
 	virtual void print(ostream& os) const = 0;// virtual print function
