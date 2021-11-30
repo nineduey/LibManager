@@ -136,6 +136,19 @@ Item*& BinTree::retrieve( Item* target) const {
 	 return retrieverPtr;
 }
 
+//----------------------------------------------------------------------------
+//isEmpty(): Determines if BinTree is empty
+//Pre-conditions: None
+//Post-conditions: Returns true if BookBinTree is empty, returns false
+//if BookBinTree contains data 
+bool BinTree::isEmpty() const
+{
+	if (root == nullptr)
+	{
+		return true;
+	}
+	return false;
+}
 
 //----------------------------------------------------------------------------
 //makeEmpty(): Deletes data from BinTree
@@ -150,38 +163,21 @@ void BinTree::makeEmpty(Item*& ptr) {
 }
 
 //----------------------------------------------------------------------------
-//isEmpty(): Determines if BinTree is empty
-//Pre-conditions: None
-//Post-conditions: Returns true if BookBinTree is empty, returns false
-//if BookBinTree contains data
-char BinTree::returnItemType() const {
-	 return root->returnItemType();
-=======
-bool BinTree::isEmpty() const
-{
-	if (root == nullptr)
-	{
-		return true;
-	}
-	return false;
-}
-
-//----------------------------------------------------------------------------
 //returnItemType():
 //Pre-conditions:
 //Post-conditions:
-char BinTree::returnItemType() const
+char BinTree::returnItemType() const 
 {
-		return root->returnItemType();
+	 return root->returnItemType();
 }
+
 //----------------------------------------------------------------------------
 //returnItemType_Genre():
 //Pre-conditions:
-//Post-conditions:
+//Post-conditions: 
 char BinTree::returnItemType_Genre() const
 {
 	return root->returnItemType_Genre();
->>>>>>> Stashed changes
 }
 
 //----------------------------------------------------------------------------
@@ -192,8 +188,6 @@ char BinTree::returnItemType_Genre() const
 // which is the target
 // Post-conditions: Returns a referenced Item pointer to the Item that was found
 // in the BinTree
-}
-=======
 Item*& BinTree::retrieveHelper( Item*& current, Item* target ) const
 {
 
@@ -220,7 +214,8 @@ Item*& BinTree::retrieveHelper( Item*& current, Item* target ) const
 // print the BinTree object
 //Pre-conditions:
 //Post-conditions:
-void BinTree::print(ostream& out) const {
+void BinTree::print(ostream& out) const 
+{
 	 stack<Item*> itemStack;
 	 Item* current = root;
 	 bool done = false;
