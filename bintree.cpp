@@ -19,34 +19,18 @@ using namespace std;
 //----------------------------------------------------------------------------
 //operator<<(): Overloaded << to displays tree data using inorder traversal. 
 //The appropriate Book class is responsible for dispslaying its own data. 
+//operator<<(): Overloaded << to displays tree data using inorder traversal.
+//The appropriate Book class is responsible for dispslaying its own data.
 //Uses helper function - inorderHelper()
 //Pre-conditions: Pass in ostream& object and BookBinTree& to be displayed.
 //Post-conditions: Book objects' details are displayed inorder - defined by 
+//Post-conditions: Book objects' details are displayed inorder - defined by
 //the sorting criteria of the type of Book object
 //BinTree remains unchanged.
-ostream& operator<<(ostream& out, const BinTree& T) {
-	 stack<Item*> itemStack;
-	 Item* current = T.root;
-	 bool done = false;
-	 while (!done) {
-		  if (current != nullptr) {
-				itemStack.push(current);
-				current = current->left;
-		  }
-		  else {
-				if (!itemStack.empty()) {
-					 current = itemStack.top();
-					 out << " " << *current;
-					 itemStack.pop();
-					 current = current->right;
-				}
-				else {
-					 done = true;
-				}
-		  }
-	 }
-	 out << endl;
-	 return out;
+ostream& operator<<( ostream& out, const BinTree& T )
+{
+	T.print(out);
+	return out;
 }
 
 //----------------------------------------------------------------------------
@@ -70,22 +54,18 @@ BinTree::~BinTree() {
 //----------------------------------------------------------------------------
 //insert(): Inserts Book object into BinTree 
 //Pre-conditions:The function's argument must be a pointer to a book object of 
+//insert(): Inserts Book object into BinTree
+//Pre-conditions:The function's argument must be a pointer to a book object of
 //the same type of book object that the BookBinTree holds book objects of
 //Post-conditions: Book object of appropriate type is inserted into the tree in
 //a location that abides by the rules of a Binary Search Tree. Function returns 
+//a location that abides by the rules of a Binary Search Tree. Function returns
 //true if book object was sucessfuly inserted, returns false if not
 bool BinTree::insert(Item* itemPtr) {
 	 //search for duplicate first
 	 if (find(itemPtr)) {
 		  return false;
 	 }
-
-	 // create new node -- need to change to not create an item, since an item is already being passed
-	 //Item* ptr = new Item;
-	 // ptr->dataPtr = input;
-	 //input = nullptr;
-	 // ptr->left = ptr->right = nullptr;
-
 	// check to see if BinTree is empty
 	 if (isEmpty()) {
 		  root = itemPtr;
@@ -98,6 +78,7 @@ bool BinTree::insert(Item* itemPtr) {
 		  // otherwise insert in right subtree
 		  while (!inserted) {
 				if (*itemPtr < *current) { // virtual < on Item class' derived classes
+				if (*itemPtr < *current) { // virtual <
 					 // at leaf, insert left
 					 if (current->left == nullptr) {
 						  current->left = itemPtr;
@@ -146,11 +127,10 @@ bool BinTree::find(Item* target) {
 
 //----------------------------------------------------------------------------
 //retrieve(): Retrieves a book object from the BinTree
-//Pre-conditions: The function's argument must be a reference to a book object 
 //of the same type of book object that the BookBinTree holds book objects of
-//Post-conditions: A pointer to a reference of the book object in the BookBinTree
-//that has the same data as the reference of Book object passed in as an argument
-//is returned
+//Post-conditions: A pointer to a reference of the book object in the
+// BookBinTree that has the same data as the reference of Book object passed in
+// as an argument is returned
 Item*& BinTree::retrieve( Item* target) const {
 	 // recursive helper to traverse tree looking for target
 	 Item* current = root;
@@ -164,7 +144,7 @@ Item*& BinTree::retrieve( Item* target) const {
 
 
 //----------------------------------------------------------------------------
-//makeEmpty(): Deletes data from BinTree 
+//makeEmpty(): Deletes data from BinTree
 //Pre-conditions: None
 //Post-conditions: BookBinTree is empty/does not contain any data
 void BinTree::makeEmpty(Item*& ptr) {
@@ -185,6 +165,17 @@ bool BinTree::isEmpty() const {
 		  return true;
 	 }
 	 return false;
+//if BookBinTree contains data
+char BinTree::returnItemType() const {
+	 return root->returnItemType();
+=======
+bool BinTree::isEmpty() const
+{
+	if (root == nullptr)
+	{
+		return true;
+	}
+	return false;
 }
 
 //----------------------------------------------------------------------------
@@ -197,9 +188,21 @@ bool BinTree::isEmpty() const {
 char BinTree::returnObjectType() const {
 =======
 char BinTree::returnItemType() const {
+//returnItemType():
+//Pre-conditions:
+//Post-conditions:
+char BinTree::returnItemType() const
+{
+		return root->returnItemType();
+}
+//----------------------------------------------------------------------------
+//returnItemType_Genre():
+//Pre-conditions:
+//Post-conditions:
+char BinTree::returnItemType_Genre() const
+{
+	return root->returnItemType_Genre();
 >>>>>>> Stashed changes
-	 // ** ADDED objectType data member to Item class, which will aid in returning the object type that is being held in the Item instance
-	 return root->returnItemType();
 }
 
 //----------------------------------------------------------------------------
@@ -207,8 +210,10 @@ char BinTree::returnItemType() const {
 // the Bintree to find target
 // Pre-conditions: Pointer to an item needs to be passed in as arguement
 // to keep track of root of Bintre, and another pointer referenced Item arguement
+// to keep track of root of Bintre, and another pointer referenced Item arg
 // which is the target
 // Post-conditions: Returns an referenced Item pointer to the Item that was found
+// Post-conditions: Returns a referenced Item pointer to the Item that was found
 // in the BinTree
 Item*& BinTree::retrieveHelper(Item*& current, Item* target) const {
 	
@@ -227,5 +232,58 @@ Item*& BinTree::retrieveHelper(Item*& current, Item* target) const {
 <<<<<<< Updated upstream
 }
 =======
+Item*& BinTree::retrieveHelper( Item*& current, Item* target ) const
+{
+
+	if (current == nullptr)
+	{
+		return current;
+	}
+	else if (*current == *target)
+	{
+		return current;
+	}
+	else if (*current > *target)
+	{
+		return retrieveHelper( current->left, target );
+	}
+	else
+	{
+		return retrieveHelper( current->right, target );
+	}
+}
+
+//----------------------------------------------------------------------------
+//print(): Private method for ostream operator<< to call on, when called to
+// print the BinTree object
+//Pre-conditions:
+//Post-conditions:
+void BinTree::print(ostream& out) const {
+	 stack<Item*> itemStack;
+	 Item* current = root;
+	 bool done = false;
+	 while (!done)
+	 {
+		  if (current != nullptr)
+		  {
+				itemStack.push(current);
+				current = current->left;
+		  }
+		  else
+		  {
+				if (!itemStack.empty())
+				{
+					 current = itemStack.top();
+					 out << " " << *current;
+					 itemStack.pop();
+					 current = current->right;
+				}
+				else
+				{
+					 done = true;
+				}
+		  }
+	 }
+	 out << endl;
 }
 >>>>>>> Stashed changes
