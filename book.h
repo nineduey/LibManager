@@ -20,9 +20,10 @@
 using namespace std;
 
 //global constants to be used in derived classes
-const int AVAILABILITY_LENGTH = 6;
-const int AUTHOR_LENGTH = 9; // size of the space after author output
-const int TITLE_LENGTH = 9; // size of the space after title output
+const int AUTHOR_SPACE_LENGTH = 10; //size of the space after author output
+const int TITLE_SPACE_LENGTH = 10;  //size of the space after title output
+const int MONTH_SPACE_LENGTH = 10; //size of the space after month output
+const int YEAR_SPACE_LENGTH = 10;  //size of the space after year output
 
 
 class Book: public Item {
