@@ -14,24 +14,9 @@
 #include "book.h"
 using namespace std;
 
-class Children : public Book
+class Children : public Book 
 {
-    friend ostream& operator<<(ostream&, const Item&);
 
-private:
-    string author;
-
-public:
-    Children();
-    ~Children();
-    virtual Item& operator=(const Item&);
-    virtual bool operator==(const Item&);
-    virtual bool operator!=(const Item&);
-    virtual bool operator<(const Item&);
-    virtual bool operator>(const Item&);
-    virtual Item* create() const;
-    virtual void setData(istream&);
-    virtual void print(ostream& os) const;
 public:
     Children();
     ~Children();
