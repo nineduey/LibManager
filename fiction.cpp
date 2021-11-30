@@ -1,10 +1,3 @@
-#include "fiction.h"
-#include <iomanip>
-
-
-// Default Constructor
-Fiction::Fiction()
-=======
 /*
 @File contents: Fiction.cpp function definitions
 
@@ -41,13 +34,8 @@ Fiction::~Fiction()
 // @post:
 char Fiction::returnItemType() const
 {
-	 author = "";
+	return itemType;
 }
-
-//----------------------------------------------------------------------------
-// Destructor
-Fiction::~Fiction(){}
-
 //----------------------------------------------------------------------------
 // returnItemType_Genre():
 // @pre:
@@ -61,97 +49,94 @@ char Fiction::returnItemType_Genre() const
 // passed in
 // @pre:
 //@post:
-Item& Fiction::operator=(const Item& item)
 Item& Fiction::operator=( const Item& item)
 {
-	 const Fiction& aFiction = static_cast<const Fiction&>(item);
+	const Fiction& aFiction = static_cast<const Fiction&>(item);
 
-	 this->title = aFiction.title;
-	 this->year = aFiction.year;
-	 this->author = aFiction.author;
-	 this->numInLib = aFiction.numInLib;
+	this->title = aFiction.title;
+	this->year = aFiction.year;
+	this->author = aFiction.author;
+	this->numInLib = aFiction.numInLib;
 
-	 return *this;
+	return *this;
 }
 
 //----------------------------------------------------------------------------
 //operator == : 
 //@pre:
 //@post:
-bool Fiction::operator==(const Item& item)
 bool Fiction::operator==( const Item& item ) const
 {
-	 const Fiction& aFiction = static_cast<const Fiction&>(item);
+	const Fiction& aFiction = static_cast<const Fiction&>(item);
 
-	 return (this->title == aFiction.title && this->author == aFiction.author);
+	return (this->title == aFiction.title && this->author == aFiction.author);
 }
 
 //----------------------------------------------------------------------------
 //operator != : 
 //@pre:
 //@post:
-bool Fiction::operator!=(const Item& item)
 bool Fiction::operator!=( const Item& item ) const
 {
-	 return !this->operator==(item);
+	return !this->operator==( item );
 }
 
 //----------------------------------------------------------------------------
 //operator < : 
 //@pre:
 //@post:
-bool Fiction::operator<(const Item& item)
 bool Fiction::operator<( const Item& item ) const
 {
-	 //sorted by author, then title
+	//sorted by author, then title
 
-	 if (this->operator==(item))
-	 {
-		  return false;
-	 }
+	if (this->operator==( item ))
+	{
+		return false;
+	}
 
-	 const Fiction& aFiction = static_cast<const Fiction&>(item);
+	const Fiction& aFiction = static_cast<const Fiction&>(item);
 
-	 if (this->author < aFiction.author)
-	 {
-		  return true;
-	 }
-	 else if (this->author == aFiction.author)
-	 {
-		  return this->title < aFiction.title;
-	 }
+	if (this->author < aFiction.author)
+	{
+		return true;
+	}
+	else if (this->author == aFiction.author)
+	{
+		return this->title < aFiction.title;
+	}
+
+	return false;
 }
 
 //----------------------------------------------------------------------------
 //operator > : 
 //@pre:
 //@post:
-bool Fiction::operator>(const Item& item)
 bool Fiction::operator>( const Item& item ) const
 {
-	 const Fiction& aFiction = static_cast<const Fiction&>(item);
+	const Fiction& aFiction = static_cast<const Fiction&>(item);
 
-	 if (this->operator==(aFiction) || this->operator<(aFiction))
-	 {
-		  return false;
-	 }
+	if (this->operator==( item ) || this->operator<( item ))
+	{
+		return false;
+	}
 
-	 if (this->author > aFiction.author)
-	 {
-		  return true;
-	 }
-	 else if (this->author == aFiction.author)
-	 {
-		  return this->title > aFiction.title;
-	 }
+	if (this->author > aFiction.author)
+	{
+		return true;
+	}
+	else if (this->author == aFiction.author)
+	{
+		return this->title > aFiction.title;
+	}
+
+	return false;
 }
 
 //----------------------------------------------------------------------------
 //create() : 
 //@pre:
 //@post:
-Item* Fiction::create() const {
-	 return new Fiction;
 Item* Fiction::create() const
 {
 	return new Fiction;
@@ -161,49 +146,6 @@ Item* Fiction::create() const
 //setData() : 
 //@pre:
 //@post:
-void Fiction::setData(istream& infile)
-{
-	 getline(infile, author, ',');     // input author, looks for comma terminator
-<<<<<<< Updated upstream
-
-	 /*infile.get();
-	 getline( infile, authorLast, ',' );*/
-
-	 infile.get();                     // get (and ignore) blank before title
-	 getline(infile, title, ',');      // input title
-	 infile >> year;                   // input year
-
-	 itemType = 'B';     // setting itemType -> Item class
-	 numInLib = 5;       // setting numer of Book copies -> Item class
-	 bookType = 'F';     // setting bookType -> Book class
-=======
-
-	 /*infile.get();
-
-	 getline( infile, authorLast, ',' );*/
-
-	 infile.get();                     // get (and ignore) blank before title
-
-	 getline(infile, title, ',');      // input title
-
-	 infile >> year;                   // input year
-
-	 itemType = 'B';     // setting itemType -> Item class
-	 numInLib = 5;          // setting numer of Book copies -> Item class
-	 bookType = 'F';        // setting bookType -> Book class
->>>>>>> Stashed changes
-}
-
-//----------------------------------------------------------------------------
-ostream& operator<<(ostream& out, const Fiction& aFiction)
-{
-	 aFiction.print(out);
-	 return out;
-}
-
-//----------------------------------------------------------------------------
-void Fiction::print(ostream& os) const {
-	 cout << numInLib << "     " << author << "     " << title << "     " << year;
 void Fiction::setData( istream& infile)
 {
 	getline( infile, author, ',' );// input author, looks for comma terminator
