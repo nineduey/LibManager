@@ -39,8 +39,7 @@ void LibraryManager::readInventory(istream& inFile){
 
 		itemType = 'B';
 		item = this->facdriver.createItem( itemType, itemType_type );
-		if(item == nullptr)
-		{
+		if(item == nullptr){
 			continue;
 		}
 		inFile.get();

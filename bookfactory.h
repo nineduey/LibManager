@@ -57,7 +57,7 @@ private:
 
 	std::map<char, int> bookMap;	//HashMap with keys equal to char variables of every 
 									//possible book type and values equal to integers 
-									// ranging from 0  to the number of book types - 1. 
+									//ranging from 0  to the number of book types - 1. 
 	
 	vector<Book*> bookFac;			//vector with elements that are initialized as new 
 									//Book objects of every possible book type

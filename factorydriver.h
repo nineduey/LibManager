@@ -58,13 +58,13 @@ public:
 
 private:
 
-	std::map<char, int> factoryTypeMap;		//keys are chars indicating the type of Item, 
-											//values are ints indicating which index in 
-											//the factories vector an ItemFactory object
-											//contains a ItemFactory object of type specified
-											//by the key
+	//keys are chars indicating the type of Item, values are ints indicating which 
+	//index in the factories vector an ItemFactory object
+	//contains a ItemFactory object of type specified by the key
+	std::map<char, int> factoryTypeMap;		
 
-	vector<ItemFactory*> factories;			//contains objects of derived classes of ItemFactory 
+	//contains objects of derived classes of ItemFactory 
+	vector<ItemFactory*> factories;			
 };
 #endif
 

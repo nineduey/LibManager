@@ -23,8 +23,8 @@ Book object of the indicated genre.
 //of every possible book type in library
 //Pre-conditions:None
 //Post-conditions: Elements of map and bookFac are initialized.
-BookFactory::BookFactory()
-{
+BookFactory::BookFactory(){
+	
 	bookFac.push_back( new Children );
 	bookFac.push_back( new Fiction );
 	bookFac.push_back( new Periodical );
@@ -38,10 +38,9 @@ BookFactory::BookFactory()
 //~FactoryDriver(): Destructor of BookFactory class
 //Pre-conditions: None
 //Post-Conditions: Deletes the Book objects of 'bookFac' vector from memory
-BookFactory::~BookFactory()
-{
-	for (int i = 0; i < bookFac.size(); i++)
-	{
+BookFactory::~BookFactory(){
+	
+	for (int i = 0; i < bookFac.size(); i++){
 		delete bookFac[i];
 		bookFac[i] = NULL;
 	}
@@ -54,8 +53,8 @@ BookFactory::~BookFactory()
 //the char variable passed as the function's argument AND map contains a 
 //key-value pair in which the key is equal passed in char variable 
 //Post-conditions: An object of the specified type of Book is instantiated
-Item* BookFactory::createItem( char bookType ) const
-{
+Item* BookFactory::createItem( char bookType ) const{
+	
 	if(bookMap.find( bookType ) == bookMap.end())
 	{
 		return nullptr;

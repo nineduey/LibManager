@@ -23,10 +23,9 @@ class to create an Item of the specified type
 //The 'factoryTypeMap' map and 'factories' vector are populated. 
 //Pre-conditions:None
 //Post-conditions: 'factoryTypeMap' map and 'factories' vector are populated.
-FactoryDriver::FactoryDriver()
-{
+FactoryDriver::FactoryDriver(){
+    
     factoryTypeMap.insert( { 'B', 0 } );
-
     factories.push_back( new BookFactory );
 }
 
@@ -35,10 +34,9 @@ FactoryDriver::FactoryDriver()
 //Pre-conditions: None
 //Post-Conditions: Deletes the ItemFactory objects of 'factories' vector from 
 //memory
-FactoryDriver::~FactoryDriver()
-{
-    for (int i = 0; i < factories.size(); i++)
-    {
+FactoryDriver::~FactoryDriver(){
+    
+    for (int i = 0; i < factories.size(); i++){
         delete factories[i];
         factories[i] = NULL;
     }
@@ -54,8 +52,8 @@ FactoryDriver::~FactoryDriver()
 //Items of the type associated with the first argument. The map 
 //contains a key-value pair in which the key is equal to the first argument. 
 //Post-conditions: An Item object of the specified type is instantiated. 
-Item* FactoryDriver::createItem( char itemType, char itemType_type) const
-{
+Item* FactoryDriver::createItem( char itemType, char itemType_type) const{
+    
     int subscript = factoryTypeMap.at( itemType );
     return factories[subscript]->createItem( itemType_type );
 }

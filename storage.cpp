@@ -1,18 +1,47 @@
+/*
+@File contents: Function and variable declarations of the Storage class
+
+@Purpose: Contains a map of BinTree objects, each containing Item
+objects of a specific type. Has functionality to append to the map,
+retrieve a BinTree object from the map,retrieve an Item object from
+one of the BinTrees in the map, display the items in the map  and
+and delete the objects in the map
+
+@Assumptions: The BinTree class is defined and contains Item objects
+
+@Authors:Shushmitha Radjaram and Amanda Todakonzie
+
+@How code is used: A newly instantiated Item is inserted into the
+Library's catalouge by calling the append() function.
+A book is retrieved from the Library's catalogue by calling the
+retrieveItem() function.
+*/
+
 #include "storage.h"
 
-Storage::Storage()
-{
-}
+//-------------------------------------------------------------------
+//Storage(): Initializes a Storage object
+//Pre-conditions: None
+//Postconditions: Instantiates a Storage object
+Storage::Storage() {}
 
-Storage::~Storage()
-{
+//-------------------------------------------------------------------
+//Storage Destructor: calls makeEmpty() function to delete values
+//(the BinTree objects) of map 'binTreeMap'
+//Pre-conditions: None
+//Postconditions: Values of binTreeMap are deleted from memory
+Storage::~Storage(){
+	
 	//makeEmpty();
 }
 
-void Storage::makeEmpty()
-{
-	//for (auto i : binTreeMap)
-	//{
+//-------------------------------------------------------------------
+// makeEmpty(): Iteratively deletes each value in the binTreeMap
+// Pre-conditions: None
+// Postconditions: Values of binTreeMap are deleted from memory
+void Storage::makeEmpty(){
+	
+	//for (auto i : binTreeMap){
 	//	i.second->~BinTree();
 	//	binTreeMap.erase(i.first);
 	//}
@@ -21,32 +50,51 @@ void Storage::makeEmpty()
 	//binTreeMap.clear();
 }
 
-//insert book
-//we need to get the bookType and itemType as the key for the map!
-void Storage::append( Item* item)
-{
+//-------------------------------------------------------------------	
+//append(): Calls retrieveMinTree() to find which which BinTree object 
+//in the binTreeMap contains Item object(s) of the same type of the Item 
+//object passed in. 
+//Once the corresponding BinTree object it found, the Item object is 
+//inserted in the tree. 
+//If a corresponding BinTree object cannot be found, a new BinTree 
+//object that holds Item objects which are 
+//the same type as the object passed in is instantiated and 
+//appended to the binTreeMap
+//Pre-conditions: None
+//Postconditions: An Item is added its corresponding BinTree
+//based on its type
+void Storage::append( Item* item){
+	
 	BinTree* toRetrieve;
 	char key[2] = {};
 	key[0] = item->returnItemType();
 	key[1] = item->returnItemType_Type();
 
-	if(!(retrieveBinTree( item, toRetrieve)))
-	{
+	if(!(retrieveBinTree( item, toRetrieve))){
 		BinTree* binTree = new BinTree();
 		binTree->insert( item );
 		binTreeMap.insert( { key, binTree } );
 		/*binTreeMap.at( key )->retrieve( item )->print();
 		cout << endl;*/
 	}
-	else //the appropriate bintree exists in the binTreeMap
-	{
+	else{	//the appropriate bintree exists in the binTreeMap
 		binTreeMap.at( key )->insert( item );
 	}
 }
 
-//add function to create bintree and returns pointer to that bintree root
-bool Storage::retrieveBinTree( Item* item, BinTree*& retriever) const
-{
+//-------------------------------------------------------------------
+//retrieveItem(): Finds an Item object stored inside one of the 
+//BinTree objects in the binTreeMap that is a match with the Item 
+//object of the pointer passed in for the first argument. A pointer
+//to a reference of the Item object found is assigned to the 
+//second argument.
+//Pre-conditions: None
+//Postconditions: A pointer to a reference of the Item object we want 
+//to retrieve is assigned to the second argument. If the item object 
+//we want to retrieve exists, function returns true. If not, function 
+//returns false.
+bool Storage::retrieveBinTree( Item* item, BinTree*& retriever) const{
+	
 	char key[2] = {};
 	key[0] = item->returnItemType();
 	key[1] = item->returnItemType_Type();
@@ -64,28 +112,42 @@ bool Storage::retrieveBinTree( Item* item, BinTree*& retriever) const
 
 }
 
-bool Storage::retrieveItem( Item* item, Item*& retriever) const
-{
+//-------------------------------------------------------------------
+//retrieveBinTree(): Finds an BinTree object stored in binTreeMap 
+//that is contains Item objects which are the same type as the  
+//with the Item object of the pointer passed in for the first argument. 
+//A pointer to a reference of the BinTree object 
+//found is assigned to the second argument.
+//Pre-conditions: None
+//Postconditions: A pointer to a reference of the Item object we want 
+//to retrieve is assigned to the second argument. If the item object 
+//we want to retrieve exists, function returns true. If not, function 
+//returns false.
+bool Storage::retrieveItem( Item* item, Item*& retriever) const{
+	
 	char key[2] = {};
 	key[0] = item->returnItemType();
 	key[1] = item->returnItemType_Type();
 
-	if(!(binTreeMap.find( key ) == binTreeMap.end()))
-	{
+	if(!(binTreeMap.find( key ) == binTreeMap.end())){
 		retriever = (binTreeMap.at( key ))->retrieve( item );
 		return true;
 	}
-	else
-	{
+	else{
 		retriever = nullptr;
 		return false;
 	}
 }
 
-void Storage::display()
-{
-	for (auto i : binTreeMap)
-	{
+//--------------------------------------------------------------------
+//print(): Displays the data of the Item objects held in the BinTree
+//objects of the binTreeMap by Item category.
+//Pre-conditions: None
+//Post-conditions: Data of all Items stored in the libraryare/binTreeMap
+//are displayed 
+void Storage::print(){
+
+	for (auto i : binTreeMap){
 		cout << i.first << "   " << i.second
 			<< endl;
 	}
