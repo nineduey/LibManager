@@ -140,7 +140,7 @@ bool Storage::retrieveItem(Item* item, Item*& retriever) const {
 	key[1] = item->returnItemType_Genre();*/
 
 	if (!(binTreeMap.find(key) == binTreeMap.end())) {
-		retriever = (binTreeMap.at(key))->retrieve(item);
+		binTreeMap.at(key)->retrieve(item, retriever);
 		return true;
 	}
 	else {
