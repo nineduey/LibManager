@@ -1,10 +1,14 @@
 /*
 @File contents: BinTree class function and variable declarations
+
 @Purpose: Binary Search Tree to store and retrieve Item objects of a specific
 book type
+
 @Assumptions: The Book objects stored in the BookBinTree are properly intialized
 and contain the data they need to determine where they should be store in the tree.
+
 @Authors: Shushmitha Radjaram and Amanda Todakonzie
+
 @How code is used: A BookBinTree object holds book objects which are all one
 specfic type.Books objects are compared against other books objects in the
 BookBinTree (if there are other books objects in the tree) and are stored in the
@@ -24,30 +28,30 @@ class Item;
 class BinTree
 {
 	friend class Item;
-
+	struct Node;
 	friend ostream& operator<<( ostream&, const BinTree& );
 
 public:
 	BinTree(); // Default Constructor
 	~BinTree(); // Destructor
-
+	bool isEmpty() const; // Returns boolean if BinTree is empty or not
+	void makeEmpty(Node*&); // recursive delete helper
 	bool insert( Item* ); // Inserts Book object into BinTree
 	bool find( Item* ); //Conducts a search an item object from the BinTree
-	Item*& retrieve( Item* ) const; // Retrieves an Item from the BinTree
-	bool isEmpty() const; // Returns boolean if BinTree is empty or not
-	char returnItemType() const; // Returns  bookType within Book class
-	char returnItemType_Genre() const;
+	// Retrieves an Item from the BinTree
+	bool retrieve(Item* target, Item*& retrieverItem) const; 
+
 
 private:
 
 	struct Node {
-		Item* itemPtr // Pointer to Item object contained in Node
-		Node* left // Node's left child poitner
-		Node* right // Node's right child pointer
-	}
+		Item* itemPtr; // Pointer to Item object contained in Node
+		Node* left; // Node's left child poitner
+		Node* right; // Node's right child pointer
+	};
+
 	Node* root;		//root of BinTree
-	void makeEmpty( Item*& ptr ); // recursive delete helper
-	Item*& retrieveHelper( Node*&, Item* ) const; // recursive retrive helper
-	void print(ostream&) const;		  // private print method for ostream <<
+	Node* retrieveHelper(Node*&, Item*) const; // recursive retrive helper
+	void print(ostream&) const;		 // private print method for ostream <<
 };
 #endif

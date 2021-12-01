@@ -160,5 +160,8 @@ void Children::setData( istream& infile)
 // @post:
 void Children::print( ostream& os ) const
 {
-	os << numInLib << "     " << author << "     " << title << "     " << year;
+	os << numInLib << "      " << setw(AUTHOR_SPACE_LENGTH);
+	os << left << author << setw(TITLE_SPACE_LENGTH); 
+	os << right << title << setw(YEAR_SPACE_LENGTH);
+	os << right << year;
 }
