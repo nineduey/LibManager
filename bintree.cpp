@@ -167,7 +167,7 @@ bool BinTree::find(Item* target) {
 bool BinTree::retrieve(Item* target, Item*& retrieverItem) const{
 
 	 Node* current = root;
-	 // if root is target, return root's itemPtr 
+	 // if root is target, return root's itemPtr
 	 if (*root->itemPtr == *target) {
 		 retrieverItem = root->itemPtr;
 		 return true;
