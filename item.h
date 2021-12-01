@@ -58,12 +58,7 @@ protected:
 	int maxNumInLib; // max number of copies of item in library
 	char itemType;	 // added this data member to store the type of item the instance is
    bool validate() const;  	//check whether the input content is valid
-
-
-private:
-	 Item* left;
-	 Item* right;
-
+	
 };
 
 #endif
