@@ -69,7 +69,10 @@ void BinTree::makeEmpty(Node*& ptr) {
 	if (ptr != nullptr) {
 		makeEmpty(ptr->left);
 		makeEmpty(ptr->right);
+		delete ptr->itemPtr;
+		ptr->itemPtr = nullptr;
 		delete ptr;
+		ptr = nullptr;
 	}
 }
 
