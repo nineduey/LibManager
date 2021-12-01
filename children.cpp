@@ -20,7 +20,7 @@ Children::Children()
 
 //----------------------------------------------------------------------------
 // Destructor
-//Children::~Children() {}
+Children::~Children() {}
 
 //----------------------------------------------------------------------------
 //returnItemType() :  method to return the itemType of the Item object, for

@@ -31,7 +31,6 @@ and interacts with the user/driver code
 
 class LibraryManager
 {
-
 	friend ostream& operator<<( ostream&, const BinTree& );
 
 public:

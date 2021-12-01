@@ -41,7 +41,7 @@ FactoryDriver::~FactoryDriver(){
         factories[i] = nullptr;
     }
 
-//    factories.clear();
+    //factories.clear();
 }
 
 //----------------------------------------------------------------------------

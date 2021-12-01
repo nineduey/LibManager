@@ -26,7 +26,6 @@ using namespace std;
 class Item
 {
 	friend class BinTree;
-	//friend class ostream;
 	friend ostream& operator<<( ostream&, const Item& );
 
 public:

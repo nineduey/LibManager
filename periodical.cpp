@@ -10,25 +10,18 @@
 #include <iomanip>
 
 
-
 // Default Constructor
-Periodical::Periodical()
-{
+Periodical::Periodical(){
+
 	month = 0;
 }
-
-//----------------------------------------------------------------------------
-// Destructor
-//Periodical::~Periodical()
-//{
-//}
 
 //----------------------------------------------------------------------------
 // returnItemType():
 // @pre:
 // @post:
-char Periodical::returnItemType() const
-{
+char Periodical::returnItemType() const{
+
 	return itemType;
 }
 
@@ -36,8 +29,8 @@ char Periodical::returnItemType() const
 // returnItemType_Genre():
 // @pre:
 // @post:
-char Periodical::returnItemType_Genre() const
-{
+char Periodical::returnItemType_Genre() const{
+
 	return bookType;
 }
 
@@ -46,8 +39,8 @@ char Periodical::returnItemType_Genre() const
 // passed in
 // @pre:
 // @post:
-Item& Periodical::operator=( const Item& item )
-{
+Item& Periodical::operator=( const Item& item ){
+
 	const Periodical& aPeriodical = static_cast<const Periodical&>(item);
 
 	this->title = aPeriodical.title;
@@ -61,8 +54,8 @@ Item& Periodical::operator=( const Item& item )
 // operator == : 
 // @pre:
 // @post:
-bool Periodical::operator==( const Item& item ) const
-{
+bool Periodical::operator==( const Item& item ) const{
+
 	const Periodical& aPeriodical = static_cast<const Periodical&>(item);
 
 	return (this->year == aPeriodical.year && this->month == aPeriodical.month
@@ -73,8 +66,8 @@ bool Periodical::operator==( const Item& item ) const
 // operator != : 
 // @pre:
 // @post:
-bool Periodical::operator!=( const Item& item ) const
-{
+bool Periodical::operator!=( const Item& item ) const{
+	
 	return !operator==( item );
 }
 
@@ -82,8 +75,7 @@ bool Periodical::operator!=( const Item& item ) const
 // operator < : 
 // @pre:
 // @post:
-bool Periodical::operator<( const Item& item ) const
-{
+bool Periodical::operator<( const Item& item ) const{
 	//sorted by date (year, then month), then by title 
 
 	//if (this->operator==( item ) || this->operator>( item ))
@@ -93,16 +85,13 @@ bool Periodical::operator<( const Item& item ) const
 
 	const Periodical& aPeriodical = static_cast<const Periodical&>(item);
 
-	if (this->year < aPeriodical.year)
-	{
+	if (this->year < aPeriodical.year){
 		return true;
 	}
-	else if (this->month < aPeriodical.month)
-	{
+	else if (this->month < aPeriodical.month){
 		return true;
 	}
-	else
-	{
+	else{
 		return (this->title < aPeriodical.title);
 	}
 
@@ -113,8 +102,8 @@ bool Periodical::operator<( const Item& item ) const
 // operator > : 
 // @pre:
 // @post:
-bool Periodical::operator>( const Item& item ) const
-{
+bool Periodical::operator>( const Item& item ) const{
+
 	//sorted by date (year, then month), then by title 
 
 	//if (this->operator==( item ) || this->operator<( item ))
@@ -124,16 +113,13 @@ bool Periodical::operator>( const Item& item ) const
 
 	const Periodical& aPeriodical = static_cast<const Periodical&>(item);
 
-	if (this->year > aPeriodical.year)
-	{
+	if (this->year > aPeriodical.year){
 		return true;
 	}
-	else if (this->month > aPeriodical.month)
-	{
+	else if (this->month > aPeriodical.month){
 		return true;
 	}
-	else
-	{
+	else{
 		return (this->title > aPeriodical.title);
 	}
 
@@ -144,8 +130,7 @@ bool Periodical::operator>( const Item& item ) const
 // create() : 
 // @pre:
 // @post:
-Item* Periodical::create() const
-{
+Item* Periodical::create() const{
 	return new Periodical;
 }
 
@@ -154,8 +139,8 @@ Item* Periodical::create() const
 // data members
 // @pre:
 // @post:
-void Periodical::setData( istream& infile )
-{
+void Periodical::setData( istream& infile ){
+
 	getline( infile, title, ',' );// input author, looks for comma terminator
 
 	infile.get();                // get (and ignore) blank before month
@@ -176,7 +161,7 @@ void Periodical::setData( istream& infile )
 // data members
 // @pre:
 // @post:
-void Periodical::print( ostream& out ) const
-{
+void Periodical::print( ostream& out ) const{
+
 	out << numInLib << "     " << title << ",     " << month << " " << year;
 }

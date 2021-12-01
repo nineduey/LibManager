@@ -17,7 +17,6 @@ objects in sorted order.
 #define BINTREE_H
 #include "item.h"
 #include <iostream>
-using namespace std;
 
 //forward referencing for Item Class
 class Item;

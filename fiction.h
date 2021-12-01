@@ -21,7 +21,7 @@ class Fiction : public Book
 
 public:
     Fiction();
-    ~Fiction() = default;
+    virtual ~Fiction();
     virtual char returnItemType() const;
     virtual char returnItemType_Genre() const;
     virtual Item* create() const;

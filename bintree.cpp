@@ -43,6 +43,8 @@ BinTree::~BinTree()
 {
 	makeEmpty( root );
 	root = nullptr;
+//	delete this;
+	//cout << this->isEmpty();
 }
 
 
@@ -248,7 +250,7 @@ void BinTree::print( ostream& out ) const
 			if (!itemStack.empty())
 			{
 				current = itemStack.top();
-				out << " " << *current;
+				out << " " << *current << endl;
 				itemStack.pop();
 				current = current->right;
 			}

@@ -7,15 +7,13 @@
 // Preconditions: "inventory.txt", "customers.txt", and "transactions.txt"
 // must be saved to the same folder main.cpp is saved to
 // Postconditions: Program completes execution, output visible on terminal window
-int main()
-{
+int main(){
 	ifstream infile1( "data4books.txt" );
 	istream& infile1_istream = infile1;
 
 	LibraryManager libManager;
 
-	if (!infile1)
-	{
+	if (!infile1){
 		cout << "File could not be opened." << endl;
 		return 1;
 	}

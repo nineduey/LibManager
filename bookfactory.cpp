@@ -44,9 +44,6 @@ BookFactory::~BookFactory(){
 		delete bookFac[i];
 		bookFac[i] = nullptr;
 	}
-
-//	bookMap.clear();
-//	delete this;
 }
 
 //----------------------------------------------------------------------------

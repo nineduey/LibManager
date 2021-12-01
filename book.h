@@ -29,7 +29,7 @@ class Book : public Item
 
 public:
     Book();
-    ~Book() = default;
+    virtual ~Book();
     virtual char returnItemType() const = 0;
     virtual char returnItemType_Genre() const = 0;
     virtual Item* create() const = 0;

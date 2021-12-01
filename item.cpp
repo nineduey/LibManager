@@ -14,16 +14,14 @@
 // @pre: must be passed a referenced ostreeam obj and a referenced Item obj
 // @post: calls on the virtual print() method, particular to its defined
 // derived class
-ostream& operator<<( ostream& out, const Item& anItem )
-{
+ostream& operator<<( ostream& out, const Item& anItem ){
 	anItem.print( out );
 	return out;
 }
 
 //-----------------------------------------------------------------------------
 // Default Constrcutor: method to initialize private & protected data members
-Item::Item()
-{
+Item::Item(){
 	left = nullptr;
 	right = nullptr;
 	numInLib = 0;
@@ -33,12 +31,9 @@ Item::Item()
 
 //----------------------------------------------------------------------------
 // Destructor: sets the left and right Item pointers to null
-Item::~Item()
-{
+Item::~Item(){
 	left = nullptr;
 	right = nullptr;
-
-//	delete this;
 }
 
 
@@ -46,10 +41,9 @@ Item::~Item()
 // checkOut(): method to check out an Item contained in Library catalogue
 // @pre:
 // @post:
-void Item::checkOut()
-{
-	if (numInLib > 0)
-	{
+void Item::checkOut(){
+	
+	if (numInLib > 0){
 		numInLib--;
 		return;
 	}
@@ -61,10 +55,9 @@ void Item::checkOut()
 // checkIn(): method to check out an Item contained in Library catalogue
 // @pre:
 // @post:
-void Item::checkIn()
-{
-	if (numInLib < maxNumInLib)
-	{
+void Item::checkIn(){
+	
+	if (numInLib < maxNumInLib){
 		numInLib++;
 		return;
 	}
@@ -75,10 +68,9 @@ void Item::checkIn()
 // validate(): method to validate contained within object is valid
 // @pre:
 // @post:
-bool Item::validate() const
-{
-	if (numInLib >= 0 && numInLib <= maxNumInLib)
-	{
+bool Item::validate() const{
+	
+	if (numInLib >= 0 && numInLib <= maxNumInLib){
 		return true;
 	}
 	return false;

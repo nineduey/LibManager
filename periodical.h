@@ -19,7 +19,7 @@ class Periodical : public Book
 
 public:
     Periodical();  // constructor
-    ~Periodical() = default; // destructor
+    virtual ~Periodical() = default; // destructor
     virtual char returnItemType() const;
     virtual char returnItemType_Genre() const;
     virtual Item* create() const;
@@ -35,7 +35,6 @@ public:
 
 private:
     int month; // month of book published
-
 };
 
 #endif

@@ -43,7 +43,7 @@ public:
 	//(the BinTree objects) of map 'binTreeMap'
 	//Pre-conditions: None
 	//Postconditions: Values of binTreeMap are deleted from memory
-	~Storage();
+	virtual ~Storage();
 
 	//-------------------------------------------------------------------
 	// makeEmpty(): Iteratively deletes each value in the binTreeMap

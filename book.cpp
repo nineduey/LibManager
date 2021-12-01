@@ -9,30 +9,26 @@
 
 #include "book.h"
 
-ostream& operator<<( ostream& out, const Book& aBook )
-{
+ostream& operator<<( ostream& out, const Book& aBook ){
     aBook.print( out );
     return out;
 }
 
 //----------------------------------------------------------------------------
 // Default Constructor: sets default values when creating a new instance
-Book::Book()
-{
+Book::Book(){
     title = "";
     year = 1000;
     bookType = 'B';
     itemType = 'I';
-
 }
 
 //----------------------------------------------------------------------------
 // Destructor
-//Book::~Book() {}
+Book::~Book() {}
 
 //----------------------------------------------------------------------------
 // print() : Virtual print function, will display data members of Book object
-void Book::print( ostream& os ) const
-{
+void Book::print( ostream& os ) const{
     this->print( os );
 }

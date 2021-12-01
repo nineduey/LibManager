@@ -20,7 +20,7 @@ class Children : public Book
 
 public:
     Children();
-    ~Children() = default;
+    virtual ~Children();
     virtual char returnItemType() const;
     virtual char returnItemType_Genre() const;
     virtual Item* create() const;

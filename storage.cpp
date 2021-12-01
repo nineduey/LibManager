@@ -155,17 +155,16 @@ bool Storage::retrieveItem( Item* item, Item*& retriever) const{
 //Pre-conditions: None
 //Post-conditions: Data of all Items stored in the libraryare/binTreeMap
 //are displayed 
-void Storage::print( ostream& out) const
-{
-	for (auto it = binTreeMap.cbegin(); it != binTreeMap.cend(); ++it)
-	{
+void Storage::print( ostream& out) const{
+	
+	for (auto it = binTreeMap.cbegin(); it != binTreeMap.cend(); ++it){
 		//out << it->first
 			out << *it->second;
 	}
 }
 
-ostream& operator<<( ostream& out, const Storage& s)
-{
+ostream& operator<<( ostream& out, const Storage& s){
+	
 	s.print( out );
 	return out;
 }
