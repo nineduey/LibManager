@@ -39,11 +39,14 @@ BookFactory::BookFactory(){
 //Pre-conditions: None
 //Post-Conditions: Deletes the Book objects of 'bookFac' vector from memory
 BookFactory::~BookFactory(){
-	
+
 	for (int i = 0; i < bookFac.size(); i++){
 		delete bookFac[i];
-		bookFac[i] = NULL;
+		bookFac[i] = nullptr;
 	}
+
+//	bookMap.clear();
+//	delete this;
 }
 
 //----------------------------------------------------------------------------

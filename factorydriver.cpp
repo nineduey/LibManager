@@ -38,8 +38,10 @@ FactoryDriver::~FactoryDriver(){
     
     for (int i = 0; i < factories.size(); i++){
         delete factories[i];
-        factories[i] = NULL;
+        factories[i] = nullptr;
     }
+
+//    factories.clear();
 }
 
 //----------------------------------------------------------------------------
@@ -55,5 +57,14 @@ FactoryDriver::~FactoryDriver(){
 Item* FactoryDriver::createItem( char itemType, char itemType_type) const{
     
     int subscript = factoryTypeMap.at( itemType );
-    return factories[subscript]->createItem( itemType_type );
+    Item* itemCreated = factories[subscript]->createItem( itemType_type );
+
+    if (itemCreated == nullptr){
+        
+        return nullptr;
+    }
+    else{
+
+        return itemCreated;
+    }
 }

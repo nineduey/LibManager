@@ -25,12 +25,14 @@ and interacts with the user/driver code
 #define LIBRARYMANAGER_H
 #include "factorydriver.h"
 #include "storage.h"
-#include "hashmap.h"
+//#include "hashmap.h"
 #include "item.h"
 #include <iostream>
 
 class LibraryManager
 {
+
+	friend ostream& operator<<( ostream&, const BinTree& );
 
 public:
 
@@ -66,7 +68,7 @@ private:
 								//derived ItemFactory class to instantiate an Item object 
 								//of a specific type
 
-	HashMap patrons;	//calling object of method that further processes customer data 
+	//HashMap patrons;	//calling object of method that further processes customer data 
 
 	Storage catalogue;	//contains map of BinTree objects that each contain Items of 
 						//a specific type

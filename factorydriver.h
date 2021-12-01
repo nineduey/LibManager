@@ -42,7 +42,7 @@ public:
 	//Pre-conditions: None
 	//Post-Conditions: Deletes the ItemFactory objects of 'factories' vector from 
 	//memory
-	~FactoryDriver();
+	virtual ~FactoryDriver();
 
 	//----------------------------------------------------------------------------
 	//createItem(): Instantiates book object to equal Item object of the type 

@@ -1,24 +1,51 @@
+/*
+@File contents: Periodical.cpp function definitions
+@Purpose:
+@Assumptions:
+@Authors: Shushmitha Radjaram and Amanda Todakonzie
+@How code is used:
+*/
+//-----------------------------------------------------------------------------
 #include "periodical.h"
+#include <iomanip>
 
+
+
+// Default Constructor
 Periodical::Periodical()
 {
 	month = 0;
 }
 
-Periodical::~Periodical()
-{
-}
+//----------------------------------------------------------------------------
+// Destructor
+//Periodical::~Periodical()
+//{
+//}
 
+//----------------------------------------------------------------------------
+// returnItemType():
+// @pre:
+// @post:
 char Periodical::returnItemType() const
 {
 	return itemType;
 }
 
-char Periodical::returnItemType_Type() const
+//----------------------------------------------------------------------------
+// returnItemType_Genre():
+// @pre:
+// @post:
+char Periodical::returnItemType_Genre() const
 {
 	return bookType;
 }
 
+//----------------------------------------------------------------------------
+// operator = : Assignment operator, creates deep copy of the Item& anItem
+// passed in
+// @pre:
+// @post:
 Item& Periodical::operator=( const Item& item )
 {
 	const Periodical& aPeriodical = static_cast<const Periodical&>(item);
@@ -30,26 +57,39 @@ Item& Periodical::operator=( const Item& item )
 	return *this;
 }
 
+//----------------------------------------------------------------------------
+// operator == : 
+// @pre:
+// @post:
 bool Periodical::operator==( const Item& item ) const
 {
 	const Periodical& aPeriodical = static_cast<const Periodical&>(item);
 
-	return (this->year == aPeriodical.year && this->month == aPeriodical.month);
+	return (this->year == aPeriodical.year && this->month == aPeriodical.month
+		&& this->title == aPeriodical.title);
 }
 
+//----------------------------------------------------------------------------
+// operator != : 
+// @pre:
+// @post:
 bool Periodical::operator!=( const Item& item ) const
 {
-	return !operator==(item);
+	return !operator==( item );
 }
 
+//----------------------------------------------------------------------------
+// operator < : 
+// @pre:
+// @post:
 bool Periodical::operator<( const Item& item ) const
 {
 	//sorted by date (year, then month), then by title 
-	
-	if (this->operator==( item ))
-	{
-		return false;
-	}
+
+	//if (this->operator==( item ) || this->operator>( item ))
+	//{
+	//	return false;
+	//}
 
 	const Periodical& aPeriodical = static_cast<const Periodical&>(item);
 
@@ -57,22 +97,30 @@ bool Periodical::operator<( const Item& item ) const
 	{
 		return true;
 	}
-	else if (this->month == aPeriodical.month)
+	else if (this->month < aPeriodical.month)
 	{
-		return this->month < aPeriodical.month;
+		return true;
+	}
+	else
+	{
+		return (this->title < aPeriodical.title);
 	}
 
 	return false;
 }
 
+//----------------------------------------------------------------------------
+// operator > : 
+// @pre:
+// @post:
 bool Periodical::operator>( const Item& item ) const
 {
 	//sorted by date (year, then month), then by title 
 
-	if (this->operator==( item ) || this->operator<( item ))
-	{
-		return false;
-	}
+	//if (this->operator==( item ) || this->operator<( item ))
+	//{
+	//	return false;
+	//}
 
 	const Periodical& aPeriodical = static_cast<const Periodical&>(item);
 
@@ -80,43 +128,55 @@ bool Periodical::operator>( const Item& item ) const
 	{
 		return true;
 	}
-	else if (this->month == aPeriodical.month)
+	else if (this->month > aPeriodical.month)
 	{
-		return this->month > aPeriodical.month;
+		return true;
+	}
+	else
+	{
+		return (this->title > aPeriodical.title);
 	}
 
 	return false;
 }
 
+//----------------------------------------------------------------------------
+// create() : 
+// @pre:
+// @post:
 Item* Periodical::create() const
 {
 	return new Periodical;
 }
 
-void Periodical::setData( istream& infile)
+//----------------------------------------------------------------------------
+// setData():
+// data members
+// @pre:
+// @post:
+void Periodical::setData( istream& infile )
 {
-	getline( infile, title, ',' );     // input author, looks for comma terminator
+	getline( infile, title, ',' );// input author, looks for comma terminator
 
-	infile.get();                     // get (and ignore) blank before month
+	infile.get();                // get (and ignore) blank before month
 
 	infile >> month;
 
-	infile.get();                     // get (and ignore) blank before year
+	infile.get();               // get (and ignore) blank before year
 
-	infile >> year;                   // input year
+	infile >> year;             // input year
 
-	//do we set numInLib and maxNumInLib here?
-
-	itemType = 'B';
-
-	bookType = 'P';
-
-	numInLib = 5;
-
-	maxNumInLib = 5;
+	itemType = 'B';   // setting itemType -> Item class
+	numInLib = 5;     // setting numer of Book copies -> Item class
+	bookType = 'P';   // setting bookType -> Book class
+	maxNumInLib = 5;	// setting the max number of book copies in library
 }
-
-void Periodical::print( ostream& os ) const
+//----------------------------------------------------------------------------
+// print(): method to print the data members of fiction class & its base class
+// data members
+// @pre:
+// @post:
+void Periodical::print( ostream& out ) const
 {
-	cout << numInLib << "     " << title << ",     " << month << " " << year;
+	out << numInLib << "     " << title << ",     " << month << " " << year;
 }

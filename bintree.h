@@ -17,6 +17,7 @@ objects in sorted order.
 #define BINTREE_H
 #include "item.h"
 #include <iostream>
+using namespace std;
 
 //forward referencing for Item Class
 class Item;
@@ -24,7 +25,7 @@ class Item;
 class BinTree
 {
 	friend class Item;
-
+	friend class Storage;
 	friend ostream& operator<<( ostream&, const BinTree& );
 
 public:
@@ -36,12 +37,13 @@ public:
 	Item*& retrieve( Item* ) const; // Retrieves an Item from the BinTree 
 	bool isEmpty() const; // Returns boolean if BinTree is empty or not
 	char returnItemType() const; // Returns  bookType within Book class
-	char returnItemType_Type() const;
+	char returnItemType_Genre() const;
 
 
 private:
 	Item* root;		//root of BinTree
 	void makeEmpty( Item*& ptr ); // Deletes Items from BinTree
 	Item*& retrieveHelper( Item*&, Item* ) const; // recursive retrive helper function
+	void print( ostream& ) const;		  // private print method for ostream <<
 };
 #endif

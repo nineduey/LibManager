@@ -22,9 +22,13 @@ retrieveItem() function.
 #include "bintree.h"
 #include "item.h"
 #include <map>
+#include <iostream>
+using namespace std;
 
 class Storage
 {
+	friend ostream& operator<<( ostream&, const Storage& );
+	//friend class BinTree;
 
 public:
 
@@ -94,7 +98,7 @@ public:
 	//Pre-conditions: None
 	//Post-conditions: Data of all Items stored in the libraryare/binTreeMap
 	//are displayed 
-	void print(); //--determine what parameter(s) this function should take
+	void print(ostream&) const; //--determine what parameter(s) this function should take
 
 private:
 
@@ -104,7 +108,7 @@ private:
 	//BinTree object.
 	//Values are BinTree objects containing Item objects that are all have the 
 	//same Item type and subtype
-	std::map<char*, BinTree*> binTreeMap;	
+	map<string, BinTree*> binTreeMap;	
 
 };
 

@@ -32,21 +32,28 @@ void LibraryManager::readInventory(istream& inFile){
     Item* item;
 	char itemType;
 	char itemType_type;
-	
-	 while (!inFile.eof()) {
+
+	 while (true) {
 
 		inFile >> itemType_type;
+	 	if (inFile.eof()) {
+			break;
+		}
 
 		itemType = 'B';
 		item = this->facdriver.createItem( itemType, itemType_type );
 		if(item == nullptr){
+
+			string invalidLine = "";
+			getline( inFile, invalidLine );
 			continue;
 		}
 		inFile.get();
 		item->setData( inFile );
-		//item->display();
 		catalogue.append( item );
 	 }
+
+	 cout << catalogue;
 }
 
 //----------------------------------------------------------------------------

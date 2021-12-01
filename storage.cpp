@@ -32,7 +32,7 @@ Storage::Storage() {}
 //Postconditions: Values of binTreeMap are deleted from memory
 Storage::~Storage(){
 	
-	//makeEmpty();
+	makeEmpty();
 }
 
 //-------------------------------------------------------------------
@@ -40,14 +40,14 @@ Storage::~Storage(){
 // Pre-conditions: None
 // Postconditions: Values of binTreeMap are deleted from memory
 void Storage::makeEmpty(){
-	
-	//for (auto i : binTreeMap){
-	//	i.second->~BinTree();
-	//	binTreeMap.erase(i.first);
-	//}
 
-	////do we need this?
-	//binTreeMap.clear();
+	for (auto it = binTreeMap.cbegin(); it != binTreeMap.cend(); ++it)
+	{
+		it->second->~BinTree();
+		delete it->second;
+	}
+
+	binTreeMap.clear();
 }
 
 //-------------------------------------------------------------------	
@@ -66,9 +66,11 @@ void Storage::makeEmpty(){
 void Storage::append( Item* item){
 	
 	BinTree* toRetrieve;
-	char key[2] = {};
-	key[0] = item->returnItemType();
-	key[1] = item->returnItemType_Type();
+	auto key = std::string( 1, item->returnItemType() ) + item->returnItemType_Genre();
+
+	/*char key[2] = {};
+	key[0] = ;
+	key[1] = ;*/
 
 	if(!(retrieveBinTree( item, toRetrieve))){
 		BinTree* binTree = new BinTree();
@@ -76,10 +78,14 @@ void Storage::append( Item* item){
 		binTreeMap.insert( { key, binTree } );
 		/*binTreeMap.at( key )->retrieve( item )->print();
 		cout << endl;*/
+		//cout << binTreeMap.size() << "   " << endl;
 	}
 	else{	//the appropriate bintree exists in the binTreeMap
 		binTreeMap.at( key )->insert( item );
 	}
+
+	/*for (auto i : binTreeMap)
+		cout << i.first[0] << "   " << endl;*/
 }
 
 //-------------------------------------------------------------------
@@ -95,9 +101,11 @@ void Storage::append( Item* item){
 //returns false.
 bool Storage::retrieveBinTree( Item* item, BinTree*& retriever) const{
 	
-	char key[2] = {};
+	auto key = std::string( 1, item->returnItemType() ) + item->returnItemType_Genre();
+
+	/*char key[2] = {};
 	key[0] = item->returnItemType();
-	key[1] = item->returnItemType_Type();
+	key[1] = item->returnItemType_Genre();*/
 
 	if (!(binTreeMap.find( key ) == binTreeMap.end()))
 	{
@@ -125,9 +133,11 @@ bool Storage::retrieveBinTree( Item* item, BinTree*& retriever) const{
 //returns false.
 bool Storage::retrieveItem( Item* item, Item*& retriever) const{
 	
-	char key[2] = {};
+	auto key = std::string( 1, item->returnItemType() ) + item->returnItemType_Genre();
+
+	/*char key[2] = {};
 	key[0] = item->returnItemType();
-	key[1] = item->returnItemType_Type();
+	key[1] = item->returnItemType_Genre();*/
 
 	if(!(binTreeMap.find( key ) == binTreeMap.end())){
 		retriever = (binTreeMap.at( key ))->retrieve( item );
@@ -145,15 +155,17 @@ bool Storage::retrieveItem( Item* item, Item*& retriever) const{
 //Pre-conditions: None
 //Post-conditions: Data of all Items stored in the libraryare/binTreeMap
 //are displayed 
-void Storage::print(){
-
-	for (auto i : binTreeMap){
-		cout << i.first << "   " << i.second
-			<< endl;
+void Storage::print( ostream& out) const
+{
+	for (auto it = binTreeMap.cbegin(); it != binTreeMap.cend(); ++it)
+	{
+		//out << it->first
+			out << *it->second;
 	}
-		
 }
 
-
-
-
+ostream& operator<<( ostream& out, const Storage& s)
+{
+	s.print( out );
+	return out;
+}

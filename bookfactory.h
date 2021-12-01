@@ -42,7 +42,7 @@ public:
 	//~FactoryDriver(): Destructor of BookFactory class
 	//Pre-conditions: None
 	//Post-Conditions: Deletes the Book objects of 'bookFac' vector from memory
-	~BookFactory();
+	virtual ~BookFactory();
 
 	//----------------------------------------------------------------------------
 	//createItem(): Instantiates book object to equal book object of the type 

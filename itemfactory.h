@@ -40,7 +40,7 @@ public:
 	//ItemFactory(): Default Constructor 
 	//Pre-conditions:None
 	//Post-conditions: ItemFactory object is deleted  
-	~ItemFactory();
+	virtual ~ItemFactory();
 
 	//----------------------------------------------------------------------------
 	//createItem(): Pure virtual function that will be used by derived classes

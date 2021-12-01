@@ -1,3 +1,11 @@
+/*
+@File contents: Periodical.h class Function and Variable Declarations
+@Purpose:
+@Assumptions:
+@Authors: Shushmitha Radjaram and Amanda Todakonzie
+@How code is used:
+*/
+//-----------------------------------------------------------------------------
 #ifndef PERIODICAL_H
 #define PERIODICAL_H
 
@@ -8,28 +16,26 @@ using namespace std;
 
 class Periodical : public Book
 {
-  
-private:
-
-    int month;
-
-    const int MONTH_SPACE_LENGTH = 10; //size of the space after month output
-    const int YEAR_SPACE_LENGTH = 10;  //size of the space after year output
 
 public:
-    Periodical();
-    ~Periodical();
+    Periodical();  // constructor
+    ~Periodical() = default; // destructor
     virtual char returnItemType() const;
-    virtual char returnItemType_Type() const;
+    virtual char returnItemType_Genre() const;
+    virtual Item* create() const;
+    virtual void setData( istream& );
+    virtual void print( ostream&) const;
+
+    // virtual comparison operators
     virtual Item& operator=( const Item& );
     virtual bool operator==( const Item& ) const;
     virtual bool operator!=( const Item& ) const;
     virtual bool operator<( const Item& ) const;
     virtual bool operator>( const Item& ) const;
-    virtual Item* create() const;
-    virtual void setData( istream& ); // need to change params
 
-    virtual void print( ostream& os ) const;
+private:
+    int month; // month of book published
+
 };
 
 #endif
