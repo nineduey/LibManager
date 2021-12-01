@@ -190,7 +190,7 @@ bool BinTree::retrieve(Item* target, Item*& retrieverItem) const{
 // which is the target
 // Post-conditions: Returns a referenced Item pointer to the Item that was found
 // in the BinTree
-Node* BinTree::retrieveHelper(Node*& current, Item* target) const
+BinTree::Node* BinTree::retrieveHelper(Node*& current, Item* target) const
 {
 	if (current == nullptr)
 	{
