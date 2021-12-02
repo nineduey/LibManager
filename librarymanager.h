@@ -51,7 +51,7 @@ public:
 	//Postconditions: Creates Customer objects using details of customers given in 
 	//passed in ifstream& object and stores intialized Customer objects in sorted 
 	//order in Library's catalogue
-	void readCustomer( istream& );
+	void readPatrons( istream& );
 
 	//----------------------------------------------------------------------------
 	//readTransaction(): reads in transaction data and performs transactions
@@ -59,7 +59,7 @@ public:
 	//.txt file must be passed in
 	//Post-conditions: Performs transactions on data of objects in the Library using 
 	//details of transactions given in passed in .txt file
-	void readTransaction( istream& );
+	void readTransactions( istream& );
 
 private:
 
