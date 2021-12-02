@@ -1,9 +1,16 @@
-//-------------------------------------------------------------------
-/*File contents: Function and variable declarations of the Storage class
-Purpose: Represents a linked list of BookBinTree objects,each containing Book objects of a specific type of book. Has functionality to append to the linked list, retrieve a book object from one of the BookBinTree objects in the linked list, and empty the linked list
-Assumptions: None
-Authors:Shushmitha Radjaram, Phuong K Vu, Monica King, Amanda Todakonzie, Brennan Richards
-How code is used: A newly created book is inserted into the Library's catalogue by calling the append() function. A book is retrieved from the Library's catalogue by calling the retrieveBook() function.
+/*
+@File contents: Function and variable declarations of the Storage class
+@Purpose: Contains a map of BinTree objects, each containing Item
+objects of a specific type. Has functionality to append to the map,
+retrieve a BinTree object from the map,retrieve an Item object from
+one of the BinTrees in the map, display the items in the map  and
+and delete the objects in the map
+@Assumptions: The BinTree class is defined and contains Item objects
+@Authors:Shushmitha Radjaram and Amanda Todakonzie
+@How code is used: A newly instantiated Item is inserted into the
+Library's catalouge by calling the append() function.
+A book is retrieved from the Library's catalogue by calling the
+retrieveItem() function.
 */
 
 #ifndef STORAGE_H
@@ -11,58 +18,94 @@ How code is used: A newly created book is inserted into the Library's catalogue 
 #include "bintree.h"
 #include "item.h"
 #include <map>
+#include <iostream>
+using namespace std;
 
 class Storage
 {
+	friend ostream& operator<<( ostream&, const Storage& );
+	//friend class BinTree;
 
 public:
 
 	//-------------------------------------------------------------------
-	//Storage Constructor: The head and tail of the linked list are    //initialized to NULL
+	//Storage(): Initializes a Storage object
 	//Pre-conditions: None
-	//Postconditions: New Storage object is instantiated with its data //members, head and tail, initialized to NULL. BookBinTree objects //can now be inserted into the list
-
+	//Postconditions: Instantiates a Storage object
 	Storage();
-	//-------------------------------------------------------------------
-// Storage Destructor: calls makeEmpty() function to delete nodes of // linked list
-// Pre-conditions: None
-// Postconditions: Linked list's nodes are deleted
 
+	//-------------------------------------------------------------------
+	//Storage Destructor: calls makeEmpty() function to delete values
+	//(the BinTree objects) of map 'binTreeMap'
+	//Pre-conditions: None
+	//Postconditions: Values of binTreeMap are deleted from memory
 	~Storage();
 
 	//-------------------------------------------------------------------
-	// makeEmpty(): Iteratively deletes each node of the linked list
+	// makeEmpty(): Iteratively deletes each value in the binTreeMap
 	// Pre-conditions: None
-	// Postconditions: Linked list's nodes are deleted
-
+	// Postconditions: Values of binTreeMap are deleted from memory
 	void makeEmpty();
 
-	//-------------------------------------------------------------------	//append(): The function finds which BookBinTree object in the     //linked list contains book object(s) of the same type of the book //object passed in as an argument. Once the corresponding 
-	//BookBinTree object it found, the book object is inserted in the 
-	//tree. If a corresponding  BookBinTree cannot be found, a new 
-	//BookBinTree object that holds pointers of book objects that are 
-	//the same type as the argument is instantiated and appended to the //linked list
+	//-------------------------------------------------------------------	
+	//append(): Calls retrieveMinTree() to find which which BinTree object 
+	//in the binTreeMap contains Item object(s) of the same type of the Item 
+	//object passed in. 
+	//Once the corresponding BinTree object it found, the Item object is 
+	//inserted in the tree. 
+	//If a corresponding BinTree object cannot be found, a new BinTree 
+	//object that holds Item objects which are 
+	//the same type as the object passed in is instantiated and 
+	//appended to the binTreeMap
 	//Pre-conditions: None
-	//Postconditions: A book is added its corresponding BookBinTree, //based on its type
-
+	//Postconditions: An Item is added its corresponding BinTree
+	//based on its type
 	void append( Item* );
-	//-------------------------------------------------------------------
-//retrieveBook(): Finds and returns a pointer to a reference of the //book object stored inside one of the BookBinTree objects in the //linked list that is a match with the book object of the pointer //passed in
-//Pre-conditions: None
-//Postconditions: Pointer to reference of the book object that is //equal to the book object of the pointer passed in to the function //is returned
 
+	//-------------------------------------------------------------------
+	//retrieveItem(): Finds an Item object stored inside one of the 
+	//BinTree objects in the binTreeMap that is a match with the Item 
+	//object of the pointer passed in for the first argument. A pointer
+	//to a reference of the Item object found is assigned to the 
+	//second argument.
+	//Pre-conditions: None
+	//Postconditions: A pointer to a reference of the Item object we want 
+	//to retrieve is assigned to the second argument. If the item object 
+	//we want to retrieve exists, function returns true. If not, function 
+	//returns false.
 	bool retrieveItem( Item*, Item*& ) const;
 
+	//-------------------------------------------------------------------
+	//retrieveBinTree(): Finds an BinTree object stored in binTreeMap 
+	//that is contains Item objects which are the same type as the  
+	//with the Item object of the pointer passed in for the first argument. 
+	//A pointer to a reference of the BinTree object 
+	//found is assigned to the second argument.
+	//Pre-conditions: None
+	//Postconditions: A pointer to a reference of the Item object we want 
+	//to retrieve is assigned to the second argument. If the item object 
+	//we want to retrieve exists, function returns true. If not, function 
+	//returns false.
 	bool retrieveBinTree( Item*, BinTree*& ) const;
 
-	void display();
+	//--------------------------------------------------------------------
+	//print(): Displays the data of the Item objects held in the BinTree
+	//objects of the binTreeMap by Item category.
+	//Pre-conditions: None
+	//Post-conditions: Data of all Items stored in the libraryare/binTreeMap
+	//are displayed 
+	void print( ostream& ) const; //--determine what parameter(s) this function should take
 
 private:
 
-	std::map<char*, BinTree*> binTreeMap;
+	//Keys of map are 2-element char arrays. The first element indicates the 
+	//type of the Items in the corresponding BinTree object and 
+	//the second element indicates the subtype of the Items in the corresponding 
+	//BinTree object.
+	//Values are BinTree objects containing Item objects that are all have the 
+	//same Item type and subtype
+	map<string, BinTree*> binTreeMap;
 
 };
 
 #endif
-
-
