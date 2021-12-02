@@ -43,10 +43,38 @@ BinTree::~BinTree()
 {
 	makeEmpty( root );
 	root = nullptr;
-//	delete this;
-	//cout << this->isEmpty();
 }
 
+//----------------------------------------------------------------------------
+//isEmpty(): Determines if BinTree is empty
+//Pre-conditions: None
+//Post-conditions: Returns true if BookBinTree is empty, returns false
+//if BookBinTree contains data
+bool BinTree::isEmpty() const
+{
+	if (root == nullptr)
+	{
+		return true;
+	}
+	return false;
+}
+
+//----------------------------------------------------------------------------
+//makeEmpty(): Deletes data from BinTree
+//Pre-conditions: None
+//Post-conditions: BookBinTree is empty/does not contain any data
+void BinTree::makeEmpty( Node*& ptr )
+{
+	if (ptr != nullptr)
+	{
+		makeEmpty( ptr->left );
+		makeEmpty( ptr->right );
+		delete ptr->itemPtr;
+		ptr->itemPtr = nullptr;
+		delete ptr;
+		ptr = nullptr;
+	}
+}
 
 //----------------------------------------------------------------------------
 //insert(): Inserts Book object into BinTree
@@ -55,33 +83,40 @@ BinTree::~BinTree()
 //Post-conditions: Book object of appropriate type is inserted into the tree in
 //a location that abides by the rules of a Binary Search Tree. Function returns
 //true if book object was sucessfuly inserted, returns false if not
-bool BinTree::insert( Item* itemPtr )
+bool BinTree::insert( Item* toInsertPtr )
 {
 	//search for duplicate first
-	if (find( itemPtr ))
+	if (find( toInsertPtr ))
 	{
 		return false;
 	}
 	// check to see if BinTree is empty
 	if (isEmpty())
 	{
-		root = itemPtr;
+		root = new Node();
+		root->itemPtr = toInsertPtr;
+		root->left = nullptr;
+		root->right = nullptr;
 	}
 	else
 	{
-		Item* current = root;
+		Node* current = root;
 		bool inserted = false;
 
 		// if item is less than current item, insert in left subtree
 		// otherwise insert in right subtree
 		while (!inserted)
 		{
-			if (*itemPtr < *current)
+			if (*toInsertPtr < *current->itemPtr)
 			{ // virtual <
 // at leaf, insert left
 				if (current->left == nullptr)
 				{
-					current->left = itemPtr;
+					Node* temp = new Node();
+					temp->itemPtr = toInsertPtr;
+					temp->left = nullptr;
+					temp->right = nullptr;
+					current->left = temp;
 					inserted = true;
 				}
 				else	// one step left
@@ -91,7 +126,11 @@ bool BinTree::insert( Item* itemPtr )
 			{	// at leaf, insert right
 				if (current->right == nullptr)
 				{
-					current->right = itemPtr;
+					Node* temp = new Node();
+					temp->itemPtr = toInsertPtr;
+					temp->left = nullptr;
+					temp->right = nullptr;
+					current->right = temp;
 					inserted = true;
 				}
 				else	// one step right
@@ -108,7 +147,7 @@ bool BinTree::insert( Item* itemPtr )
 //Post:
 bool BinTree::find( Item* target )
 {
-	Item* current = root;
+	Node* current = root;
 	bool found = false;
 	while (!found)
 	{
@@ -116,16 +155,16 @@ bool BinTree::find( Item* target )
 		{ // if node is nullptr,end of branch
 			break;
 		}
-		else if (*current == *target)
+		else if (*current->itemPtr == *target)
 		{ // compare data
 			found = true;
 			break;
 		}
-		else if (*target > *current)
+		else if (*target > *current->itemPtr)
 		{ // step right
 			current = current->right;
 		}
-		else if (*target < *current)
+		else if (*target < *current->itemPtr)
 		{ // step left
 			current = current->left;
 		}
@@ -140,63 +179,25 @@ bool BinTree::find( Item* target )
 //Post-conditions: A pointer to a reference of the book object in the
 // BookBinTree that has the same data as the reference of Book object passed in
 // as an argument is returned
-Item*& BinTree::retrieve( Item* target ) const
+bool BinTree::retrieve( Item* target, Item*& retrieverItem ) const
 {
-	// recursive helper to traverse tree looking for target
-	Item* current = root;
-	//Item* retrieverPtr = retrieveHelper( current, target );
-	if (retrieveHelper( current, target ) != nullptr)
-	{
-		return retrieveHelper( current, target );
-	}
-	cout << "Error: Item not found." << endl;
-	return retrieveHelper( current, target );
-}
 
-//----------------------------------------------------------------------------
-//isEmpty(): Determines if BinTree is empty
-//Pre-conditions: None
-//Post-conditions: Returns true if BookBinTree is empty, returns false
-//if BookBinTree contains data 
-bool BinTree::isEmpty() const
-{
-	if (root == nullptr)
+	Node* current = root;
+	// if root is target, return root's itemPtr
+	if (*root->itemPtr == *target)
 	{
+		retrieverItem = root->itemPtr;
 		return true;
 	}
-	return false;
-}
-
-//----------------------------------------------------------------------------
-//makeEmpty(): Deletes data from BinTree
-//Pre-conditions: None
-//Post-conditions: BookBinTree is empty/does not contain any data
-void BinTree::makeEmpty( Item*& ptr )
-{
-	if (ptr != nullptr)
+	// call on recursive helper, returns Node*
+	Node* retrieverNode = retrieveHelper( current, target );
+	if (retrieverNode != nullptr)
 	{
-		makeEmpty( ptr->left );
-		makeEmpty( ptr->right );
-		delete ptr;
+		retrieverItem = retrieverNode->itemPtr;
+		return true;
 	}
-}
-
-//----------------------------------------------------------------------------
-//returnItemType():
-//Pre-conditions:
-//Post-conditions:
-char BinTree::returnItemType() const
-{
-	return root->returnItemType();
-}
-
-//----------------------------------------------------------------------------
-//returnItemType_Genre():
-//Pre-conditions:
-//Post-conditions: 
-char BinTree::returnItemType_Genre() const
-{
-	return root->returnItemType_Genre();
+	cout << "Error: Item not found." << endl;
+	return false;
 }
 
 //----------------------------------------------------------------------------
@@ -207,18 +208,17 @@ char BinTree::returnItemType_Genre() const
 // which is the target
 // Post-conditions: Returns a referenced Item pointer to the Item that was found
 // in the BinTree
-Item*& BinTree::retrieveHelper( Item*& current, Item* target ) const
+BinTree::Node* BinTree::retrieveHelper( Node*& current, Item* target ) const
 {
-
 	if (current == nullptr)
 	{
 		return current;
 	}
-	else if (*current == *target)
+	else if (*current->itemPtr == *target)
 	{
 		return current;
 	}
-	else if (*current > *target)
+	else if (*current->itemPtr > *target)
 	{
 		return retrieveHelper( current->left, target );
 	}
@@ -235,23 +235,23 @@ Item*& BinTree::retrieveHelper( Item*& current, Item* target ) const
 //Post-conditions:
 void BinTree::print( ostream& out ) const
 {
-	stack<Item*> itemStack;
-	Item* current = root;
+	stack<Node*> nodeStack;
+	Node* current = root;
 	bool done = false;
 	while (!done)
 	{
 		if (current != nullptr)
 		{
-			itemStack.push( current );
+			nodeStack.push( current );
 			current = current->left;
 		}
 		else
 		{
-			if (!itemStack.empty())
+			if (!nodeStack.empty())
 			{
-				current = itemStack.top();
-				out << " " << *current << endl;
-				itemStack.pop();
+				current = nodeStack.top();
+				out << " " << *current->itemPtr << endl;
+				nodeStack.pop();
 				current = current->right;
 			}
 			else

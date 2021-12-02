@@ -54,10 +54,10 @@ FactoryDriver::~FactoryDriver(){
 //Items of the type associated with the first argument. The map 
 //contains a key-value pair in which the key is equal to the first argument. 
 //Post-conditions: An Item object of the specified type is instantiated. 
-Item* FactoryDriver::createItem( char itemType, char itemType_type) const{
+Item* FactoryDriver::createItem( char itemType, char itemType_Genre) const{
     
     int subscript = factoryTypeMap.at( itemType );
-    Item* itemCreated = factories[subscript]->createItem( itemType_type );
+    Item* itemCreated = factories[subscript]->createItem( itemType_Genre );
 
     if (itemCreated == nullptr){
         

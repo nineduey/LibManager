@@ -1,16 +1,12 @@
 /*
 @File contents: Function and variable declarations of the Storage class
-
 @Purpose: Contains a map of BinTree objects, each containing Item
 objects of a specific type. Has functionality to append to the map,
 retrieve a BinTree object from the map,retrieve an Item object from
 one of the BinTrees in the map, display the items in the map  and
 and delete the objects in the map
-
 @Assumptions: The BinTree class is defined and contains Item objects
-
 @Authors:Shushmitha Radjaram and Amanda Todakonzie
-
 @How code is used: A newly instantiated Item is inserted into the
 Library's catalouge by calling the append() function.
 A book is retrieved from the Library's catalogue by calling the
@@ -30,8 +26,9 @@ Storage::Storage() {}
 //(the BinTree objects) of map 'binTreeMap'
 //Pre-conditions: None
 //Postconditions: Values of binTreeMap are deleted from memory
-Storage::~Storage(){
-	
+Storage::~Storage()
+{
+
 	makeEmpty();
 }
 
@@ -39,7 +36,8 @@ Storage::~Storage(){
 // makeEmpty(): Iteratively deletes each value in the binTreeMap
 // Pre-conditions: None
 // Postconditions: Values of binTreeMap are deleted from memory
-void Storage::makeEmpty(){
+void Storage::makeEmpty()
+{
 
 	for (auto it = binTreeMap.cbegin(); it != binTreeMap.cend(); ++it)
 	{
@@ -63,8 +61,9 @@ void Storage::makeEmpty(){
 //Pre-conditions: None
 //Postconditions: An Item is added its corresponding BinTree
 //based on its type
-void Storage::append( Item* item){
-	
+void Storage::append( Item* item )
+{
+
 	BinTree* toRetrieve;
 	auto key = std::string( 1, item->returnItemType() ) + item->returnItemType_Genre();
 
@@ -72,7 +71,8 @@ void Storage::append( Item* item){
 	key[0] = ;
 	key[1] = ;*/
 
-	if(!(retrieveBinTree( item, toRetrieve))){
+	if (!(retrieveBinTree( item, toRetrieve )))
+	{
 		BinTree* binTree = new BinTree();
 		binTree->insert( item );
 		binTreeMap.insert( { key, binTree } );
@@ -80,7 +80,8 @@ void Storage::append( Item* item){
 		cout << endl;*/
 		//cout << binTreeMap.size() << "   " << endl;
 	}
-	else{	//the appropriate bintree exists in the binTreeMap
+	else
+	{	//the appropriate bintree exists in the binTreeMap
 		binTreeMap.at( key )->insert( item );
 	}
 
@@ -99,8 +100,9 @@ void Storage::append( Item* item){
 //to retrieve is assigned to the second argument. If the item object 
 //we want to retrieve exists, function returns true. If not, function 
 //returns false.
-bool Storage::retrieveBinTree( Item* item, BinTree*& retriever) const{
-	
+bool Storage::retrieveBinTree( Item* item, BinTree*& retriever ) const
+{
+
 	auto key = std::string( 1, item->returnItemType() ) + item->returnItemType_Genre();
 
 	/*char key[2] = {};
@@ -131,19 +133,22 @@ bool Storage::retrieveBinTree( Item* item, BinTree*& retriever) const{
 //to retrieve is assigned to the second argument. If the item object 
 //we want to retrieve exists, function returns true. If not, function 
 //returns false.
-bool Storage::retrieveItem( Item* item, Item*& retriever) const{
-	
+bool Storage::retrieveItem( Item* item, Item*& retriever ) const
+{
+
 	auto key = std::string( 1, item->returnItemType() ) + item->returnItemType_Genre();
 
 	/*char key[2] = {};
 	key[0] = item->returnItemType();
 	key[1] = item->returnItemType_Genre();*/
 
-	if(!(binTreeMap.find( key ) == binTreeMap.end())){
-		retriever = (binTreeMap.at( key ))->retrieve( item );
+	if (!(binTreeMap.find( key ) == binTreeMap.end()))
+	{
+		binTreeMap.at( key )->retrieve( item, retriever );
 		return true;
 	}
-	else{
+	else
+	{
 		retriever = nullptr;
 		return false;
 	}
@@ -155,16 +160,17 @@ bool Storage::retrieveItem( Item* item, Item*& retriever) const{
 //Pre-conditions: None
 //Post-conditions: Data of all Items stored in the libraryare/binTreeMap
 //are displayed 
-void Storage::print( ostream& out) const{
-	
-	for (auto it = binTreeMap.cbegin(); it != binTreeMap.cend(); ++it){
+void Storage::print( ostream& out ) const
+{
+	for (auto it = binTreeMap.cbegin(); it != binTreeMap.cend(); ++it)
+	{
 		//out << it->first
-			out << *it->second;
+		out << *it->second;
 	}
 }
 
-ostream& operator<<( ostream& out, const Storage& s){
-	
+ostream& operator<<( ostream& out, const Storage& s )
+{
 	s.print( out );
 	return out;
 }

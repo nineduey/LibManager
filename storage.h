@@ -1,19 +1,15 @@
 /*
 @File contents: Function and variable declarations of the Storage class
-
-@Purpose: Contains a map of BinTree objects, each containing Item 
+@Purpose: Contains a map of BinTree objects, each containing Item
 objects of a specific type. Has functionality to append to the map,
-retrieve a BinTree object from the map,retrieve an Item object from 
-one of the BinTrees in the map, display the items in the map  and 
+retrieve a BinTree object from the map,retrieve an Item object from
+one of the BinTrees in the map, display the items in the map  and
 and delete the objects in the map
-
 @Assumptions: The BinTree class is defined and contains Item objects
-
 @Authors:Shushmitha Radjaram and Amanda Todakonzie
-
-@How code is used: A newly instantiated Item is inserted into the 
-Library's catalouge by calling the append() function. 
-A book is retrieved from the Library's catalogue by calling the 
+@How code is used: A newly instantiated Item is inserted into the
+Library's catalouge by calling the append() function.
+A book is retrieved from the Library's catalogue by calling the
 retrieveItem() function.
 */
 
@@ -37,13 +33,13 @@ public:
 	//Pre-conditions: None
 	//Postconditions: Instantiates a Storage object
 	Storage();
-	
+
 	//-------------------------------------------------------------------
 	//Storage Destructor: calls makeEmpty() function to delete values
 	//(the BinTree objects) of map 'binTreeMap'
 	//Pre-conditions: None
 	//Postconditions: Values of binTreeMap are deleted from memory
-	virtual ~Storage();
+	~Storage();
 
 	//-------------------------------------------------------------------
 	// makeEmpty(): Iteratively deletes each value in the binTreeMap
@@ -98,7 +94,7 @@ public:
 	//Pre-conditions: None
 	//Post-conditions: Data of all Items stored in the libraryare/binTreeMap
 	//are displayed 
-	void print(ostream&) const; //--determine what parameter(s) this function should take
+	void print( ostream& ) const; //--determine what parameter(s) this function should take
 
 private:
 
@@ -108,10 +104,8 @@ private:
 	//BinTree object.
 	//Values are BinTree objects containing Item objects that are all have the 
 	//same Item type and subtype
-	map<string, BinTree*> binTreeMap;	
+	map<string, BinTree*> binTreeMap;
 
 };
 
 #endif
-
-
