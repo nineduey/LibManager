@@ -63,7 +63,7 @@ void LibraryManager::readInventory(istream& inFile){
 //Postconditions: Creates Customer objects using details of customers given in 
 //passed in ifstream& object and stores intialized Customer objects in sorted 
 //order in Library's catalogue
-void LibraryManager::readCustomer(istream& inFile) {
+void LibraryManager::readPatrons(istream& inFile) {
 
 }
 
@@ -73,6 +73,6 @@ void LibraryManager::readCustomer(istream& inFile) {
 //.txt file must be passed in
 //Post-conditions: Performs transactions on data of objects in the Library using 
 //details of transactions given in passed in .txt file
-void LibraryManager::readTransaction(istream& inFile) {
+void LibraryManager::readTransactions(istream& inFile) {
 
 }
