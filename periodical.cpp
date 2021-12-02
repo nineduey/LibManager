@@ -173,8 +173,8 @@ void Periodical::setData( istream& infile)
 // @post:
 void Periodical::print( ostream& os ) const
 {
-	os << numInLib << "      " << setw(AUTHOR_SPACE_LENGTH);
-	os << left << author << setw(TITLE_SPACE_LENGTH);
-	os << right << title << setw(YEAR_SPACE_LENGTH);
+	os << numInLib << "      " << setw(TITLE_SPACE_LENGTH);
+	os << left << title << setw(MONTH_SPACE_LENGTH);
+	os << right << month << setw(YEAR_SPACE_LENGTH);
 	os << right << year;
 }
