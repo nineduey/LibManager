@@ -101,6 +101,7 @@ bool Children::operator<( const Item& item) const
 	{
 		return this->author < aChildren.author;
 	}
+	return false;
 }
 
 //----------------------------------------------------------------------------
@@ -124,6 +125,7 @@ bool Children::operator>( const Item& item) const
 	{
 		return this->author > aChildren.author;
 	}
+	return false;
 }
 //----------------------------------------------------------------------------
 //create() : 
