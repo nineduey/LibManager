@@ -2,10 +2,12 @@
 #define PATRON_H
 #include <iostream>
 #include <string>
+#inlcude <vector>
 using namespace std;
 
 class Patron {
 
+    friend ostream& operator<<(ostream&, const BinTree&);
 
 public:
     Patron();                                       // default constructor
@@ -18,6 +20,7 @@ public:
     string getLastName();                               // returns the last name
 
 private:
+    vector<Transaction*> transHistory;      // vector of transaction objects
     int customerID;                           // the ID number for the Patron
     string firstName;                                     // Patron's first name
     string lastName;                                        // Patrons last name

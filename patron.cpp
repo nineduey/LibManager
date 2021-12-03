@@ -1,5 +1,10 @@
 #include "patron.h"
 
+
+friend ostream& operator<<(ostream&, const BinTree&) {
+
+}
+
 Patron::Patron() {}
 Patron::~Patron() {}
 
