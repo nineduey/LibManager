@@ -145,10 +145,12 @@
     <ClCompile Include="children.cpp" />
     <ClCompile Include="factorydriver.cpp" />
     <ClCompile Include="fiction.cpp" />
+    <ClCompile Include="hashmap.cpp" />
     <ClCompile Include="item.cpp" />
     <ClCompile Include="itemfactory.cpp" />
     <ClCompile Include="librarymanager.cpp" />
     <ClCompile Include="main.cpp" />
+    <ClCompile Include="patron.cpp" />
     <ClCompile Include="periodical.cpp" />
     <ClCompile Include="storage.cpp" />
   </ItemGroup>
@@ -159,9 +161,11 @@
     <ClInclude Include="children.h" />
     <ClInclude Include="factorydriver.h" />
     <ClInclude Include="fiction.h" />
+    <ClInclude Include="hashmap.h" />
     <ClInclude Include="item.h" />
     <ClInclude Include="itemfactory.h" />
     <ClInclude Include="main.h" />
+    <ClInclude Include="patron.h" />
     <ClInclude Include="periodical.h" />
     <ClInclude Include="storage.h" />
   </ItemGroup>

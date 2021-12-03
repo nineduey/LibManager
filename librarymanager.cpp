@@ -65,6 +65,26 @@ void LibraryManager::readInventory(istream& inFile){
 //order in Library's catalogue
 void LibraryManager::readPatrons(istream& inFile) {
 
+	int patronID;
+	string firstName;
+	string lastName;
+
+	while (true){
+
+		inFile >> patronID;
+
+		if (inFile.eof()){
+			break;
+		}
+
+		inFile >> firstName;
+		inFile >> lastName;
+
+		if (!patrons.addPatron( patronID, firstName, lastName )){
+			continue;
+		}
+
+	}
 }
 
 //----------------------------------------------------------------------------
