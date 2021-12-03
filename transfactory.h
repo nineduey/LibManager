@@ -22,11 +22,10 @@ Transaction object of the indicated Type & Genre.
 #include "displaycatalogue.h"
 #include "patronhistory.h"
 #include <map>
-#include <vector>
 
 class TransFactory : public ItemFactory
 {
-
+	
 public:
 
 	TransFactory(); // default constructor
@@ -41,6 +40,6 @@ private:
 
 	vector<Transaction*> transFac;	//vector with elements that are initialized as new 
 									//Transaction objects of every possible transaction type
-};
+	
 #endif
 

@@ -9,7 +9,6 @@ PatronHistory::PatronHistory() {
 //----------------------------------------------------------------------------
 //Destructor
 PatronHistory::PatronHistory(Patron*) {
-	delete patron;
 	patron = nullptr;
 }
 
@@ -17,10 +16,15 @@ PatronHistory::PatronHistory(Patron*) {
 //setData() :
 void PatronHistory::setData(Patron* thePatron) {
 	patron = thePatron;
+	return;
 }
 
 //----------------------------------------------------------------------------
 // doTransaction():
 void PatronHistory::doTransaction() {
-
+	//find patron* in the patron hashmap
+	patron = patrons.getPatron(patron);
+	//display patron & its history
+	cout << patron;
+	return;
 }

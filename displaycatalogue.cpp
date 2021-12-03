@@ -14,17 +14,20 @@ of the DisplayCatalogue class
 
 //----------------------------------------------------------------------------
 // Default Constructor
-DisplayCatalogue::DisplayCatalogue() {}
+DisplayCatalogue::DisplayCatalogue() {
+}
 
 //----------------------------------------------------------------------------
 // Destructor
-DisplayCatalogue::~DisplayCatalogue() {} 
+DisplayCatalogue::~DisplayCatalogue() {
+} 
 
 //----------------------------------------------------------------------------
-// doTransaction() : method to call on BinTree to display the contents of
+// doTransaction(): method to call on BinTree to display the contents of
 // library and its checkin/checkout status
 // @pre:
 // @post:
 void DisplayCatalogue::doTransaction() {
-
+	cout << catalogue;
+	return;
 }

@@ -14,15 +14,17 @@ of the Transaction class
 #define TRANSACTION_H
 #include <fstream>
 #include <string>
-#include ""book.h"
+#include "book.h"
 #include "patron.h"
+#include "librarymanager.h"
+
+
 
 class Transaction {
 
-
 public:
-    Transaction();
-    virtual ~Transaction();
+    Transaction(); // default constructor
+    virtual ~Transaction(); // virtual destructor
     virtual void doTransaction() = 0;         // performs whichever transaction
 
 };
