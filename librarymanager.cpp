@@ -31,17 +31,17 @@ void LibraryManager::readInventory(istream& inFile){
 
     Item* item;
 	char itemType;
-	char itemType_type;
+	char itemType_genre;
 
 	 while (true) {
 
-		inFile >> itemType_type;
+		inFile >> itemType_genre;
 	 	if (inFile.eof()) {
 			break;
 		}
 
 		itemType = 'B';
-		item = this->facdriver.createItem( itemType, itemType_type );
+		item = this->facdriver.createItem( itemType, itemType_genre);
 		if(item == nullptr){
 
 			string invalidLine = "";
@@ -75,4 +75,24 @@ void LibraryManager::readPatrons(istream& inFile) {
 //details of transactions given in passed in .txt file
 void LibraryManager::readTransactions(istream& inFile) {
 
+	char commandType;
+	char itemType_genre;
+	Transaction* command;
+
+	while (true) {
+		inFile >> commandType;
+		if (inFile.eof()) {
+			break;
+		}
+
+		command = this->facdriver.createTransaction(commandType, itemType_genre);
+		if (item == nullptr) {
+
+			string invalidLine = "";
+			getline(inFile, invalidLine);
+			continue;
+		}
+		inFile.get();
+		command->doTransaction(inFile);
+	}
 }

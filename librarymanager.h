@@ -25,12 +25,14 @@ and interacts with the user/driver code
 #define LIBRARYMANAGER_H
 #include "factorydriver.h"
 #include "storage.h"
+#include "transaction.h"
 //#include "hashmap.h"
 #include "item.h"
 #include <iostream>
 
 class LibraryManager
 {
+	friend Transaction;
 	friend ostream& operator<<( ostream&, const BinTree& );
 
 public:
