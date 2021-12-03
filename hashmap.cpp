@@ -11,11 +11,6 @@ HashMap::~HashMap(){
 	delete patronsArray;
 }
 
-//void HashMap::readFile( ifstream& )
-//{
-//}
-
-
 //-------------------------------------------------------------------
 //addPatron(): this method will take variables containing new 
 //customer information, it will create a new Patron object and add it 
@@ -25,14 +20,17 @@ HashMap::~HashMap(){
 //@post: new Patron object will be created using params passed in, a 
 //call to function hashify once the Patron object has been created, 
 //which will encode the Patron object and place it within the HashMap
-bool HashMap::addPatron( int patronID, string firstName, string lastName ){
+bool HashMap::addPatron( int patronID, istream& inFile ){
 
-	if (!(patronID < 1000 || patronID > 9999)){
-		Patron* patronToAdd;
-		patronsArray[hashify( patronID)] = patronToAdd;
+	Patron* patronToAdd = new Patron();
+
+	patronToAdd->setData( patronID, inFile );
+
+	if(patronID != -1){
+		patronsArray[hashify( patronID )] = patronToAdd;
 		return true;
 	}
-
+	
 	return false;
 }
 
@@ -42,7 +40,7 @@ void HashMap::deletePatron( Patron* patron){
 		patronsArray[hashify( patron->getID() )] = nullptr;
 	}
 	else{
-		cout << "Patron is not logged in the library's system.";
+		cout << "Patron is not logged in the library's system." << endl;
 	}
 }
 
@@ -78,12 +76,11 @@ int HashMap::hashify( int patronID) const{
 	int h1 = patronID % BUCKETS;
 	int h2 = 11 - (patronID % 11);
 
-	int indexInHashMap = 0;
+	int indexInHashMap = h1;
 	int i = 0;
 
 	while (patronsArray[indexInHashMap] != nullptr){
 		i++;
-		indexInHashMap = h1;
 
 		if(i > 0){
 			indexInHashMap += ( i * h2);

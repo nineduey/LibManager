@@ -27,34 +27,34 @@ data for a Library and interacts with the user/driver code.
 //Postconditions: Creates Item objects using details of Items given in passed 
 //in ifstream& object and stores intialized Items objects in sorted order in 
 //Library's catalogue
-void LibraryManager::readInventory(istream& inFile){
-
-    Item* item;
-	char itemType;
-	char itemType_type;
-
-	 while (true) {
-
-		inFile >> itemType_type;
-	 	if (inFile.eof()) {
-			break;
-		}
-
-		itemType = 'B';
-		item = this->facdriver.createItem( itemType, itemType_type );
-		if(item == nullptr){
-
-			string invalidLine = "";
-			getline( inFile, invalidLine );
-			continue;
-		}
-		inFile.get();
-		item->setData( inFile );
-		catalogue.append( item );
-	 }
-
-	 cout << catalogue;
-}
+//void LibraryManager::readInventory(istream& inFile){
+//
+//    Item* item;
+//	char itemType;
+//	char itemType_type;
+//
+//	 while (true) {
+//
+//		inFile >> itemType_type;
+//	 	if (inFile.eof()) {
+//			break;
+//		}
+//
+//		itemType = 'B';
+//		item = this->facdriver.createItem( itemType, itemType_type );
+//		if(item == nullptr){
+//
+//			string invalidLine = "";
+//			getline( inFile, invalidLine );
+//			continue;
+//		}
+//		inFile.get();
+//		item->setData( inFile );
+//		catalogue.append( item );
+//	 }
+//
+//	 cout << catalogue;
+//}
 
 //----------------------------------------------------------------------------
 //readCustomer(): reads in customer and builds the customer objects
@@ -63,11 +63,9 @@ void LibraryManager::readInventory(istream& inFile){
 //Postconditions: Creates Customer objects using details of customers given in 
 //passed in ifstream& object and stores intialized Customer objects in sorted 
 //order in Library's catalogue
-void LibraryManager::readPatrons(istream& inFile) {
+void LibraryManager::readPatrons(istream& inFile){
 
 	int patronID;
-	string firstName;
-	string lastName;
 
 	while (true){
 
@@ -77,10 +75,9 @@ void LibraryManager::readPatrons(istream& inFile) {
 			break;
 		}
 
-		inFile >> firstName;
-		inFile >> lastName;
-
-		if (!patrons.addPatron( patronID, firstName, lastName )){
+		if (!patrons.addPatron( patronID, inFile )){
+			string invalidLine = "";
+			getline( inFile, invalidLine );
 			continue;
 		}
 
@@ -94,5 +91,6 @@ void LibraryManager::readPatrons(istream& inFile) {
 //Post-conditions: Performs transactions on data of objects in the Library using 
 //details of transactions given in passed in .txt file
 void LibraryManager::readTransactions(istream& inFile) {
+
 
 }

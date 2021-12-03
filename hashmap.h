@@ -30,16 +30,6 @@ public:
     //-------------------------------------------------------------------
     //destructor
     virtual ~HashMap();
-
-    //-------------------------------------------------------------------
-    //readFile(): static readFile processes Patron information from a 
-    //datafile
-    //@pre: variable of type ifstream that contains correctly formatted 
-    //.txt file must be passed in
-    //@post: processes the .txt file commands based on the first char 
-    //data that is read off on the start of each line, returns void
-    // - calls TransactionFactory
-    //static void readFile( ifstream& );
     
     //-------------------------------------------------------------------
     //addPatron(): this method will take variables containing new 
@@ -50,7 +40,7 @@ public:
     //@post: new Patron object will be created using params passed in, a 
     //call to function hashify once the Patron object has been created, 
     //which will encode the Patron object and place it within the HashMap
-    bool addPatron( int, string, string );
+    bool addPatron( int, istream&);
 
     //-------------------------------------------------------------------
     //deletePatron(): deletes a Patron from the HashMap

@@ -22,26 +22,24 @@ public:
 	//destructor, this method will export the record of this Patron to a data file before it deletes the data members of the Patron object and empty and erase the the Transaction objects that are stored in the custHistory vector
 	~Patron();
 
-
 	//public methods
 	//------------------------------------------------------------------
 	//setData(): sets all data members in Patron object
 	//@pre: Called on a Patron object. Int passed must be 4 digits long  // and strings passed must be valid
 	//@post: Modifies customerID, firstName, lastName to passed variables // if valid
-	void setData( int, string, string );
-
+	void setData( int patronID, istream& );
 
 	//------------------------------------------------------------------
 	//addToHistory(): method to add Transaction objects to a Patron’s  //Transaction history vector
 	//@pre: Called on a Patron object. Transaction passed should only be // of type Checkout or Return
 	//@post: Modified history vector, adding the passed Transaction.
-	void addToHistory( Transaction* );
+	//void addToHistory( Transaction* );
 
 	//------------------------------------------------------------------
 	//getHistory(): method to retrieve transaction history of a certain //patron. Returns pointer to 1st element of transaction history //vector
 	//@pre: Called on a Patron object
 	//@post: returns a pointer to an array of Transactions representing  // this patrons transaction history, this is unchanged
-	Transaction* getHistory() const;
+	//Transaction* getHistory() const;
 
 	//------------------------------------------------------------------
 	//getID(): method to retrieve ID number for a certain Patron,        // returns the ID number 
@@ -63,31 +61,31 @@ public:
 
 private:
 
-	int customerID;        // the ID number for the Patron
+	int patronID;        // the ID number for the Patron
 	string firstName;      // Patron's first name
 	string lastName;       // Patrons last name
 
- //private vector holding Patron’s transaction history
-	vector<Transaction*> history;
+	//private vector holding Patron’s transaction history
+	//vector<Transaction*> history;
 
 	//private methods
 	//------------------------------------------------------------------
 	//setID(): checks the ID number and sets if valid
 	//@pre: called on a Patron object
 	//@post: if valid, customerID is set to passed int
-	bool setID( int );
+	//bool setID( int );
 
 	//------------------------------------------------------------------
 	//setFirstName(): checks the first name and sets if valid
 	//@pre: called on a Patron object
 	//@post: if valid, firstName is set to passed string
-	bool setFirstName( string );
+	//bool setFirstName( string );
 
 	//------------------------------------------------------------------
 	//setLastName(): checks the last name and sets if valid
 	//@pre: called on a Patron object
 	//@post: if valid, lastName is set to passed string
-	bool setLastName( string );
+	//bool setLastName( string );
 };
 
 #endif
