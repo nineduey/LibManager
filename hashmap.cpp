@@ -1,14 +1,20 @@
 #include "hashmap.h"
 
-HashMap::HashMap(){}
+HashMap::HashMap(){
+
+	for(int i = 0; i < 397; i++){
+
+		patronsArray[i] = nullptr;
+	}
+}
 
 HashMap::~HashMap(){
 
 	int i = 0;
-	while(patronsArray[i] != nullptr){
+	for(int i = 0; i < 397; i++){
+		delete patronsArray[i];
 		patronsArray[i] = nullptr;
 	}
-	delete patronsArray;
 }
 
 //-------------------------------------------------------------------
@@ -23,7 +29,6 @@ HashMap::~HashMap(){
 bool HashMap::addPatron( int patronID, istream& inFile ){
 
 	Patron* patronToAdd = new Patron();
-
 	patronToAdd->setData( patronID, inFile );
 
 	if(patronID != -1){
@@ -34,6 +39,13 @@ bool HashMap::addPatron( int patronID, istream& inFile ){
 	return false;
 }
 
+//-------------------------------------------------------------------
+//deletePatron(): deletes a Patron from the HashMap
+//@pre: must be passed a Patron object param, this method will search 
+//for the Patron within the HashMap that matches the object passed in
+//@post: the Patron object will be deleted from the HashMap, but only 
+//a shallow deletion. Records of past Patrons will be kept in a local 
+//file for business record keeping purposes.
 void HashMap::deletePatron( Patron* patron){
 
 	if(patron != nullptr){
@@ -64,6 +76,10 @@ Patron* HashMap::getAllPatrons() const{
 	return *patronsArray;
 }
 
+void HashMap::print( ostream& )
+{
+}
+
 //-------------------------------------------------------------------
 //hashify(): creates hash code for passed id number
 //@pre: Called on a HashMap object, int passed must be a valid key (ID 
@@ -81,7 +97,6 @@ int HashMap::hashify( int patronID) const{
 
 	while (patronsArray[indexInHashMap] != nullptr){
 		i++;
-
 		if(i > 0){
 			indexInHashMap += ( i * h2);
 		}

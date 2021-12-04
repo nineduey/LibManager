@@ -12,6 +12,7 @@ using namespace std;
 
 class Patron
 {
+	friend ostream& operator<<( ostream&, const Patron& );
 
 public:
 
@@ -58,6 +59,8 @@ public:
 	//@pre: Called on a Patron object
 	//@post: returns lastName, this is unchanged
 	string getLastName() const;
+
+	void print( ostream& );
 
 private:
 

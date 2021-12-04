@@ -24,6 +24,8 @@ class HashMap
 
 public:
 
+    friend ostream& operator<<( ostream&, const Patron& );
+
     //default constructor, creates a HashMap object
     HashMap();
 
@@ -64,6 +66,8 @@ public:
     //@post: Returns a pointer to an array of all stored patrons. This   
     //Hashmap is unchanged.
     Patron* getAllPatrons() const;
+
+    void print( ostream& );
 
 private:
 

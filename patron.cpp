@@ -49,3 +49,8 @@ string Patron::getFirstName() const{
 	
 	return firstName;
 }
+
+void Patron::print( ostream& out)
+{
+	out << patronID << "     " << lastName << ",  " << firstName;
+}
