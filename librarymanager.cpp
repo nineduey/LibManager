@@ -73,9 +73,10 @@ void LibraryManager::readPatrons(istream& inFile) {
 //.txt file must be passed in
 //Post-conditions: Performs transactions on data of objects in the Library using
 //details of transactions given in passed in .txt file
-void LibraryManager::readTransactions(istream& inFile, Storage* catalogue, HashMap* patrons) {
+void LibraryManager::readTransactions(istream& inFile, Storage& catalogue, HashMap& patrons) {
 
 	char commandType;
+	int patronID;
 	char itemType_genre;
 	Transaction* command;
 
@@ -84,15 +85,22 @@ void LibraryManager::readTransactions(istream& inFile, Storage* catalogue, HashM
 		if (inFile.eof()) {
 			break;
 		}
+		// transactions factory
+		// createTransaction method delivers pointer to new object based on commandType
+		command = this->transFac.createTransaction(commandType);
+		// error checking, if commandType invalid, nullptr is returns from createTransaction
+		if (command == nullptr) {
 
-		command = this->transFactory.createTransaction(commandType, itemType_genre);
-		if (item == nullptr) {
-
-			string invalidLine = "";
-			getline(inFile, invalidLine);
-			continue;
+			 string invalidLine = "";
+			 getline(inFile, invalidLine);
+			 continue;
 		}
 		inFile.get();
+
+		if (commandType == 'D') {
+			 command->doTransaction(catalogue, patronsMap);
+		}
+		command->setData(inFile);
 		command->doTransaction(catalogue, patronsMap);
 	}
 }

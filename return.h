@@ -3,21 +3,23 @@
 #include <string>
 #include "book.h";
 #include "patron.h"
+#include "transaction.h"
 
-class Return : private Transaction {
+class Return : public Transaction {
 
 private:
-
-    Book* theBook;                     // the book that is being returned
+    Item* theItem;                     // the book that is being returned
     Patron* thePatron;                 // the Patron that returns the book
 
 public:
-
     Return();                     // default constructor
     Return(Book*, Patron*);       // constructor for class Return
     ~Return();
-    void doTransaction();           // overridden from Transaction
-                                    // performs return on book and
-                                    // adds this Return object to Patron's history
-
+    virtual void setData(istream&);
+    virtual Transaction* create() const;
+    virtual void doTransaction(Storage&, HashMap&);   // overridden from Transaction
+                                                      // performs return on book and
+                                                      // adds this Return object to Patron's history
 };
+
+#endif

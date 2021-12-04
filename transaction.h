@@ -18,14 +18,14 @@ of the Transaction class
 #include "patron.h"
 #include "librarymanager.h"
 
-
-
 class Transaction {
 
 public:
     Transaction(); // default constructor
     virtual ~Transaction(); // virtual destructor
-    virtual void doTransaction(Storage*&, HashMap*&) = 0;   // performs whichever transaction based on the type of derived class created
+    virtual Transaction* create() const = 0; //virtual create method to return a pointer to the certain transaction type object
+    virtual void setData(istream&) = 0; // virtual set data method
+    virtual void doTransaction(Storage&, HashMap&) = 0;   // performs whichever transaction based on the type of derived class created
 };
 
 #endif

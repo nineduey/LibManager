@@ -2,7 +2,7 @@
 #define PATRON_H
 #include <iostream>
 #include <string>
-#inlcude <vector>
+#include <vector>
 using namespace std;
 
 class Patron {
@@ -15,7 +15,7 @@ public:
 
     // public methods
     void setData(int, string, string);   // calls on data validation & sets data
-    int getID();                                         // returns the ID number
+    int getID();        // returns the ID number
     string getFirstName();                             // returns the first name
     string getLastName();                               // returns the last name
 

@@ -26,8 +26,9 @@ and interacts with the user/driver code
 #include "factorydriver.h"
 #include "storage.h"
 #include "transaction.h"
-//#include "hashmap.h"
+#include "hashmap.h"
 #include "item.h"
+#include "transfactory.h"
 #include <iostream>
 
 class LibraryManager
@@ -61,17 +62,17 @@ public:
 	//.txt file must be passed in
 	//Post-conditions: Performs transactions on data of objects in the Library using
 	//details of transactions given in passed in .txt file
-	void readTransactions( istream&, Storage*, Hashmap* );
+	void readTransactions( istream&, Storage&, HashMap&);
 
 private:
+	 //Object that calls createItem() function of appropriate
+	 //derived ItemFactory class to instantiate an Item object
+	 //of a specific type
+	FactoryDriver facdriver;
+	TransFactory transFac;     // Object that calls createTransaction() function
+	HashMap patronsMap;	      //calling object of method that further processes customer data
 
-	FactoryDriver facdriver;	//Object that calls createItem() function of appropriate
-								//derived ItemFactory class to instantiate an Item object
-								//of a specific type
-	TransFactory transFactory; // Object that calls createTransaction() function
-	HashMap patronsMap;	//calling object of method that further processes customer data
-
-	Storage catalogue;	//contains map of BinTree objects that each contain Items of
-						//a specific type
+	Storage catalogue;	      //contains map of BinTree objects that each contain Items of
+						            //a specific type
 };
 #endif

@@ -20,10 +20,14 @@ void PatronHistory::setData(Patron* aPatron) {
 }
 
 //----------------------------------------------------------------------------
+// create(): method to create a new PatronHistory object, returns pointer to it
+Transaction* PatronHistory::create() const { return new PatronHistory; }
+
+//----------------------------------------------------------------------------
 // doTransaction():
-void PatronHistory::doTransaction(Storage*& catalogue, HashMap*& patronsMap) {
+void PatronHistory::doTransaction(Storage& catalogue, HashMap& patronsMap) {
 	//find patron* in the patron hashmap
-	thePatron = patronsMap.getPatron(thePatron);
+	thePatron = patronsMap.getPatron(thePatron->getID());
 	//display patron & its history
 	cout << thePatron;
 	return;

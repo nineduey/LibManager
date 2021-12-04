@@ -1,24 +1,59 @@
 #include"return.h"
+#include "storage.h"
+#include "hashmap.h"
+
 
 //----------------------------------------------------------------------------
 // Default Constructor
 Return::Return() {
+	 theItem = nullptr;
+	 thePatron = nullptr;
 }
 
 //----------------------------------------------------------------------------
 // Constructor for class Checkout
-Return::Return(Book*, Patron*) {
+Return::Return(Book* aBook, Patron* aPatron) {
+	 theItem = aBook;
+	 thePatron = aPatron;
 }
 
 //----------------------------------------------------------------------------
 // Destructor
 Return::~Return() {
+	 theItem = nullptr;
+	 thePatron = nullptr;
+
+}
+
+//----------------------------------------------------------------------------
+// setData(): virtual method that akes an istream object and sets the data within
+// to the private data members of Return
+void Return::setData(istream& inFile) {
+	 int patronID;
+	 char bookType;
+
+	 inFile >> patronID >> bookType;
+	 inFile.get();
+
+}
+//----------------------------------------------------------------------------
+Transaction* Return::create() const {
+	 return new Return;
 }
 
 //----------------------------------------------------------------------------
 // doTransaction() : method that performs the checkout on the Book
 // in its designated BinTree, will add this Checkout object to the
 // Patron's history vector of Transaction objects
-void Return::doTransaction() {
+void Return::doTransaction(Storage& catalogue, HashMap& patronsMap) {
 
+	 //finding item from binary trees
+	 Item* foundItem;
+    bool found =  catalogue.retrieveItem(this->theBook, foundItem);
+	 // checking out item
+	 foundItem->checkOut();
+	 //adding transaction to patron histroy vector --  need a way to access the patron's history vector?
+	 Return copy = *this;
+	 thePatron->addToHistory(copy);// -- from pseudo code
+	 return;
 }

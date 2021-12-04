@@ -23,7 +23,7 @@ Transaction object of the indicated Type & Genre.
 #include "patronhistory.h"
 #include <map>
 
-class TransFactory : public ItemFactory
+class TransFactory
 {
 
 public:
@@ -40,5 +40,6 @@ private:
 
 	vector<Transaction*> transFac;	//vector with elements that are initialized as new
 									//Transaction objects of every possible transaction type
+};
 
 #endif

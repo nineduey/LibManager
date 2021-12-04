@@ -56,7 +56,7 @@ TransFactory::~TransFactory() {
 //the char variable passed as the function's argument AND map contains a
 //key-value pair in which the key is equal passed in char variable
 //Post-conditions: An object of the specified type of Book is instantiated
-Transaction* TransFactory::createTransaction(char transType) const {
+Transaction* TransFactory::createTransaction(char transType, char itemType_genre) const {
 
 	if (transMap.find(transType) == transMap.end())
 	{
