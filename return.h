@@ -13,7 +13,7 @@ private:
 
 public:
     Return();                     // default constructor
-    Return(Book*, Patron*);       // constructor for class Return
+    Return(Item*, Patron*);       // constructor for class Return
     ~Return();
     virtual void setData(istream&);
     virtual Transaction* create() const;
