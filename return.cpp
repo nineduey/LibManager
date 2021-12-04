@@ -12,8 +12,8 @@ Return::Return() {
 
 //----------------------------------------------------------------------------
 // Constructor for class Checkout
-Return::Return(Book* aBook, Patron* aPatron) {
-	 theItem = aBook;
+Return::Return(Item* anItem, Patron* aPatron) {
+	 theItem = anItem;
 	 thePatron = aPatron;
 }
 
@@ -31,10 +31,12 @@ Return::~Return() {
 void Return::setData(istream& inFile) {
 	 int patronID;
 	 char bookType;
-
 	 inFile >> patronID >> bookType;
+	// thePatron = need to get patron pointer based on ID;
 	 inFile.get();
-
+	
+	//create Item* of the book needed to find
+	Item* toFind;
 }
 //----------------------------------------------------------------------------
 Transaction* Return::create() const {
