@@ -22,8 +22,6 @@ ostream& operator<<( ostream& out, const Item& anItem ){
 //-----------------------------------------------------------------------------
 // Default Constrcutor: method to initialize private & protected data members
 Item::Item(){
-	left = nullptr;
-	right = nullptr;
 	numInLib = 0;
 	maxNumInLib = 5;
 	itemType = 'I';
@@ -32,8 +30,6 @@ Item::Item(){
 //----------------------------------------------------------------------------
 // Destructor: sets the left and right Item pointers to null
 Item::~Item(){
-	left = nullptr;
-	right = nullptr;
 }
 
 
