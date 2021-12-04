@@ -16,7 +16,7 @@ public:
     Checkout();                     // default constructor
     Checkout(Book*, Patron*);       // constructor for class Checkout
     ~Checkout();
-    void doTransaction();           // overridden from Transaction
+    void doTransaction(Storage*& catalogue, HashMap*& patronsMap);           // overridden from Transaction
                                     // performs checkout on book and
                                     // adds this Checkout object to Patron's history
 

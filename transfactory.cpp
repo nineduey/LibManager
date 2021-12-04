@@ -17,9 +17,9 @@ Book object of the indicated genre.
 
 
 //----------------------------------------------------------------------------
-//TransFactory(): Declares elements in 'map' HashMap and initializes them with 
-//keys equal to char variables of every possible book type in library and values 
-//equal to integers ranging from 0  to the number of book types - 1. 
+//TransFactory(): Declares elements in 'map' HashMap and initializes them with
+//keys equal to char variables of every possible book type in library and values
+//equal to integers ranging from 0  to the number of book types - 1.
 //Declares elements in'bookFac' vector and initializes them to new Book objects
 //of every possible book type in library
 //Pre-conditions:None
@@ -50,11 +50,11 @@ TransFactory::~TransFactory() {
 }
 
 //----------------------------------------------------------------------------
-//createTransaction(): Instantiates transaction object to equal transaction 
-//object of the type associated with the char variable passed in 
+//createTransaction(): Instantiates transaction object to equal transaction
+//object of the type associated with the char variable passed in
 //Pre-conditions: bookFac contains the Book object of type associated with
-//the char variable passed as the function's argument AND map contains a 
-//key-value pair in which the key is equal passed in char variable 
+//the char variable passed as the function's argument AND map contains a
+//key-value pair in which the key is equal passed in char variable
 //Post-conditions: An object of the specified type of Book is instantiated
 Transaction* TransFactory::createTransaction(char transType) const {
 
@@ -68,4 +68,3 @@ Transaction* TransFactory::createTransaction(char transType) const {
 		return transFac[subscript]->create();
 	}
 }
-

@@ -2,7 +2,7 @@
 @File contents: Function defintions and variable initializations
 of the DisplayCatalogue class
 
-@Purpose: 
+@Purpose:
 
 @Assumptions
 
@@ -20,14 +20,14 @@ DisplayCatalogue::DisplayCatalogue() {
 //----------------------------------------------------------------------------
 // Destructor
 DisplayCatalogue::~DisplayCatalogue() {
-} 
+}
 
 //----------------------------------------------------------------------------
 // doTransaction(): method to call on BinTree to display the contents of
 // library and its checkin/checkout status
 // @pre:
 // @post:
-void DisplayCatalogue::doTransaction() {
+void DisplayCatalogue::doTransaction(Storage*& catalogue, HashMap*& patronsMap) ) {
 	cout << catalogue;
 	return;
 }

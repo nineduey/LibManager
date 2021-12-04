@@ -21,7 +21,7 @@ public:
 
     DisplayCatalogue();    // default constructor
     virtual ~DisplayCatalogue(); // destructor
-    void doTransaction();        // displays the catalogues data
+    void doTransaction(Storage*&, HashMap*&); // displays the catalogues data
 
 };
 

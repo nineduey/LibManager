@@ -25,8 +25,7 @@ class Transaction {
 public:
     Transaction(); // default constructor
     virtual ~Transaction(); // virtual destructor
-    virtual void doTransaction() = 0;         // performs whichever transaction
-
+    virtual void doTransaction(Storage*&, HashMap*&) = 0;   // performs whichever transaction based on the type of derived class created
 };
 
 #endif

@@ -25,21 +25,20 @@ Transaction object of the indicated Type & Genre.
 
 class TransFactory : public ItemFactory
 {
-	
+
 public:
 
 	TransFactory(); // default constructor
 	virtual ~TransFactory(); // virtual destrcutor
-	virtual Transaction* createTransaction(char) const; // create Treansaction method -- ** need to talk about createItem() in facDriver
+	Transaction* createTransaction(char) const; // create Treansaction method -- ** need to talk about createItem() in facDriver
 
 private:
 
-	std::map<char, int> transMap;	//HashMap with keys equal to char variables of every 
-									//possible book type and values equal to integers 
-									//ranging from 0  to the number of transaction types - 1. 
+	std::map<char, int> transMap;	//HashMap with keys equal to char variables of every
+									//possible book type and values equal to integers
+									//ranging from 0  to the number of transaction types - 1.
 
-	vector<Transaction*> transFac;	//vector with elements that are initialized as new 
+	vector<Transaction*> transFac;	//vector with elements that are initialized as new
 									//Transaction objects of every possible transaction type
-	
-#endif
 
+#endif

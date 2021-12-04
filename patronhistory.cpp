@@ -3,28 +3,28 @@
 //----------------------------------------------------------------------------
 //Default Constructor
 PatronHistory::PatronHistory() {
-	patron = nullptr;
+	thePatron = nullptr;
 }
 
 //----------------------------------------------------------------------------
 //Destructor
 PatronHistory::PatronHistory(Patron*) {
-	patron = nullptr;
+	thePatron = nullptr;
 }
 
 //----------------------------------------------------------------------------
 //setData() :
-void PatronHistory::setData(Patron* thePatron) {
-	patron = thePatron;
+void PatronHistory::setData(Patron* aPatron) {
+	thePatron = aPatron;
 	return;
 }
 
 //----------------------------------------------------------------------------
 // doTransaction():
-void PatronHistory::doTransaction() {
+void PatronHistory::doTransaction(Storage*& catalogue, HashMap*& patronsMap) {
 	//find patron* in the patron hashmap
-	patron = patrons.getPatron(patron);
+	thePatron = patronsMap.getPatron(thePatron);
 	//display patron & its history
-	cout << patron;
+	cout << thePatron;
 	return;
 }

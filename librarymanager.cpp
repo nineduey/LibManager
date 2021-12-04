@@ -14,18 +14,18 @@ is correctly formatted.
 
 @Authors: Shushmitha Radjaram and Amanda Todakonzie
 
-@How code is used: The LibraryManager represents the initial data processor 
+@How code is used: The LibraryManager represents the initial data processor
 data for a Library and interacts with the user/driver code.
 */
 
 #include "librarymanager.h"
 
 //----------------------------------------------------------------------------
-//readInventory(): reads in Item data and builds the inventory 
-//Pre-conditions: variable of type ifstream& that contains correctly formatted 
+//readInventory(): reads in Item data and builds the inventory
+//Pre-conditions: variable of type ifstream& that contains correctly formatted
 //.txt file must be passed in
-//Postconditions: Creates Item objects using details of Items given in passed 
-//in ifstream& object and stores intialized Items objects in sorted order in 
+//Postconditions: Creates Item objects using details of Items given in passed
+//in ifstream& object and stores intialized Items objects in sorted order in
 //Library's catalogue
 void LibraryManager::readInventory(istream& inFile){
 
@@ -58,10 +58,10 @@ void LibraryManager::readInventory(istream& inFile){
 
 //----------------------------------------------------------------------------
 //readCustomer(): reads in customer and builds the customer objects
-//Pre-conditions: variable of type ifstream& that contains correctly formatted 
+//Pre-conditions: variable of type ifstream& that contains correctly formatted
 //.txt file must be passed in
-//Postconditions: Creates Customer objects using details of customers given in 
-//passed in ifstream& object and stores intialized Customer objects in sorted 
+//Postconditions: Creates Customer objects using details of customers given in
+//passed in ifstream& object and stores intialized Customer objects in sorted
 //order in Library's catalogue
 void LibraryManager::readPatrons(istream& inFile) {
 
@@ -69,11 +69,11 @@ void LibraryManager::readPatrons(istream& inFile) {
 
 //----------------------------------------------------------------------------
 //readTransaction(): reads in transaction data and performs transactions
-//Pre-conditions: variable of type ifstream& that contains correctly formatted 
+//Pre-conditions: variable of type ifstream& that contains correctly formatted
 //.txt file must be passed in
-//Post-conditions: Performs transactions on data of objects in the Library using 
+//Post-conditions: Performs transactions on data of objects in the Library using
 //details of transactions given in passed in .txt file
-void LibraryManager::readTransactions(istream& inFile) {
+void LibraryManager::readTransactions(istream& inFile, Storage* catalogue, HashMap* patrons) {
 
 	char commandType;
 	char itemType_genre;
@@ -85,7 +85,7 @@ void LibraryManager::readTransactions(istream& inFile) {
 			break;
 		}
 
-		command = this->facdriver.createTransaction(commandType, itemType_genre);
+		command = this->transFactory.createTransaction(commandType, itemType_genre);
 		if (item == nullptr) {
 
 			string invalidLine = "";
@@ -93,6 +93,6 @@ void LibraryManager::readTransactions(istream& inFile) {
 			continue;
 		}
 		inFile.get();
-		command->doTransaction(inFile);
+		command->doTransaction(catalogue, patronsMap);
 	}
 }
