@@ -3,7 +3,8 @@
 #include <string>
 #include "item.h"
 #include "patron.h"
-#include "librarymanager.h"
+#include "storage.h"
+#include "hashmap.h"
 #include "transaction.h"
 #include "factorydriver.h"
 using namespace std;
@@ -13,12 +14,13 @@ class Return : public Transaction
 
 private:
     Item* theItem;                     // the book that is being returned
-    Patron* thePatron;                 // the Patron that returns the book
-    FactoryDriver facDriver;
+    //Patron* thePatron;                 // the Patron that returns the book
+    int patronID;             // the Patron that returns the book
+    FactoryDriver facDriver;  // factory to create Item objects
 
 public:
     Return();                     // default constructor
-    //Return( Item*, Patron* );       // constructor for class Return
+    Return( Item*, int );   // constructor for class Return
     virtual ~Return();
     virtual void setData( istream& );
     virtual Transaction* create() const;

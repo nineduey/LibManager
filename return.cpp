@@ -7,46 +7,64 @@
 Return::Return()
 {
 	theItem = nullptr;
-	thePatron = nullptr;
+	patronID = -1;
 }
+
 
 //----------------------------------------------------------------------------
 // Constructor for class Checkout
-//Return::Return( Item* anItem, Patron* aPatron )
-//{
-//	theItem = anItem;
-//	thePatron = aPatron;
-//}
+Return::Return( Item* anItem, int patID )
+{
+	theItem = anItem;
+	patronID = patID;
+}
 
 //----------------------------------------------------------------------------
 // Destructor
 Return::~Return()
 {
 	theItem = nullptr;
-	thePatron = nullptr;
-
 }
 
-//----------------------------------------------------------------------------
+///----------------------------------------------------------------------------
 // setData(): virtual method that akes an istream object and sets the data within
 // to the private data members of Return
-void Return::setData( istream& inFile )  //work on this!
+void Return::setData( istream& inFile )
 {
-	int patronID;
-	int itemType = 'B';
+	int patID;
 	char itemType_Genre;
-	char formatType;
+	char itemType_Format;
+	string title;
+	string author;
+	int month;
+	int year;
 
-	inFile >> patronID >> itemType_Genre >> formatType;
+	inFile >> patID >> itemType_Genre >> itemType_Format;
+	// if BookType is periodical
+	if (itemType_Genre == 'P')
+	{
+		inFile >> year >> month;
+		inFile.get();
+		getline( inFile, title, ',' );
+		// data variable not used
+		author = "";
+	}
+	else
+	{
+		inFile.get();
+		getline( inFile, author, ',' );
+		inFile.get();
+		getline( inFile, title, ',' );
+		// data variables not used
+		month = 0;
+		year = 0;
+	}
 
-	fac
-
-	//// thePatron = need to get patron pointer based on ID;
-	//inFile.get();
-
-	////create Item* of the book needed to find
-	//Item* toFind;
+	theItem = facDriver.createItem( 'B', itemType_Genre );
+	theItem->setData( author, title, month, year );
+	patronID = patID;
 }
+
 //----------------------------------------------------------------------------
 Transaction* Return::create() const
 {
@@ -59,14 +77,22 @@ Transaction* Return::create() const
 // Patron's history vector of Transaction objects
 void Return::doTransaction( Storage& catalogue, HashMap& patronsMap )
 {
-
 	//finding item from binary trees
 	Item* foundItem;
 	bool found = catalogue.retrieveItem( this->theItem, foundItem );
-	// checking out item
-	foundItem->checkIn();
-	//adding transaction to patron histroy vector --  need a way to access the patron's history vector?
-	//Return copy = *this;
-	thePatron->addToHistory( this );// -- from pseudo code
+	// if item found, proceed to checkIn()
+	if (found == true)
+	{
+		foundItem->checkIn();
+		//adding transaction to patron histroy vector
+		Patron* thePatron = patronsMap.getPatron( patronID );
+		Return* copy = this;
+		thePatron->addToHistory( copy );
+	}
+	else
+	{
+		cout << "Error, Item not found in Catalogue, cannot process return." << endl;
+	}
+
 	return;
 }

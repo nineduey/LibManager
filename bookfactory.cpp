@@ -55,7 +55,7 @@ BookFactory::~BookFactory(){
 //Post-conditions: An object of the specified type of Book is instantiated
 Item* BookFactory::createItem( char bookType ) const{
 	
-	if(bookMap.find( bookType ) == bookMap.end())
+	if(bookMap.find( bookType ) == bookMap.end()) //note to self: explain what find function does
 	{
 		return nullptr;
 	}

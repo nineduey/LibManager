@@ -14,6 +14,7 @@ Transaction object of the indicated Type & Genre.
 #include "checkout.h"
 #include "return.h"
 #include <map>
+#include <vector>
 using namespace std;
 
 class TransFactory
@@ -31,7 +32,7 @@ private:
 									//possible book type and values equal to integers
 									//ranging from 0  to the number of transaction types - 1.
 
-	vector<Transaction*> transFac;	//vector with elements that are initialized as new
+	std::vector<Transaction*> transFac;	//vector with elements that are initialized as new
 									//Transaction objects of every possible transaction type
 };
 

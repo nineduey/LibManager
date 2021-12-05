@@ -64,7 +64,7 @@ private:
 	std::map<char, int> factoryTypeMap;		
 
 	//contains objects of derived classes of ItemFactory 
-	vector<ItemFactory*> factories;			
+	vector<ItemFactory*> factories;
 };
 #endif
 

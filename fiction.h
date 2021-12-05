@@ -18,7 +18,6 @@ class Fiction : public Book
 {
     //const string fictionBookDeclar = "FICTION BOOK";
 
-
 public:
     Fiction();
     virtual ~Fiction();
@@ -26,6 +25,7 @@ public:
     virtual char returnItemType_Genre() const;
     virtual Item* create() const;
     virtual void setData( istream& );
+    virtual void setData( string, string, int, int );
     virtual void print( ostream& os ) const;
 
     // virtual comparison operators

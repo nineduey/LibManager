@@ -11,27 +11,36 @@ int main(){
 
 	LibraryManager libManager;
 
-	//ifstream infile1( "data4books.txt" );
-	//istream& infile1_istream = infile1;
+	ifstream infile1( "data4books.txt" );
 
-	//if (!infile1)
-	//{
-	//	cout << "File with inventory data could not be opened." << endl;
-	//	return 1;
-	//}
+	if (!infile1)
+	{
+		cout << "File with inventory data could not be opened." << endl;
+		return 1;
+	}
 
-	//libManager.readInventory( infile1_istream );
+	istream& infile1_istream = infile1;
+	libManager.readInventory( infile1_istream );
 
 	ifstream infile2( "data4patrons.txt" );
-	istream& infile2_istream = infile2;
 
 	if (!infile2)
 	{
-		cout << "File with patrondat could not be opened." << endl;
+		cout << "File with patrons' data could not be opened." << endl;
 		return 1;
 	}
-	
+
+	istream& infile2_istream = infile2;
 	libManager.readPatrons( infile2_istream );
 
-	//libManager.readTransactions( infile3 );
+	/*ifstream infile3( "data4commands.txt" );
+	istream& infile3_istream = infile3;
+
+	if (!infile3)
+	{
+		cout << "File with commands data could not be opened." << endl;
+		return 1;
+	}
+
+	libManager.readTransactions( infile3_istream );*/
 }

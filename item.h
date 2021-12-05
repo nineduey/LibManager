@@ -38,6 +38,7 @@ public:
 	virtual char returnItemType_Genre() const = 0;// returns the Type of ItemType
 	virtual Item* create() const = 0;		  // virtual create function
 	virtual void setData( istream& ) = 0;	  // virtual setData function
+	virtual void setData( string, string, int, int ) = 0;
 	virtual void print( ostream& os ) const = 0;// virtual print function
 
 	//virtual comparison operators
@@ -53,11 +54,6 @@ protected:
 	int maxNumInLib; // max number of copies of item in library
 	char itemType;	 // added this data member to store the type of item the instance is
 	bool validate() const;  	//check whether the input content is valid
-
-
-private:
-	Item* left;
-	Item* right;
 
 };
 

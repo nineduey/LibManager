@@ -27,34 +27,34 @@ data for a Library and interacts with the user/driver code.
 //Postconditions: Creates Item objects using details of Items given in passed 
 //in ifstream& object and stores intialized Items objects in sorted order in 
 //Library's catalogue
-//void LibraryManager::readInventory(istream& inFile){
-//
-//    Item* item;
-//	char itemType;
-//	char itemType_type;
-//
-//	 while (true) {
-//
-//		inFile >> itemType_type;
-//	 	if (inFile.eof()) {
-//			break;
-//		}
-//
-//		itemType = 'B';
-//		item = this->facdriver.createItem( itemType, itemType_type );
-//		if(item == nullptr){
-//
-//			string invalidLine = "";
-//			getline( inFile, invalidLine );
-//			continue;
-//		}
-//		inFile.get();
-//		item->setData( inFile );
-//		catalogue.append( item );
-//	 }
-//
-//	 cout << catalogue;
-//}
+void LibraryManager::readInventory(istream& inFile){
+
+    Item* item;
+	char itemType;
+	char itemType_type;
+
+	 while (true) {
+
+		inFile >> itemType_type;
+	 	if (inFile.eof()) {
+			break;
+		}
+
+		itemType = 'B';
+		item = this->facdriver.createItem( itemType, itemType_type );
+		if(item == nullptr){
+
+			string invalidLine = "";
+			getline( inFile, invalidLine );
+			continue;
+		}
+		inFile.get();
+		item->setData( inFile );
+		catalogue.append( item );
+	 }
+
+	 cout << catalogue;
+}
 
 //----------------------------------------------------------------------------
 //readCustomer(): reads in customer and builds the customer objects
@@ -75,14 +75,14 @@ void LibraryManager::readPatrons(istream& inFile){
 			break;
 		}
 
-		if (!patrons.addPatron( patronID, inFile )){ //change patrons to patronsMap
+		if (!patronsMap.addPatron( patronID, inFile )){ //change patrons to patronsMap
 			string invalidLine = "";
 			getline( inFile, invalidLine );
 			continue;
 		}
 	}
 
-	cout << patrons;
+	cout << patronsMap;
 }
 
 //----------------------------------------------------------------------------
@@ -91,7 +91,31 @@ void LibraryManager::readPatrons(istream& inFile){
 //.txt file must be passed in
 //Post-conditions: Performs transactions on data of objects in the Library using 
 //details of transactions given in passed in .txt file
-//void LibraryManager::readTransactions(istream& inFile, Storage* cat, HashMap* pat) {
-//
-//	TransFactory o
-//}
+void LibraryManager::readTransactions(istream& inFile) {
+
+	char commandType;
+	Transaction* command;
+
+	while (true)
+	{
+		inFile >> commandType;
+		if (inFile.eof())
+		{
+			break;
+		}
+		// transactions factory
+		// createTransaction method delivers pointer to new object based on commandType
+		command = this->transFac.createTransaction( commandType );
+		// error checking, if commandType invalid, nullptr is returns from createTransaction
+		if (command == nullptr)
+		{
+			string invalidLine = "";
+			getline( inFile, invalidLine );
+			continue;
+		}
+		inFile.get();
+
+		command->setData( inFile );
+		command->doTransaction( catalogue, patronsMap );
+	}
+}

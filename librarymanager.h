@@ -25,15 +25,22 @@ and interacts with the user/driver code
 #define LIBRARYMANAGER_H
 #include "factorydriver.h"
 #include "storage.h"
+#include "transaction.h"
 #include "hashmap.h"
 #include "item.h"
+#include "transfactory.h"
 #include <iostream>
+using namespace std;
 
 class LibraryManager
 {
-	friend ostream& operator<<( ostream&, const BinTree& );
+	//friend class Transaction;
+	//friend class Checkout;
+	//friend class Return;
 
 public:
+
+	//friend ostream& operator<<( ostream&, const LibraryManager& );
 
 	//----------------------------------------------------------------------------
 	//readInventory(): reads in Item data and builds the inventory 
@@ -67,9 +74,14 @@ private:
 								//derived ItemFactory class to instantiate an Item object 
 								//of a specific type
 
-	HashMap patrons;	//calling object of method that further processes customer data 
+	HashMap patronsMap;	//calling object of method that further processes customer data 
+
+	//TransFactory transFac;    // Object that calls createTransaction() function
+
+	TransFactory transFac;
 
 	Storage catalogue;	//contains map of BinTree objects that each contain Items of 
 						//a specific type
+	
 };
 #endif

@@ -104,13 +104,6 @@ bool Periodical::operator<( const Item& item ) const{
 // @post:
 bool Periodical::operator>( const Item& item ) const{
 
-	//sorted by date (year, then month), then by title 
-
-	//if (this->operator==( item ) || this->operator<( item ))
-	//{
-	//	return false;
-	//}
-
 	const Periodical& aPeriodical = static_cast<const Periodical&>(item);
 
 	if (this->year > aPeriodical.year){
@@ -156,6 +149,21 @@ void Periodical::setData( istream& infile ){
 	bookType = 'P';   // setting bookType -> Book class
 	maxNumInLib = 5;	// setting the max number of book copies in library
 }
+
+//----------------------------------------------------------------------------
+// setData():
+// data members
+// @pre:
+// @post:
+void Periodical::setData( string author, string title, int month, int year )
+{
+	this->title = title;
+	this->month = month;
+	this->year = year;
+	itemType = 'B';
+	bookType = 'P';
+}
+
 //----------------------------------------------------------------------------
 // print(): method to print the data members of fiction class & its base class
 // data members
