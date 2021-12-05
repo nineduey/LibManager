@@ -16,15 +16,16 @@ using namespace std;
 
 class Periodical : public Book
 {
-  
+
 public:
     Periodical();  // constructor
-    ~Periodical(); // destructor
+    virtual ~Periodical() = default; // destructor
     virtual char returnItemType() const;
     virtual char returnItemType_Genre() const;
     virtual Item* create() const;
-    virtual void setData(istream&);
-    virtual void print(ostream& os) const;
+    virtual void setData( istream& );
+    virtual void setData( string, string, int, int );
+    virtual void print( ostream&) const;
 
     // virtual comparison operators
     virtual Item& operator=( const Item& );
@@ -35,7 +36,6 @@ public:
 
 private:
     int month; // month of book published
-
 };
 
 #endif

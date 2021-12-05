@@ -1,12 +1,8 @@
 /*
 @File contents: Fiction.cpp function definitions
-
 @Purpose:
-
 @Assumptions:
-
 @Authors: Shushmitha Radjaram and Amanda Todakonzie
-
 @How code is used:
 */
 //-----------------------------------------------------------------------------
@@ -25,9 +21,8 @@ Fiction::Fiction()
 
 //----------------------------------------------------------------------------
 // Destructor
-Fiction::~Fiction()
-{
-}
+Fiction::~Fiction() {}
+
 //----------------------------------------------------------------------------
 // returnItemType():
 // @pre:
@@ -49,7 +44,7 @@ char Fiction::returnItemType_Genre() const
 // passed in
 // @pre:
 //@post:
-Item& Fiction::operator=( const Item& item)
+Item& Fiction::operator=( const Item& item )
 {
 	const Fiction& aFiction = static_cast<const Fiction&>(item);
 
@@ -89,10 +84,10 @@ bool Fiction::operator<( const Item& item ) const
 {
 	//sorted by author, then title
 
-	if (this->operator==( item ))
-	{
-		return false;
-	}
+	//if (this->operator==( item ))
+	//{
+	//	return false;
+	//}
 
 	const Fiction& aFiction = static_cast<const Fiction&>(item);
 
@@ -146,7 +141,7 @@ Item* Fiction::create() const
 //setData() : 
 //@pre:
 //@post:
-void Fiction::setData( istream& infile)
+void Fiction::setData( istream& infile )
 {
 	getline( infile, author, ',' );// input author, looks for comma terminator
 
@@ -163,13 +158,26 @@ void Fiction::setData( istream& infile)
 }
 
 //----------------------------------------------------------------------------
+// setData():
+// data members
+// @pre:
+// @post:
+void Fiction::setData( string author, string title, int month, int year){
+	this->title = title;
+	this->author = author;
+	this->year = year;
+	itemType = 'B'; 
+	bookType = 'F';
+}
+
+//----------------------------------------------------------------------------
 //print():
 // @pre:
 // @post:
-void Fiction::print( ostream& os ) const
+void Fiction::print( ostream& out ) const
 {
-	os << numInLib << "      " << setw(AUTHOR_SPACE_LENGTH);
-	os << left << author << setw(TITLE_SPACE_LENGTH);
-	os << right << title << setw(YEAR_SPACE_LENGTH);
-	os << right << year;
+	out << numInLib << "      " << setw(AUTHOR_SPACE_LENGTH);
+	out << left << author << setw(TITLE_SPACE_LENGTH); 
+	out << right << title << setw(YEAR_SPACE_LENGTH);
+	out << right << year;
 }

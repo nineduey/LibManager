@@ -6,14 +6,14 @@
 class PatronHistory : public Transaction {
 
 private:
-    Patron* patron;                 // the patron whos history is displayed
+    int patronID;                 // the patron whos history is displayed
 
 public:
-    PatronHistory();  			 // constructor for class PatronHistory
-    PatronHistory(Patron*);
-    void setData(Patron*);
-    void doTransaction();            // calls display on our patron pointer
-
+    PatronHistory();  		 // constructor for class PatronHistory
+    ~PatronHistory();        // destrcutor for class PatronHistory
+    virtual void setData(istream&); // virtual set data method
+    virtual Transaction* create() const;
+    virtual void doTransaction(Storage&, HashMap&);  // calls display on our patron pointer
 };
 
 #endif

@@ -1,3 +1,15 @@
+/*
+@File contents: Function and variable declarations
+of the DisplayCatalogue class
+
+@Purpose:
+
+@Assumptions
+
+@Authors: Shushmitha Radjaram and Amanda Todakonzie
+
+@How code is used:
+*/
 #ifndef DISPLAYCATALOGUE_H
 #define DISPLAYCATALOGUE_H
 #include "transaction.h"
@@ -7,8 +19,11 @@ class DisplayCatalogue : public Transaction {
 
 public:
 
-    DisplayCatalogue();    // constructor for class DisplayCatalogue
-    void doTransaction();                    	// displays the catalogues data
+    DisplayCatalogue();    // default constructor
+    virtual ~DisplayCatalogue(); // destructor
+    virtual Transaction* create() const;
+    virtual void setData(istream&); // virtual set data method
+    virtual void doTransaction(Storage&, HashMap&); // displays the catalogues data
 
 };
 

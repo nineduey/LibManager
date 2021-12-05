@@ -1,12 +1,8 @@
 /*
 @File contents: Chidlren.cpp function definitions
-
 @Purpose:
-
 @Assumptions:
-
 @Authors: Shushmitha Radjaram and Amanda Todakonzie
-
 @How code is used:
 */
 //-----------------------------------------------------------------------------
@@ -19,7 +15,7 @@
 // Default Constructor
 Children::Children()
 {
-	 author = "";
+	author = "";
 }
 
 //----------------------------------------------------------------------------
@@ -49,7 +45,7 @@ char Children::returnItemType_Genre() const
 // passed in
 // @pre:
 // @post:
-Item& Children::operator=( const Item& item)
+Item& Children::operator=( const Item& item )
 {
 	const Children& aChildren = static_cast<const Children&>(item);
 
@@ -65,7 +61,7 @@ Item& Children::operator=( const Item& item)
 //operator == : 
 //@pre:
 //@post:
-bool Children::operator==( const Item& item) const
+bool Children::operator==( const Item& item ) const
 {
 	const Children& aChildren = static_cast<const Children&>(item);
 
@@ -75,7 +71,7 @@ bool Children::operator==( const Item& item) const
 //operator != : 
 //@pre:
 //@post:
-bool Children::operator!=( const Item& item) const
+bool Children::operator!=( const Item& item ) const
 {
 	return !this->operator==( item );
 }
@@ -84,36 +80,39 @@ bool Children::operator!=( const Item& item) const
 //operator < : 
 //@pre:
 //@post:
-bool Children::operator<( const Item& item) const
+bool Children::operator<( const Item& item ) const
 {
-	if(this->operator==( item ))
-	{
-		return false;
-	}
+	//if (this->operator==( item ))
+	//{
+	//	return false;
+	//}
 
 	const Children& aChildren = static_cast<const Children&>(item);
 
-	if(this->title < aChildren.title)
+	if (this->title < aChildren.title)
 	{
 		return true;
 	}
-	else if(this->title == aChildren.title)
+	else if (this->title == aChildren.title)
 	{
 		return this->author < aChildren.author;
 	}
-	return false;
+	else
+	{
+		return false;
+	}
 }
 
 //----------------------------------------------------------------------------
 //operator > : 
 //@pre:
 //@post:
-bool Children::operator>( const Item& item) const
+bool Children::operator>( const Item& item ) const
 {
-	if(this->operator==(item) || this->operator<(item))
-	{
-		return false;
-	}
+	//if (this->operator==( item ) || this->operator<( item ))
+	//{
+	//	return false;
+	//}
 
 	const Children& aChildren = static_cast<const Children&>(item);
 
@@ -125,7 +124,10 @@ bool Children::operator>( const Item& item) const
 	{
 		return this->author > aChildren.author;
 	}
-	return false;
+	else
+	{
+		return false;
+	}
 }
 //----------------------------------------------------------------------------
 //create() : 
@@ -140,9 +142,9 @@ Item* Children::create() const
 //setData() : 
 //@pre:
 //@post:
-void Children::setData( istream& infile)
+void Children::setData( istream& infile )
 {
-	getline( infile, author, ',');     // input author, looks for comma terminator
+	getline( infile, author, ',' );     // input author, looks for comma terminator
 
 	infile.get();                     // get (and ignore) blank before title
 
@@ -157,13 +159,26 @@ void Children::setData( istream& infile)
 }
 
 //----------------------------------------------------------------------------
+// setData():
+// data members
+// @pre:
+// @post:
+void Children::setData( string author, string title, int month, int year){
+	this->title = title;
+	this->author = author;
+	this->year = year;
+	itemType = 'B'; 
+	bookType = 'C';
+}
+
+//----------------------------------------------------------------------------
 //print():
 // @pre:
 // @post:
-void Children::print( ostream& os ) const
+void Children::print( ostream& out ) const
 {
-	os << numInLib << "      " << setw(AUTHOR_SPACE_LENGTH);
-	os << left << author << setw(TITLE_SPACE_LENGTH); 
-	os << right << title << setw(YEAR_SPACE_LENGTH);
-	os << right << year;
+	out << numInLib << "      " << setw(AUTHOR_SPACE_LENGTH);
+	out << left << author << setw(TITLE_SPACE_LENGTH); 
+	out << right << title << setw(YEAR_SPACE_LENGTH);
+	out << right << year;
 }

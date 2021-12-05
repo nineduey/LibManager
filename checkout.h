@@ -1,21 +1,27 @@
 #ifndef CHECKOUT_H
 #define CHECKOUT_H
 #include <string>
+#include "patron.h"
 #include "transaction.h"
+#include "factorydriver.h"
 
-class Checkout : private Transaction {
+class Checkout : public Transaction {
 
 private:
-
-    Book* book;                              // the book that is checked out
-    Patron* patron;                   // the Patron that checks the book out
+    Item* theItem;            // the book that is being returned
+    int patronID;             // the Patron that returns the book
+    FactoryDriver facDriver;  // factory to create Item objects
 
 public:
 
-    Checkout(Book*, Patron*);              	// constructor for class Checkout
-
-    void doTransaction();                     	// overridden from Transaction
-                                                 // performs return on book and
-                                           // adds checkout to Patron's history
+    Checkout();                     // default constructor
+    Checkout(Item*, int);       // constructor for class Checkout
+    Transaction* create() const;
+    ~Checkout();
+    void doTransaction(Storage&, HashMap&);           // overridden from Transaction
+                                    // performs checkout on book and
+                                    // adds this Checkout object to Patron's history
 
 };
+
+#endif

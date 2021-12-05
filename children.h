@@ -14,17 +14,19 @@
 #include "book.h"
 using namespace std;
 
-class Children : public Book 
+class Children : public Book
 {
+    friend ostream& operator<<( ostream&, const Children& );
 
 public:
     Children();
-    ~Children();
+    virtual ~Children();
     virtual char returnItemType() const;
     virtual char returnItemType_Genre() const;
     virtual Item* create() const;
-    virtual void setData(istream&);
-    virtual void print(ostream& os) const;
+    virtual void setData( istream& );
+    virtual void setData( string, string, int, int );
+    virtual void print( ostream& os ) const;
 
     //virtual comparison operators
     virtual Item& operator=( const Item& );
@@ -38,4 +40,5 @@ private:
 };
 
 #endif
+
 
