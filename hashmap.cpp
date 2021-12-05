@@ -49,7 +49,7 @@ bool HashMap::addPatron( int patronID, istream& inFile ){
 void HashMap::deletePatron( Patron* patron){
 
 	if(patron != nullptr){
-		patronsArray[hashify( patron->getID() )] = nullptr;
+		patronsArray[hashify( patron->patronID)] = nullptr;
 	}
 	else{
 		cout << "Patron is not logged in the library's system." << endl;

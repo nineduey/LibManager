@@ -13,7 +13,6 @@
 #include <string>
 #include <fstream>
 #include "patron.h"
-
 using namespace std;
 
 // global variable -- size of patrons array
@@ -21,10 +20,9 @@ int const BUCKETS = 397; //prime number for hashify function
 
 class HashMap
 {
+    friend ostream& operator<<( ostream&, const HashMap& );
 
 public:
-
-    friend ostream& operator<<( ostream&, const HashMap& );
 
     //default constructor, creates a HashMap object
     HashMap();
@@ -58,7 +56,7 @@ public:
     //@pre: Called on a HashMap object.
     //@post: if Patron is found, returns pointer to that Patron. If not  
     //found, nullptr is returned. This HashMap is unchanged.
-    Patron* getPatron( int id ) const;
+    Patron* getPatron( int ) const;
 
     //-------------------------------------------------------------------
     //getAllPatrons(): returns pointer to array of all patrons

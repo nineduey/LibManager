@@ -12,11 +12,11 @@ Return::Return()
 
 //----------------------------------------------------------------------------
 // Constructor for class Checkout
-Return::Return( Item* anItem, Patron* aPatron )
-{
-	theItem = anItem;
-	thePatron = aPatron;
-}
+//Return::Return( Item* anItem, Patron* aPatron )
+//{
+//	theItem = anItem;
+//	thePatron = aPatron;
+//}
 
 //----------------------------------------------------------------------------
 // Destructor
@@ -30,16 +30,22 @@ Return::~Return()
 //----------------------------------------------------------------------------
 // setData(): virtual method that akes an istream object and sets the data within
 // to the private data members of Return
-void Return::setData( istream& inFile )
+void Return::setData( istream& inFile )  //work on this!
 {
 	int patronID;
-	char bookType;
-	inFile >> patronID >> bookType;
-	// thePatron = need to get patron pointer based on ID;
-	inFile.get();
+	int itemType = 'B';
+	char itemType_Genre;
+	char formatType;
 
-	//create Item* of the book needed to find
-	Item* toFind;
+	inFile >> patronID >> itemType_Genre >> formatType;
+
+	fac
+
+	//// thePatron = need to get patron pointer based on ID;
+	//inFile.get();
+
+	////create Item* of the book needed to find
+	//Item* toFind;
 }
 //----------------------------------------------------------------------------
 Transaction* Return::create() const
@@ -60,7 +66,7 @@ void Return::doTransaction( Storage& catalogue, HashMap& patronsMap )
 	// checking out item
 	foundItem->checkIn();
 	//adding transaction to patron histroy vector --  need a way to access the patron's history vector?
-	Return copy = *this;
-	thePatron->addToHistory( copy );// -- from pseudo code
+	//Return copy = *this;
+	thePatron->addToHistory( this );// -- from pseudo code
 	return;
 }

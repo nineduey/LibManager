@@ -10,9 +10,9 @@ of the Transaction class
 #define TRANSACTION_H
 #include <fstream>
 #include <string>
-#include "book.h"
-#include "patron.h"
-#include "librarymanager.h"
+#include "storage.h"
+#include "hashmap.h"
+using namespace std;
 
 class Transaction
 {

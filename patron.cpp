@@ -38,24 +38,19 @@ vector<Transaction*> Patron::getHistory() const{
 	return patronHistory;
 }
 
-int Patron::getID() const{
-	
-	return patronID;
-}
-
-string Patron::getLastName() const{
-
-	return lastName;
-}
-
-string Patron::getFirstName() const{
-	
-	return firstName;
-}
-
-void Patron::print( ostream& out) const{
-
+void Patron::print( ostream& out ) const
+{
 	out << patronID << "   " << lastName << ",  " << firstName;
+}
+
+void Patron::setPatronID( int patronID )
+{
+	this->patronID = patronID;
+}
+
+int Patron::getPatronID()
+{
+	return this->patronID;
 }
 
 ostream& operator<<( ostream& out, const Patron& p){

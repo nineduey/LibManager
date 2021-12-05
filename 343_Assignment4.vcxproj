@@ -144,6 +144,7 @@
     <ClCompile Include="bookfactory.cpp" />
     <ClCompile Include="checkout.cpp" />
     <ClCompile Include="children.cpp" />
+    <ClCompile Include="displaycatalogue.cpp" />
     <ClCompile Include="factorydriver.cpp" />
     <ClCompile Include="fiction.cpp" />
     <ClCompile Include="hashmap.cpp" />
@@ -152,10 +153,12 @@
     <ClCompile Include="librarymanager.cpp" />
     <ClCompile Include="main.cpp" />
     <ClCompile Include="patron.cpp" />
+    <ClCompile Include="patronhistory.cpp" />
     <ClCompile Include="periodical.cpp" />
     <ClCompile Include="return.cpp" />
     <ClCompile Include="storage.cpp" />
     <ClCompile Include="transaction.cpp" />
+    <ClCompile Include="transfactory.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="bintree.h" />
@@ -163,6 +166,7 @@
     <ClInclude Include="bookfactory.h" />
     <ClInclude Include="checkout.h" />
     <ClInclude Include="children.h" />
+    <ClInclude Include="displaycatalogue.h" />
     <ClInclude Include="factorydriver.h" />
     <ClInclude Include="fiction.h" />
     <ClInclude Include="hashmap.h" />
@@ -170,10 +174,12 @@
     <ClInclude Include="itemfactory.h" />
     <ClInclude Include="main.h" />
     <ClInclude Include="patron.h" />
+    <ClInclude Include="patronhistory.h" />
     <ClInclude Include="periodical.h" />
     <ClInclude Include="return.h" />
     <ClInclude Include="storage.h" />
     <ClInclude Include="transaction.h" />
+    <ClInclude Include="transfactory.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

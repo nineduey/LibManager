@@ -1,9 +1,12 @@
 #ifndef CHECKOUT_H
 #define CHECKOUT_H
 #include <string>
-#include "item.h";
+#include "item.h"
 #include "patron.h"
+#include "librarymanager.h"
 #include "transaction.h"
+#include "factorydriver.h"
+using namespace std;
 
 class Checkout : public Transaction
 {
@@ -14,8 +17,8 @@ private:
 
 public:
     Checkout();                     // default constructor
-    Checkout( Item*, Patron* );       // constructor for class Return
-    ~Checkout();
+    //Checkout( Item*, Patron* );       // constructor for class Return
+    virtual ~Checkout();
     virtual void setData( istream& );
     virtual Transaction* create() const;
     virtual void doTransaction( Storage&, HashMap& );   // overridden from Transaction

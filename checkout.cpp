@@ -8,9 +8,9 @@ Checkout::Checkout()
 
 //----------------------------------------------------------------------------
 // Constructor for class Checkout
-Checkout::Checkout( Item*, Patron* )
-{
-}
+//Checkout::Checkout( Item*, Patron* )
+//{
+//}
 
 //----------------------------------------------------------------------------
 // Destructor
@@ -20,14 +20,14 @@ Checkout::~Checkout()
 
 void Checkout::setData( istream& inFile)
 {
-	int patronID;
-	char bookType;
-	inFile >> patronID >> bookType;
-	// thePatron = need to get patron pointer based on ID;
-	inFile.get();
+	//int patronID;
+	//char itemType;
+	//char itemType_Genre;
+	//inFile >> patronID >> itemType_Genre;
+	////thePatron = need to get patron pointer based on ID;
+	//inFile.get();
 
-	//create Item* of the book needed to find
-	Item* toFind;
+	//theItem->setData('B')
 }
 
 Transaction* Checkout::create() const

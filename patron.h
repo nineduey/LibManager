@@ -8,13 +8,14 @@
 #define PATRON_H
 #include <iostream>
 #include <string>
+#include <vector>
 using namespace std;
-#include "transaction.h"
+
+class Transaction;
 
 class Patron
 {
 	friend class HashMap;
-
 	friend ostream& operator<<( ostream&, const Patron& );
 
 public:
@@ -45,25 +46,11 @@ public:
 	//@post: returns a pointer to an array of Transactions representing  // this patrons transaction history, this is unchanged
 	vector<Transaction*> getHistory() const; 
 
-	//------------------------------------------------------------------
-	//getID(): method to retrieve ID number for a certain Patron,        // returns the ID number 
-	//@pre: Called on a Patron object
-	//@post: returns customerID, this is unchanged
-	int getID() const;
-
-	//------------------------------------------------------------------
-	//getFirstName(): method to retrieve first name for a certain Patron
-	//@pre: Called on a Patron object
-	//@post: returns firstName, this is unchanged
-	string getFirstName() const;
-
-	//------------------------------------------------------------------
-	//getLastName(): method to retrieve last name for a certain Patron
-	//@pre: Called on a Patron object
-	//@post: returns lastName, this is unchanged
-	string getLastName() const;
-
 	void print( ostream& ) const;
+
+	void setPatronID( int patronID );
+
+	int getPatronID(); 
 
 private:
 
@@ -73,25 +60,6 @@ private:
 
 	//private vector holding Patron’s transaction history
 	vector<Transaction*> patronHistory;
-
-	//private methods
-	//------------------------------------------------------------------
-	//setID(): checks the ID number and sets if valid
-	//@pre: called on a Patron object
-	//@post: if valid, customerID is set to passed int
-	//bool setID( int );
-
-	//------------------------------------------------------------------
-	//setFirstName(): checks the first name and sets if valid
-	//@pre: called on a Patron object
-	//@post: if valid, firstName is set to passed string
-	//bool setFirstName( string );
-
-	//------------------------------------------------------------------
-	//setLastName(): checks the last name and sets if valid
-	//@pre: called on a Patron object
-	//@post: if valid, lastName is set to passed string
-	//bool setLastName( string );
 };
 
 #endif
