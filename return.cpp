@@ -80,7 +80,7 @@ void Return::doTransaction(Storage& catalogue, HashMap& patronsMap) {
 	 	Return* copy = this;
 	 	thePatron->addToHistory(copy);
 	}else {
-		 cout "Error, Item not found in Catalogue, cannot process return." << endl;
+		 cout << "Error, Item not found in Catalogue, cannot process return." << endl;
 	 }
 
 	 return;
