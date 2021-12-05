@@ -17,14 +17,14 @@
 using namespace std;
 
 // global variable -- size of patrons array
-int const BUCKETS = 397;
+int const BUCKETS = 397; //prime number for hashify function
 
 class HashMap
 {
 
 public:
 
-    friend ostream& operator<<( ostream&, const Patron& );
+    friend ostream& operator<<( ostream&, const HashMap& );
 
     //default constructor, creates a HashMap object
     HashMap();
@@ -67,7 +67,7 @@ public:
     //Hashmap is unchanged.
     Patron* getAllPatrons() const;
 
-    void print( ostream& );
+    void print( ostream& ) const;
 
 private:
 

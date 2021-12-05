@@ -75,13 +75,14 @@ void LibraryManager::readPatrons(istream& inFile){
 			break;
 		}
 
-		if (!patrons.addPatron( patronID, inFile )){
+		if (!patrons.addPatron( patronID, inFile )){ //change patrons to patronsMap
 			string invalidLine = "";
 			getline( inFile, invalidLine );
 			continue;
 		}
-
 	}
+
+	cout << patrons;
 }
 
 //----------------------------------------------------------------------------
@@ -90,7 +91,7 @@ void LibraryManager::readPatrons(istream& inFile){
 //.txt file must be passed in
 //Post-conditions: Performs transactions on data of objects in the Library using 
 //details of transactions given in passed in .txt file
-void LibraryManager::readTransactions(istream& inFile) {
-
-
-}
+//void LibraryManager::readTransactions(istream& inFile, Storage* cat, HashMap* pat) {
+//
+//	TransFactory o
+//}

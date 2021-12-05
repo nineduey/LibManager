@@ -9,9 +9,12 @@
 #include <iostream>
 #include <string>
 using namespace std;
+#include "transaction.h"
 
 class Patron
 {
+	friend class HashMap;
+
 	friend ostream& operator<<( ostream&, const Patron& );
 
 public:
@@ -34,13 +37,13 @@ public:
 	//addToHistory(): method to add Transaction objects to a Patron’s  //Transaction history vector
 	//@pre: Called on a Patron object. Transaction passed should only be // of type Checkout or Return
 	//@post: Modified history vector, adding the passed Transaction.
-	//void addToHistory( Transaction* );
+	void addToHistory( Transaction* ); 
 
 	//------------------------------------------------------------------
 	//getHistory(): method to retrieve transaction history of a certain //patron. Returns pointer to 1st element of transaction history //vector
 	//@pre: Called on a Patron object
 	//@post: returns a pointer to an array of Transactions representing  // this patrons transaction history, this is unchanged
-	//Transaction* getHistory() const;
+	vector<Transaction*> getHistory() const; 
 
 	//------------------------------------------------------------------
 	//getID(): method to retrieve ID number for a certain Patron,        // returns the ID number 
@@ -60,7 +63,7 @@ public:
 	//@post: returns lastName, this is unchanged
 	string getLastName() const;
 
-	void print( ostream& );
+	void print( ostream& ) const;
 
 private:
 
@@ -69,7 +72,7 @@ private:
 	string lastName;       // Patrons last name
 
 	//private vector holding Patron’s transaction history
-	//vector<Transaction*> history;
+	vector<Transaction*> patronHistory;
 
 	//private methods
 	//------------------------------------------------------------------

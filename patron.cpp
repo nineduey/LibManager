@@ -14,6 +14,7 @@ void Patron::setData( int patronID, istream& inFile){
 		cout << "Patron ID is not valid." << endl;
 		this->patronID = -1;
 	}
+	this->patronID = patronID;
 
 	inFile.get();
 	getline( inFile, this->lastName, ' ' );
@@ -27,13 +28,15 @@ void Patron::setData( int patronID, istream& inFile){
 	}
 }
 
-//void Patron::addToHistory( Transaction* )
-//{
-//}
+void Patron::addToHistory( Transaction* patronTransac ){
 
-//Transaction* Patron::getHistory() const{
-//	return nullptr;
-//}
+	patronHistory.push_back( patronTransac );
+}
+
+vector<Transaction*> Patron::getHistory() const{
+	
+	return patronHistory;
+}
 
 int Patron::getID() const{
 	
@@ -50,7 +53,13 @@ string Patron::getFirstName() const{
 	return firstName;
 }
 
-void Patron::print( ostream& out)
-{
-	out << patronID << "     " << lastName << ",  " << firstName;
+void Patron::print( ostream& out) const{
+
+	out << patronID << "   " << lastName << ",  " << firstName;
+}
+
+ostream& operator<<( ostream& out, const Patron& p){
+
+	p.print( out );
+	return out;
 }

@@ -142,6 +142,7 @@
     <ClCompile Include="bintree.cpp" />
     <ClCompile Include="book.cpp" />
     <ClCompile Include="bookfactory.cpp" />
+    <ClCompile Include="checkout.cpp" />
     <ClCompile Include="children.cpp" />
     <ClCompile Include="factorydriver.cpp" />
     <ClCompile Include="fiction.cpp" />
@@ -152,12 +153,15 @@
     <ClCompile Include="main.cpp" />
     <ClCompile Include="patron.cpp" />
     <ClCompile Include="periodical.cpp" />
+    <ClCompile Include="return.cpp" />
     <ClCompile Include="storage.cpp" />
+    <ClCompile Include="transaction.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="bintree.h" />
     <ClInclude Include="book.h" />
     <ClInclude Include="bookfactory.h" />
+    <ClInclude Include="checkout.h" />
     <ClInclude Include="children.h" />
     <ClInclude Include="factorydriver.h" />
     <ClInclude Include="fiction.h" />
@@ -167,7 +171,9 @@
     <ClInclude Include="main.h" />
     <ClInclude Include="patron.h" />
     <ClInclude Include="periodical.h" />
+    <ClInclude Include="return.h" />
     <ClInclude Include="storage.h" />
+    <ClInclude Include="transaction.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

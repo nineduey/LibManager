@@ -76,8 +76,22 @@ Patron* HashMap::getAllPatrons() const{
 	return *patronsArray;
 }
 
-void HashMap::print( ostream& )
-{
+ostream& operator<<( ostream& out, const HashMap& h ){
+	
+	h.print( out );
+	return out;
+}
+
+void HashMap::print( ostream& out ) const{
+	
+	for(int i = 0; i < 397; i++){
+
+		if(patronsArray[i] != nullptr){
+
+			patronsArray[i]->print( out );
+			out << endl;
+		}
+	}
 }
 
 //-------------------------------------------------------------------
