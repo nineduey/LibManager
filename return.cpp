@@ -71,15 +71,17 @@ void Return::doTransaction(Storage& catalogue, HashMap& patronsMap) {
 
 	 //finding item from binary trees
 	 Item* foundItem;
-     bool found =  catalogue.retrieveItem(this->theItem, foundItem);
+    	 bool found =  catalogue.retrieveItem(this->theItem, foundItem);
 	 // if item found, proceed to checkIn()
 	 if (found == true){
-	 foundItem->checkIn();
-	}
+		 foundItem->checkIn();
+	//adding transaction to patron histroy vector
+	 	Patron* thePatron = patronsMap.getPatron(patronID);
+	 	Return* copy = this;
+	 	thePatron->addToHistory(copy);
+	}else {
+		 cout "Error, Item not found in Catalogue, cannot process return." << endl;
+	 }
 
-	 //adding transaction to patron histroy vector --  need a way to access the patron's history vector?
-	 Patron* thePatron = patronsMap.getPatron(patronID);
-	 Return* copy = this;
-	 thePatron->addToHistory(copy);
 	 return;
 }
