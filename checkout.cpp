@@ -13,6 +13,7 @@ Checkout::Checkout()
 // Destructor
 Checkout::~Checkout()
 {
+	 delete theItem;
 	 theItem = nullptr;
 }
 

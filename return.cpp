@@ -11,6 +11,7 @@ Return::Return() {
 //----------------------------------------------------------------------------
 // Destructor
 Return::~Return() {
+	 delete theItem;
 	 theItem = nullptr;
 }
 

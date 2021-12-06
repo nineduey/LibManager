@@ -71,8 +71,8 @@ public:
 private:
 
 	FactoryDriver facdriver;	//Object that calls createItem() function of appropriate 
-								//derived ItemFactory class to instantiate an Item object 
-								//of a specific type
+										//derived ItemFactory class to instantiate an Item object 
+										//of a specific type
 
 	HashMap patronsMap;	//calling object of method that further processes customer data 
 
