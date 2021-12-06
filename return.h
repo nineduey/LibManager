@@ -1,13 +1,12 @@
 #ifndef RETURN_H
 #define RETURN_H
 #include <string>
-#include "item.h"
-#include "patron.h"
-#include "storage.h"
-#include "hashmap.h"
 #include "transaction.h"
 #include "factorydriver.h"
 using namespace std;
+
+//class HashMap;
+//class Storage;
 
 class Return : public Transaction
 {
@@ -27,6 +26,7 @@ public:
     virtual void doTransaction( Storage&, HashMap& );   // overridden from Transaction
                                                       // performs return on book and
                                                       // adds this Return object to Patron's history
+    virtual void clear();
 };
 
 #endif

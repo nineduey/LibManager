@@ -33,7 +33,7 @@ int main(){
 	istream& infile2_istream = infile2;
 	libManager.readPatrons( infile2_istream );
 
-	/*ifstream infile3( "data4commands.txt" );
+	ifstream infile3( "data4commands.txt" );
 	istream& infile3_istream = infile3;
 
 	if (!infile3)
@@ -42,5 +42,5 @@ int main(){
 		return 1;
 	}
 
-	libManager.readTransactions( infile3_istream );*/
+	libManager.readTransactions( infile3_istream );
 }

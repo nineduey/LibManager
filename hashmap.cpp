@@ -10,7 +10,6 @@ HashMap::HashMap(){
 
 HashMap::~HashMap(){
 
-	int i = 0;
 	for(int i = 0; i < 397; i++){
 		delete patronsArray[i];
 		patronsArray[i] = nullptr;
@@ -49,7 +48,7 @@ bool HashMap::addPatron( int patronID, istream& inFile ){
 void HashMap::deletePatron( Patron* patron){
 
 	if(patron != nullptr){
-		patronsArray[hashify( patron->patronID)] = nullptr;
+		patronsArray[hashify( patron->getPatronID())] = nullptr;
 	}
 	else{
 		cout << "Patron is not logged in the library's system." << endl;
@@ -109,7 +108,8 @@ int HashMap::hashify( int patronID) const{
 	int indexInHashMap = h1;
 	int i = 0;
 
-	while (patronsArray[indexInHashMap] != nullptr){
+	while ((patronsArray[indexInHashMap] != nullptr) 
+		&& (patronsArray[indexInHashMap]->getPatronID() != patronID)){
 		i++;
 		if(i > 0){
 			indexInHashMap += ( i * h2);

@@ -117,5 +117,7 @@ void LibraryManager::readTransactions(istream& inFile) {
 
 		command->setData( inFile );
 		command->doTransaction( catalogue, patronsMap );
+
 	}
+
 }

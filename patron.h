@@ -1,14 +1,15 @@
 //-------------------------------------------------------------------
 /*@File Contents: Patron Class Header
 *@Description: Represents a customer of the SHHH library system. Stored within is the customers first name, last name, and a unique ID number. Also stored is that customer’s transaction history.
-*@Authors: Monica King, Amanda Todakonzie, Brennan Richards,      *Shushmitha Radjaram, Phuong K Vu
+*@Authors: Amanda Todakonzie and Shushmitha Radjaram
 */
-
 #ifndef PATRON_H
 #define PATRON_H
+//#include "transaction.h"
 #include <iostream>
 #include <string>
 #include <vector>
+#include "item.h"
 using namespace std;
 
 class Transaction;
@@ -41,7 +42,8 @@ public:
 	void addToHistory( Transaction* ); 
 
 	//------------------------------------------------------------------
-	//getHistory(): method to retrieve transaction history of a certain //patron. Returns pointer to 1st element of transaction history //vector
+	//getHistory(): method to retrieve transaction history of a certain //patron. Returns pointer to 1st element of transaction history 
+	//vector
 	//@pre: Called on a Patron object
 	//@post: returns a pointer to an array of Transactions representing  // this patrons transaction history, this is unchanged
 	vector<Transaction*> getHistory() const; 
@@ -61,6 +63,5 @@ private:
 	//private vector holding Patron’s transaction history
 	vector<Transaction*> patronHistory;
 };
-
 #endif
 

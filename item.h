@@ -13,15 +13,11 @@ to be built, holding specific kinds of Node Data derived classes
 //-----------------------------------------------------------------------------
 #ifndef ITEM_H
 #define ITEM_H
-
 #include <iostream>
 #include <string>
 #include <iostream>
-
 using namespace std;
 
-//forward referencing
-//class Book;
 
 class Item
 {
@@ -53,6 +49,7 @@ protected:
 	int numInLib; // number of current copies of item in library
 	int maxNumInLib; // max number of copies of item in library
 	char itemType;	 // added this data member to store the type of item the instance is
+	//char itemFormat;
 	bool validate() const;  	//check whether the input content is valid
 
 };

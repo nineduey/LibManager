@@ -77,7 +77,7 @@ void Checkout::doTransaction( Storage& catalogue, HashMap& patronsMap )
 	// if item found, proceed to checkIn()
 	if (found == true)
 	{
-		foundItem->checkIn();
+		foundItem->checkOut();
 		//adding transaction to patron histroy vector
 		Patron* thePatron = patronsMap.getPatron( patronID );
 		Checkout* copy = this;
@@ -89,4 +89,9 @@ void Checkout::doTransaction( Storage& catalogue, HashMap& patronsMap )
 	}
 
 	return;
+}
+
+void Checkout::clear()
+{
+	theItem = nullptr;
 }

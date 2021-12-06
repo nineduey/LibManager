@@ -1,6 +1,4 @@
 #include"return.h"
-#include "storage.h"
-#include "hashmap.h"
 
 //----------------------------------------------------------------------------
 // Default Constructor
@@ -95,4 +93,9 @@ void Return::doTransaction( Storage& catalogue, HashMap& patronsMap )
 	}
 
 	return;
+}
+
+void Return::clear()
+{
+	theItem = nullptr;
 }

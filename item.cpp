@@ -23,6 +23,7 @@ ostream& operator<<( ostream& out, const Item& anItem ){
 // Default Constrcutor: method to initialize private & protected data members
 Item::Item(){
 	numInLib = 0;
+	//itemFormat = "";
 	maxNumInLib = 5;
 	itemType = 'I';
 }

@@ -172,6 +172,7 @@
     <ClInclude Include="hashmap.h" />
     <ClInclude Include="item.h" />
     <ClInclude Include="itemfactory.h" />
+    <ClInclude Include="librarymanager.h" />
     <ClInclude Include="main.h" />
     <ClInclude Include="patron.h" />
     <ClInclude Include="patronhistory.h" />
