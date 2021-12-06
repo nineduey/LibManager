@@ -162,10 +162,9 @@ void Fiction::setData( istream& infile )
 // data members
 // @pre:
 // @post:
-void Fiction::setData( string author, string title, int month, int year){
+void Fiction::setData( string author, string title){
 	this->title = title;
 	this->author = author;
-	this->year = year;
 	itemType = 'B'; 
 	bookType = 'F';
 }

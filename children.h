@@ -25,7 +25,7 @@ public:
     virtual char returnItemType_Genre() const;
     virtual Item* create() const;
     virtual void setData( istream& );
-    virtual void setData( string, string, int, int );
+    virtual void setData( string, string );
     virtual void print( ostream& os ) const;
 
     //virtual comparison operators

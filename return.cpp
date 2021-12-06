@@ -1,6 +1,4 @@
 #include"return.h"
-#include "librarymanager.h"
-
 
 
 //----------------------------------------------------------------------------
@@ -21,37 +19,39 @@ Return::~Return() {
 // to the private data members of Return
 void Return::setData(istream& inFile) {
 
-	 int patID;
-	 char itemType = 'B';
-	 char itemType_Genre;
-	 char itemType_Format;
-	 string title;
-	 string author;
-	 int month;
-	 int year;
+	int patID;
+	char itemType_Genre;
+	char itemType_Format;
 
-	 inFile >> patID >> itemType_Genre >> itemType_Format;
-	 // if BookType is periodical
-	if (itemType_Genre == 'P'){
-		 inFile >> year >> month;
-		 inFile.get();
-	 	 getline(inFile, title, ',');
-		// data variable not used
-		 author = "";
-	} else {
-		 inFile.get();
-	 	 getline(inFile, author, ',');
-		 inFile.get();
-	 	 getline(inFile, title, ',');
-		// data variables not used
-		 month = 0;
-		 year = 0;
+	inFile >> patID >> itemType_Genre >> itemType_Format;
+	// if BookType is periodical
+	if (itemType_Genre == 'P')
+	{
+		string title;
+		int month;
+		int year;
+		inFile >> year >> month;
+		inFile.get();
+		getline(inFile, title, ',');
+		theItem = facDriver.createItem('B', itemType_Genre);
+		theItem->setData(title, month, year);
+	}
+	else // if BookType is Children or Fiction
+	{
+		string author;
+		string title;
+		inFile.get();
+		getline(inFile, author, ',');
+		inFile.get();
+		getline(inFile, title, ',');
+		theItem = facDriver.createItem('B', itemType_Genre);
+		theItem->setData(author, title);
 	}
 
-	 theItem = facDriver.createItem(itemType, itemType_Genre);
-	 theItem->setData(author, title, month, year);
-	 patronID = patID;
+	patronID = patID;
+	return
 }
+
 //----------------------------------------------------------------------------
 Transaction* Return::create() const {
 	 return new Return;
@@ -65,7 +65,7 @@ void Return::doTransaction(Storage& catalogue, HashMap& patronsMap) {
 
 	 //finding item from binary trees
 	 Item* foundItem;
-    	 bool found =  catalogue.retrieveItem(this->theItem, foundItem);
+    bool found =  catalogue.retrieveItem(this->theItem, foundItem);
 	 // if item found, proceed to checkIn()
 	 if (found == true){
 		 foundItem->checkIn();

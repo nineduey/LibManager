@@ -23,35 +23,34 @@ void Checkout::setData(istream& inFile)
 	 int patID;
 	 char itemType_Genre;
 	 char itemType_Format;
-	 string title;
-	 string author;
-	 int month;
-	 int year;
 
 	 inFile >> patID >> itemType_Genre >> itemType_Format;
 	 // if BookType is periodical
 	 if (itemType_Genre == 'P')
 	 {
+		  string title;
+		  int month;
+		  int year;
 		  inFile >> year >> month;
 		  inFile.get();
 		  getline(inFile, title, ',');
-		  // data variable not used
-		  author = "";
+		  theItem = facDriver.createItem('B', itemType_Genre);
+		  theItem->setData(title, month, year);
 	 }
-	 else
+	 else // if BookType is Children or Fiction
 	 {
+		  string author;
+		  string title;
 		  inFile.get();
 		  getline(inFile, author, ',');
 		  inFile.get();
 		  getline(inFile, title, ',');
-		  // data variables not used
-		  month = 0;
-		  year = 0;
+		  theItem = facDriver.createItem('B', itemType_Genre);
+		  theItem->setData(author, title);
 	 }
 
-	 theItem = facDriver.createItem('B', itemType_Genre);
-	 theItem->setData(author, title, month, year);
 	 patronID = patID;
+	 return;
 }
 
 Transaction* Checkout::create() const

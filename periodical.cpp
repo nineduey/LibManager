@@ -162,7 +162,7 @@ void Periodical::setData( istream& infile ){
 // data members
 // @pre:
 // @post:
-void Periodical::setData( string author, string title, int month, int year){
+void Periodical::setData( string title, int month, int year ){
 	this->title = title;
 	this->month = month;
 	this->year = year;
