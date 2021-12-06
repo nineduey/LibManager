@@ -115,8 +115,11 @@ void LibraryManager::readTransactions(istream& inFile) {
 		}
 		inFile.get();
 
-		command->setData( inFile );
-		command->doTransaction( catalogue, patronsMap );
+		if(command->setData( inFile ))
+		{
+			command->doTransaction( catalogue, patronsMap );
+		}
+
 		allTransactonsVec.push_back( command );
 	}
 

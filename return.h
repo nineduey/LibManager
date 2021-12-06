@@ -21,7 +21,7 @@ public:
     Return();                     // default constructor
     Return( Item*, int );   // constructor for class Return
     virtual ~Return();
-    virtual void setData( istream& );
+    virtual bool setData( istream& );
     virtual Transaction* create() const;
     virtual void doTransaction( Storage&, HashMap& );   // overridden from Transaction
                                                       // performs return on book and

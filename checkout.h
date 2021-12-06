@@ -21,7 +21,7 @@ public:
     Checkout();                     // default constructor
     Checkout( Item*, int );       // constructor for class Return
     virtual ~Checkout();
-    virtual void setData( istream& );
+    virtual bool setData( istream& );
     virtual Transaction* create() const;
     virtual void doTransaction( Storage&, HashMap& );   // overridden from Transaction
                                                       // performs return on book and

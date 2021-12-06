@@ -136,14 +136,14 @@ bool Storage::retrieveItem( Item* item, Item*& retriever ) const
 {
 	auto key = std::string( 1, item->returnItemType() ) + item->returnItemType_Genre();
 
-	/*char key[2] = {};
-	key[0] = item->returnItemType();
-	key[1] = item->returnItemType_Genre();*/
-
 	if (!(binTreeMap.find( key ) == binTreeMap.end()))
 	{
-		binTreeMap.at( key )->retrieve( item, retriever );
-		return true;
+		if(binTreeMap.at( key )->retrieve( item, retriever ))
+		{
+			return true;
+		}
+		
+		return false;
 	}
 	else
 	{

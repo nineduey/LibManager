@@ -28,7 +28,7 @@ Return::~Return()
 ///----------------------------------------------------------------------------
 // setData(): virtual method that akes an istream object and sets the data within
 // to the private data members of Return
-void Return::setData( istream& inFile )
+bool Return::setData( istream& inFile )
 {
 	int patID;
 	char itemType_Genre;
@@ -45,9 +45,14 @@ void Return::setData( istream& inFile )
 		inFile.get();
 		getline( inFile, title, ',' );
 		theItem = facDriver.createItem( 'B', itemType_Genre );
-		theItem->setData( title, month, year );
+		if (theItem != nullptr)
+		{
+			theItem->setData( title, month, year );
+			patronID = patID;
+			return true;
+		}
 	}
-	else // if BookType is Children or Fiction
+	else if (itemType_Genre == 'F') // if BookType is Fiction
 	{
 		string author;
 		string title;
@@ -56,11 +61,31 @@ void Return::setData( istream& inFile )
 		inFile.get();
 		getline( inFile, title, ',' );
 		theItem = facDriver.createItem( 'B', itemType_Genre );
-		theItem->setData( author, title );
+		if (theItem != nullptr)
+		{
+			theItem->setData( author, title );
+			patronID = patID;
+			return true;
+		}
+	}
+	else // if BookType is Children
+	{
+		string author;
+		string title;
+		inFile.get();
+		getline( inFile, title, ',' );
+		inFile.get();
+		getline( inFile, author, ',' );
+		theItem = facDriver.createItem( 'B', itemType_Genre );
+		if (theItem != nullptr)
+		{
+			theItem->setData( author, title );
+			patronID = patID;
+			return true;
+		}
 	}
 
-	patronID = patID;
-	return;
+	return false;
 }
 
 //----------------------------------------------------------------------------
@@ -84,7 +109,15 @@ void Return::doTransaction( Storage& catalogue, HashMap& patronsMap )
 		foundItem->checkIn();
 		//adding transaction to patron histroy vector
 		Patron* thePatron = patronsMap.getPatron( patronID );
-		thePatron->addToHistory( foundItem, 'R' );
+		if (thePatron == nullptr)
+		{
+			cout << "Error, Patron not found in records, cannot process return." << endl;
+			return;
+		}
+		else
+		{
+			thePatron->addToHistory( foundItem, 'R' );
+		}
 	}
 	else
 	{
