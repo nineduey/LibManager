@@ -7,13 +7,7 @@
 // Default Constructor
 Return::Return() {
 	 theItem = nullptr;
-}
-
-//----------------------------------------------------------------------------
-// Constructor for class Checkout
-Return::Return(Item* anItem, int patID) {
-	 theItem = anItem;
-	 patronID = patID;
+	 patronID = -1;
 }
 
 //----------------------------------------------------------------------------
@@ -29,16 +23,16 @@ void Return::setData(istream& inFile) {
 
 	 int patID;
 	 char itemType = 'B';
-	 char bookType;
-	 char bookFormat;
+	 char itemType_Genre;
+	 char itemType_Format;
 	 string title;
 	 string author;
 	 int month;
 	 int year;
 
-	 inFile >> patID >> bookType >> bookFormat;
+	 inFile >> patID >> itemType_Genre >> itemType_Format;
 	 // if BookType is periodical
-	if (bookType = 'P'){
+	if (itemType_Genre == 'P'){
 		 inFile >> year >> month;
 		 inFile.get();
 	 	 getline(inFile, title, ',');
@@ -54,7 +48,7 @@ void Return::setData(istream& inFile) {
 		 year = 0;
 	}
 
-	 theItem = facDriver.createItem(itemType, bookType);
+	 theItem = facDriver.createItem(itemType, itemType_Genre);
 	 theItem->setData(author, title, month, year);
 	 patronID = patID;
 }
@@ -76,10 +70,11 @@ void Return::doTransaction(Storage& catalogue, HashMap& patronsMap) {
 	 if (found == true){
 		 foundItem->checkIn();
 	//adding transaction to patron histroy vector
-	 	Patron* thePatron = patronsMap.getPatron(patronID);
+	 	Patron thePatron = patronsMap.getPatron(patronID);
 	 	Return* copy = this;
-	 	thePatron->addToHistory(copy);
-	}else {
+	 	thePatron.addToHistory(copy);
+
+	 } else {
 		 cout << "Error, Item not found in Catalogue, cannot process return." << endl;
 	 }
 

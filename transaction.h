@@ -16,7 +16,6 @@ of the Transaction class
 #include <string>
 #include "book.h"
 #include "patron.h"
-#include "librarymanager.h"
 
 class Transaction {
 

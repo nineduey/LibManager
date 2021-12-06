@@ -1,7 +1,6 @@
 #ifndef RETURN_H
 #define RETURN_H
 #include <string>
-#include "patron.h"
 #include "transaction.h"
 #include "factorydriver.h"
 
@@ -14,8 +13,7 @@ private:
 
 public:
     Return();                 // default constructor
-    Return(Item*, int);   // constructor for class Return
-    ~Return();
+    virtual  ~Return();       // virtual destructor
     virtual void setData(istream&);
     virtual Transaction* create() const;
     virtual void doTransaction(Storage&, HashMap&);   // overridden from Transaction
