@@ -8,12 +8,11 @@ Patron::Patron(){
 
 Patron::~Patron(){
 
-	for(int i = 0; i < patronHistory.size(); i++){
-		//delete patronHistory[i];
-		patronHistory[i] = nullptr;
+	int i;
+	for (i = 0; i < patronHistory.size(); i++)
+	{
+		patronHistory[i].first = nullptr;
 	}
-
-	//patronHistory.clear();
 }
 
 void Patron::setData( int patronID, istream& inFile){
@@ -36,12 +35,12 @@ void Patron::setData( int patronID, istream& inFile){
 	}
 }
 
-void Patron::addToHistory( Transaction* patronTransac ){
+void Patron::addToHistory( Item* item, char transType){
 
-	patronHistory.push_back( patronTransac );
+	patronHistory.push_back( make_pair(item,transType) );
 }
 
-vector<Transaction*> Patron::getHistory() const{
+vector<pair<Item*, char>> Patron::getHistory() const{
 	
 	return patronHistory;
 }

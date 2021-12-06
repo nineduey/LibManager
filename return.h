@@ -26,7 +26,6 @@ public:
     virtual void doTransaction( Storage&, HashMap& );   // overridden from Transaction
                                                       // performs return on book and
                                                       // adds this Return object to Patron's history
-    virtual void clear();
 };
 
 #endif

@@ -102,7 +102,6 @@ void Storage::append( Item* item )
 //returns false.
 bool Storage::retrieveBinTree( Item* item, BinTree*& retriever ) const
 {
-
 	auto key = std::string( 1, item->returnItemType() ) + item->returnItemType_Genre();
 
 	/*char key[2] = {};
@@ -135,7 +134,6 @@ bool Storage::retrieveBinTree( Item* item, BinTree*& retriever ) const
 //returns false.
 bool Storage::retrieveItem( Item* item, Item*& retriever ) const
 {
-
 	auto key = std::string( 1, item->returnItemType() ) + item->returnItemType_Genre();
 
 	/*char key[2] = {};

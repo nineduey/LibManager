@@ -21,7 +21,7 @@ Book::Book(){
     year = 1000;
     bookType = 'B';
     itemType = 'I';
-    formatType = 'H';
+    //formatType = 'H';
 }
 
 //----------------------------------------------------------------------------
@@ -30,6 +30,6 @@ Book::~Book() {}
 
 //----------------------------------------------------------------------------
 // print() : Virtual print function, will display data members of Book object
-void Book::print( ostream& os ) const{
-    this->print( os );
+void Book::print( ostream& out ) const{
+    this->print( out );
 }

@@ -8,7 +8,6 @@
 //-----------------------------------------------------------------------------
 #include "item.h"
 
-
 //-----------------------------------------------------------------------------
 // ostream operator << : displays Item contentsm uses virtuak print()
 // @pre: must be passed a referenced ostreeam obj and a referenced Item obj

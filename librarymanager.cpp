@@ -117,7 +117,13 @@ void LibraryManager::readTransactions(istream& inFile) {
 
 		command->setData( inFile );
 		command->doTransaction( catalogue, patronsMap );
+		allTransactonsVec.push_back( command );
+	}
 
+	for(int i = 0; i < allTransactonsVec.size(); i++){
+
+		delete allTransactonsVec[i];
+		allTransactonsVec[i] = nullptr;
 	}
 
 }

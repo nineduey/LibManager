@@ -158,16 +158,20 @@ void Children::setData( istream& infile )
 	maxNumInLib = 5;	// setting the max number of book copies in library
 }
 
+void Children::setData( string title, int month, int year)
+{
+	return;
+}
+
 //----------------------------------------------------------------------------
 // setData():
 // data members
 // @pre:
 // @post:
-void Children::setData( string author, string title, int month, int year )
+void Children::setData( string author, string title )
 {
 	this->title = title;
 	this->author = author;
-	this->year = year;
 	itemType = 'B';
 	bookType = 'C';
 }
@@ -178,10 +182,8 @@ void Children::setData( string author, string title, int month, int year )
 // @post:
 void Children::print( ostream& out ) const
 {
-	out << numInLib << "     " << author << "     " << title << "     " << year;
+	out << numInLib << "      " << setw( AUTHOR_SPACE_LENGTH );
+	out << left << author << setw( TITLE_SPACE_LENGTH );
+	out << right << title << setw( YEAR_SPACE_LENGTH );
+	out << right << year;
 }
-
-//ostream& operator<<( ostream&, const Children& )
-//{
-//	// TODO: insert return statement here
-//}

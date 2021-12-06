@@ -39,14 +39,14 @@ public:
 	//addToHistory(): method to add Transaction objects to a Patron’s  //Transaction history vector
 	//@pre: Called on a Patron object. Transaction passed should only be // of type Checkout or Return
 	//@post: Modified history vector, adding the passed Transaction.
-	void addToHistory( Transaction* ); 
+	void addToHistory( Item*, char ); 
 
 	//------------------------------------------------------------------
 	//getHistory(): method to retrieve transaction history of a certain //patron. Returns pointer to 1st element of transaction history 
 	//vector
 	//@pre: Called on a Patron object
 	//@post: returns a pointer to an array of Transactions representing  // this patrons transaction history, this is unchanged
-	vector<Transaction*> getHistory() const; 
+	vector<pair<Item*, char>> getHistory() const; 
 
 	void print( ostream& ) const;
 
@@ -61,7 +61,7 @@ private:
 	string lastName;       // Patrons last name
 
 	//private vector holding Patron’s transaction history
-	vector<Transaction*> patronHistory;
+	vector<pair<Item*, char>> patronHistory;
 };
 #endif
 

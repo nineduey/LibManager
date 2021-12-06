@@ -162,13 +162,17 @@ void Fiction::setData( istream& infile )
 // data members
 // @pre:
 // @post:
-void Fiction::setData( string author, string title, int month, int year )
+void Fiction::setData( string author, string title )
 {
 	this->title = title;
 	this->author = author;
-	this->year = year;
 	itemType = 'B';
 	bookType = 'F';
+}
+
+void Fiction::setData( string title, int month, int year )
+{
+	return;
 }
 
 //----------------------------------------------------------------------------
@@ -177,5 +181,8 @@ void Fiction::setData( string author, string title, int month, int year )
 // @post:
 void Fiction::print( ostream& out ) const
 {
-	out << numInLib << "     " << author << "     " << title << "     " << year;
+	out << numInLib << "      " << setw( AUTHOR_SPACE_LENGTH );
+	out << left << author << setw( TITLE_SPACE_LENGTH );
+	out << right << title << setw( YEAR_SPACE_LENGTH );
+	out << right << year;
 }

@@ -24,6 +24,7 @@ const int YEAR_SPACE_LENGTH = 10;  //size of the space after year output
 
 class Book : public Item
 {
+
     friend ostream& operator<<( ostream&, const Book& );
 
 public:
@@ -33,7 +34,8 @@ public:
     virtual char returnItemType_Genre() const = 0;
     virtual Item* create() const = 0;
     virtual void setData( istream& ) = 0;
-    virtual void setData( string, string, int, int ) = 0;
+    virtual void setData( string, int, int ) = 0;	  // virtual setData function
+    virtual void setData( string, string ) = 0;	  // virtual setData function
     virtual void print( ostream& os ) const = 0;
 
     //virtual comparison operators
@@ -48,7 +50,6 @@ protected:
     string title;
     int year;
     char bookType;
-    char formatType;
 };
 
 #endif
