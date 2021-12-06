@@ -30,49 +30,56 @@ and interacts with the user/driver code
 #include "item.h"
 #include "transfactory.h"
 #include <iostream>
+using namespace std;
 
 class LibraryManager
 {
-	friend Transaction;
-	friend ostream& operator<<( ostream&, const BinTree& );
+	//friend class Transaction;
+	//friend class Checkout;
+	//friend class Return;
 
 public:
 
+	//friend ostream& operator<<( ostream&, const LibraryManager& );
+
 	//----------------------------------------------------------------------------
-	//readInventory(): reads in Item data and builds the inventory
-	//Pre-conditions: variable of type ifstream& that contains correctly formatted
+	//readInventory(): reads in Item data and builds the inventory 
+	//Pre-conditions: variable of type ifstream& that contains correctly formatted 
 	//.txt file must be passed in
-	//Postconditions: Creates Item objects using details of Items given in passed
-	//in ifstream& object and stores intialized Items objects in sorted order in
+	//Postconditions: Creates Item objects using details of Items given in passed 
+	//in ifstream& object and stores intialized Items objects in sorted order in 
 	//Library's catalogue
 	void readInventory(istream&);
 
 	//----------------------------------------------------------------------------
 	//readCustomer(): reads in customer and builds the customer objects
-	//Pre-conditions: variable of type ifstream& that contains correctly formatted
+	//Pre-conditions: variable of type ifstream& that contains correctly formatted 
 	//.txt file must be passed in
-	//Postconditions: Creates Customer objects using details of customers given in
-	//passed in ifstream& object and stores intialized Customer objects in sorted
+	//Postconditions: Creates Customer objects using details of customers given in 
+	//passed in ifstream& object and stores intialized Customer objects in sorted 
 	//order in Library's catalogue
-	void readPatrons( istream& );
+	void readPatrons(istream&);
 
 	//----------------------------------------------------------------------------
 	//readTransaction(): reads in transaction data and performs transactions
-	//Pre-conditions: variable of type ifstream& that contains correctly formatted
+	//Pre-conditions: variable of type ifstream& that contains correctly formatted 
 	//.txt file must be passed in
-	//Post-conditions: Performs transactions on data of objects in the Library using
+	//Post-conditions: Performs transactions on data of objects in the Library using 
 	//details of transactions given in passed in .txt file
-	void readTransactions( istream&, Storage&, HashMap&);
+	void readTransactions(istream&, Storage&, HashMap&);
 
 private:
-	 //Object that calls createItem() function of appropriate
-	 //derived ItemFactory class to instantiate an Item object
-	 //of a specific type
-	FactoryDriver facdriver;
-	TransFactory transFac;     // Object that calls createTransaction() function
-	HashMap patronsMap;	      //calling object of method that further processes customer data
 
-	Storage catalogue;	      //contains map of BinTree objects that each contain Items of
-						            //a specific type
+	FactoryDriver facdriver;	//Object that calls createItem() function of appropriate 
+								//derived ItemFactory class to instantiate an Item object 
+								//of a specific type
+
+	HashMap patronsMap;	//calling object of method that further processes customer data 
+
+	TransFactory transFac;
+
+	Storage catalogue;	//contains map of BinTree objects that each contain Items of 
+						//a specific type
+
 };
 #endif
