@@ -24,13 +24,13 @@ TransFactory::TransFactory()
 {
 	transFac.push_back( new Checkout );
 	transFac.push_back( new Return );
-	//transFac.push_back( new DisplayCatalogue );
-	//transFac.push_back( new PatronHistory );
+	transFac.push_back( new DisplayCatalogue );
+	transFac.push_back( new PatronHistory );
 
 	transMap.insert( { 'C', 0 } );
 	transMap.insert( { 'R', 1 } );
-	//transMap.insert( { 'D', 2 } );
-	//transMap.insert( { 'H', 3 } );
+	transMap.insert( { 'D', 2 } );
+	transMap.insert( { 'H', 3 } );
 }
 
 //----------------------------------------------------------------------------

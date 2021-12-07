@@ -156,6 +156,7 @@ void Children::setData( istream& infile )
 	numInLib = 5;     // setting numer of Book copies -> Item class
 	bookType = 'C';   // setting bookType -> Book class
 	maxNumInLib = 5;	// setting the max number of book copies in library
+	bookFormatType = bookFormatTypes[0];   //setting the format type of the book
 }
 
 void Children::setData( string title, int month, int year)

@@ -19,9 +19,9 @@ ostream& operator<<( ostream& out, const Book& aBook ){
 Book::Book(){
     title = "";
     year = 1000;
-    bookType = 'B';
+    bookType = ' ';
     itemType = 'I';
-    //formatType = 'H';
+    bookFormatTypes[0] = 'B';
 }
 
 //----------------------------------------------------------------------------

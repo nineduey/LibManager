@@ -8,15 +8,6 @@ Return::Return()
 	patronID = -1;
 }
 
-
-//----------------------------------------------------------------------------
-// Constructor for class Checkout
-Return::Return( Item* anItem, int patID )
-{
-	theItem = anItem;
-	patronID = patID;
-}
-
 //----------------------------------------------------------------------------
 // Destructor
 Return::~Return()

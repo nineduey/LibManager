@@ -20,9 +20,6 @@ to be built, holding specific kinds of Node Data derived classes
 
 using namespace std;
 
-//forward referencing
-//class Book;
-
 class Item
 {
 	friend class BinTree;

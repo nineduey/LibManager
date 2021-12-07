@@ -13,6 +13,8 @@ Transaction object of the indicated Type & Genre.
 #include "transaction.h"
 #include "checkout.h"
 #include "return.h"
+#include "displaycatalogue.h"
+#include "patronhistory.h"
 #include <map>
 #include <vector>
 using namespace std;

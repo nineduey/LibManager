@@ -10,14 +10,6 @@ Checkout::Checkout()
 }
 
 //----------------------------------------------------------------------------
-// Constructor for class Checkout
-Checkout::Checkout( Item* anItem, int patID )
-{
-	theItem = anItem;
-	patronID = patID;
-}
-
-//----------------------------------------------------------------------------
 // Destructor
 Checkout::~Checkout()
 {

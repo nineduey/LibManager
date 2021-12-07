@@ -21,7 +21,6 @@ const int TITLE_SPACE_LENGTH = 10;  //size of the space after title output
 const int MONTH_SPACE_LENGTH = 10; //size of the space after month output
 const int YEAR_SPACE_LENGTH = 10;  //size of the space after year output
 
-
 class Book : public Item
 {
 
@@ -50,6 +49,8 @@ protected:
     string title;
     int year;
     char bookType;
+    char bookFormatTypes[5];
+    char bookFormatType;
 };
 
 #endif

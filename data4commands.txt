@@ -1,4 +1,5 @@
 C 8000 F H Kerouac Jack, On the Road,
+H 8000
 C 1000 F H Muller Marcia, Edwin of the Iron Shoes,
 C 8888 F H Forster E. M., The Longest Journey,
 C 1111 P H 2010 1 Communications of the ACM,
@@ -14,6 +15,7 @@ R 8000 F H Kerouac Jack, On the Road,
 C 9999 F H Kerouac Jack, On the Road,
 C 5000 C H Danny Dunn & the Homework Machine, Williams Jay,
 C 1111 P H 2010 2 Communications of the ACM,
+H 1111
 R 5000 C H Danny Dunn & the Homework Machine, Williams Jay,
 C 1111 P H 2009 7 Communications of the ACM,
 C 6000 P H 2009 7 Sigart Bulletin,
@@ -25,6 +27,7 @@ C 7777 F X Daheim Mary, The Alpine Betrayal,
 R 6000 P H 2009 7 Sigart Bulletin,
 C 3000 C H Danny Dunn & the Homework Machine, Williams Jay,
 C 5000 C H Smokey, Peet Bill,
+D
 C 6000 P H 2009 7 Sigart Bulletin,
 C 5000 C H Yertle the Turtle, Seuss Dr.,
 C 8000 F H Kerouac Jack, The Dharma Bums,
@@ -33,6 +36,7 @@ C 5000 F H Higgins Colin, Harold and Maude,
 R 3000 C H Danny Dunn & the Homework Machine, Williams Jay,
 C 5000 F H Lewis Sinclair, Babbitt,
 C 5000 X H Lewis Sinclair, Babbitt,
+H 5000
 C 2222 C H Danny Dunn & the Homework Machine, Williams Jay,
 C 1234 P H 2010 1 Communications of the ACM,
 C 1000 C H Bogus Title, Bogus Author,
@@ -41,7 +45,11 @@ C 5000 F H Higgins Colin, Harold and Maude,
 C 8888 F H Higgins Colin, Harold and Maude,
 C 1000 F H Higgins Colin, Harold and Maude,
 C 1111 F H Higgins Colin, Harold and Maude,
+D
 C 3000 F H Higgins Colin, Harold and Maude,
 C 6000 F H Higgins Colin, Harold and Maude,
 C 2000 F H Higgins Colin, Harold and Maude,
 R 2222 F H Higgins Colin, Harold and Maude,
+
+
+

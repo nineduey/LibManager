@@ -63,7 +63,6 @@ void Storage::makeEmpty()
 //based on its type
 void Storage::append( Item* item )
 {
-
 	BinTree* toRetrieve;
 	auto key = std::string( 1, item->returnItemType() ) + item->returnItemType_Genre();
 
@@ -84,9 +83,6 @@ void Storage::append( Item* item )
 	{	//the appropriate bintree exists in the binTreeMap
 		binTreeMap.at( key )->insert( item );
 	}
-
-	/*for (auto i : binTreeMap)
-		cout << i.first[0] << "   " << endl;*/
 }
 
 //-------------------------------------------------------------------
@@ -102,11 +98,7 @@ void Storage::append( Item* item )
 //returns false.
 bool Storage::retrieveBinTree( Item* item, BinTree*& retriever ) const
 {
-	auto key = std::string( 1, item->returnItemType() ) + item->returnItemType_Genre();
-
-	/*char key[2] = {};
-	key[0] = item->returnItemType();
-	key[1] = item->returnItemType_Genre();*/
+	auto key = std::string( 1, item->returnItemType() ) + item->returnItemType_Genre(); 
 
 	if (!(binTreeMap.find( key ) == binTreeMap.end()))
 	{
@@ -156,7 +148,7 @@ bool Storage::retrieveItem( Item* item, Item*& retriever ) const
 //print(): Displays the data of the Item objects held in the BinTree
 //objects of the binTreeMap by Item category.
 //Pre-conditions: None
-//Post-conditions: Data of all Items stored in the libraryare/binTreeMap
+//Post-conditions: Data of all Items stored in the library are/binTreeMap
 //are displayed 
 void Storage::print( ostream& out ) const
 {

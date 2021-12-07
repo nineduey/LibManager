@@ -45,18 +45,30 @@ vector<pair<Item*, char>> Patron::getHistory() const{
 	return patronHistory;
 }
 
-void Patron::print( ostream& out ) const
-{
+void Patron::print( ostream& out ) const{
+
 	out << patronID << "   " << lastName << ",  " << firstName;
 }
 
-void Patron::setPatronID( int patronID )
-{
+void Patron::printHistory( vector<pair<Item*, char>> historyVec ) const{
+	
+	for(int i = 0; i < historyVec.size(); i++){
+
+		std::stringstream itemDataSS;
+		itemDataSS << *historyVec[i].first << std::endl;
+		string itemData = itemDataSS.str();
+		itemData.erase( 0,7);
+		cout << itemData << endl;
+	} 
+}
+
+void Patron::setPatronID( int patronID ){
+
 	this->patronID = patronID;
 }
 
-int Patron::getPatronID()
-{
+int Patron::getPatronID(){
+
 	return this->patronID;
 }
 

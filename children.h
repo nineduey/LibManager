@@ -8,7 +8,6 @@
 //-----------------------------------------------------------------------------
 #ifndef CHILDREN_H
 #define CHILDREN_H
-
 #include <iostream>
 #include <string>
 #include "book.h"
@@ -17,6 +16,7 @@ using namespace std;
 class Children : public Book
 {
     friend ostream& operator<<( ostream&, const Children& );
+    friend class Storage;
 
 public:
     Children();
@@ -38,6 +38,7 @@ public:
 
 private:
     string author; // author of children book
+    string const HEADER = "CHILDREN BOOKS";
 };
 
 #endif

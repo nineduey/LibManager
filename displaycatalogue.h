@@ -8,21 +8,21 @@ of the DisplayCatalogue class
 */
 #ifndef DISPLAYCATALOGUE_H
 #define DISPLAYCATALOGUE_H
-//#include "transaction.h"
-#//include "item.h"
-//#include <string>
+#include "transaction.h"
+#include "item.h"
+#include <string>
 using namespace std;
 
-class DisplayCatalogue //: public Transaction
+class DisplayCatalogue : public Transaction
 {
 
-//public:
-//
-//    DisplayCatalogue();    // default constructor
-//    virtual ~DisplayCatalogue(); // destructor
-//    virtual Transaction* create() const;
-//    virtual void setData( istream& ); // virtual set data method
-//    virtual void doTransaction( Storage&, HashMap& ); // displays the catalogues data
+public:
+
+    DisplayCatalogue();    // default constructor
+    virtual ~DisplayCatalogue(); // destructor
+    virtual Transaction* create() const;
+    virtual bool setData( istream& ); // virtual set data method
+    virtual void doTransaction( Storage&, HashMap& ); // displays the catalogues data
 
 };
 #endif

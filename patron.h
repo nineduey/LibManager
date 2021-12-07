@@ -5,10 +5,10 @@
 */
 #ifndef PATRON_H
 #define PATRON_H
-//#include "transaction.h"
 #include <iostream>
 #include <string>
 #include <vector>
+#include <sstream>  
 #include "item.h"
 using namespace std;
 
@@ -49,6 +49,8 @@ public:
 	vector<pair<Item*, char>> getHistory() const; 
 
 	void print( ostream& ) const;
+
+	void printHistory( vector<pair<Item*, char>> ) const;
 
 	void setPatronID( int patronID );
 

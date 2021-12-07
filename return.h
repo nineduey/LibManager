@@ -13,13 +13,11 @@ class Return : public Transaction
 
 private:
     Item* theItem;                     // the book that is being returned
-    //Patron* thePatron;                 // the Patron that returns the book
     int patronID;             // the Patron that returns the book
     FactoryDriver facDriver;  // factory to create Item objects
 
 public:
     Return();                     // default constructor
-    Return( Item*, int );   // constructor for class Return
     virtual ~Return();
     virtual bool setData( istream& );
     virtual Transaction* create() const;
