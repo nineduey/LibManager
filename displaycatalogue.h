@@ -22,7 +22,7 @@ public:
     DisplayCatalogue();    // default constructor
     virtual ~DisplayCatalogue(); // destructor
     virtual Transaction* create() const;
-    virtual void setData(istream&); // virtual set data method
+    virtual bool setData(istream&); // virtual set data method
     virtual void doTransaction(Storage&, HashMap&); // displays the catalogues data
 
 };

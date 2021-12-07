@@ -14,9 +14,9 @@ PatronHistory::~PatronHistory() {
 
 //----------------------------------------------------------------------------
 //setData() :
-void PatronHistory::setData(istream& inFile){ // virtual set data method
+bool PatronHistory::setData(istream& inFile){ // virtual set data method
 	inFile >> patronID;
-	return;
+	return true;
 }
 
 //----------------------------------------------------------------------------

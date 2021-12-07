@@ -52,7 +52,7 @@ void LibraryManager::readInventory(istream& inFile) {
 		item->setData(inFile);
 		catalogue.append(item);
 	}
-
+	cout << "\nDisplaying Current Catalogue\n" << endl;
 	cout << catalogue;
 }
 
@@ -82,6 +82,7 @@ void LibraryManager::readPatrons(istream& inFile) {
 		}
 	}
 
+	cout << "\nDisplaying Patrons\n" << endl;
 	cout << patronsMap;
 }
 
@@ -91,8 +92,9 @@ void LibraryManager::readPatrons(istream& inFile) {
 //.txt file must be passed in
 //Post-conditions: Performs transactions on data of objects in the Library using 
 //details of transactions given in passed in .txt file
-void LibraryManager::readTransactions(istream& inFile, Storage& catalogue, HashMap& patronsMap) {
+void LibraryManager::readTransactions(istream& inFile) {
 
+	cout << "\nProcessing commands...\n" << endl;
 	char commandType;
 	Transaction* command;
 
@@ -114,10 +116,7 @@ void LibraryManager::readTransactions(istream& inFile, Storage& catalogue, HashM
 			continue;
 		}
 		inFile.get();
-
 		command->setData(inFile);
 		command->doTransaction(catalogue, patronsMap);
-
 	}
-
 }

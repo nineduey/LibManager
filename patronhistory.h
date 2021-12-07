@@ -11,7 +11,7 @@ private:
 public:
     PatronHistory();  		 // constructor for class PatronHistory
     ~PatronHistory();        // destrcutor for class PatronHistory
-    virtual void setData(istream&); // virtual set data method
+    virtual bool setData(istream&); // virtual set data method
     virtual Transaction* create() const;
     virtual void doTransaction(Storage&, HashMap&);  // calls display on our patron pointer
 };

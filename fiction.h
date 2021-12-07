@@ -16,8 +16,6 @@ using namespace std;
 
 class Fiction : public Book
 {
-    //const string fictionBookDeclar = "FICTION BOOK";
-
 
 public:
     Fiction();

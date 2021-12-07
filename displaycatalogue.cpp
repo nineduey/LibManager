@@ -29,8 +29,8 @@ Transaction* DisplayCatalogue::create() const { return new DisplayCatalogue; }
 
 //----------------------------------------------------------------------------
 // setData():
-void DisplayCatalogue::setData(istream&){
-	return;
+bool DisplayCatalogue::setData(istream&){
+	return false;
 }
 //----------------------------------------------------------------------------
 // doTransaction(): method to call on BinTree to display the contents of
@@ -38,6 +38,7 @@ void DisplayCatalogue::setData(istream&){
 // @pre:
 // @post:
 void DisplayCatalogue::doTransaction(Storage& catalogue, HashMap& patronsMap) {
+	cout << "\nDisplaying Current Catalogue\n" << endl;
 	cout << catalogue;
 	return;
 }

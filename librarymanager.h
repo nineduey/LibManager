@@ -66,7 +66,7 @@ public:
 	//.txt file must be passed in
 	//Post-conditions: Performs transactions on data of objects in the Library using 
 	//details of transactions given in passed in .txt file
-	void readTransactions(istream&, Storage&, HashMap&);
+	void readTransactions(istream&);
 
 private:
 
