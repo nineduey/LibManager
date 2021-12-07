@@ -159,7 +159,7 @@ void Storage::print(ostream& out) const
 {
 	for (auto it = binTreeMap.cbegin(); it != binTreeMap.cend(); ++it)
 	{
-		//out << it->first
+		it->second->printHeader();
 		out << *it->second;
 	}
 }
