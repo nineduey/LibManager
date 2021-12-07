@@ -170,6 +170,11 @@ void Periodical::setData( string title, int month, int year ){
 	bookType = 'P';
 }
 
+void Periodical::setData(string, string)
+{
+	return;
+}
+
 
 //----------------------------------------------------------------------------
 // print(): method to print the data members of fiction class & its base class
@@ -180,6 +185,20 @@ void Periodical::print( ostream& out ) const{
 
 	out << numInLib << "      " << setw(TITLE_SPACE_LENGTH);
 	out << left << title << setw(MONTH_SPACE_LENGTH);
-	out << right << month << setw(YEAR_SPACE_LENGTH);
+	out << left << month << setw(YEAR_SPACE_LENGTH);
 	out << right << year;
+}
+
+//----------------------------------------------------------------------------
+// printHeader(): method to print the genre of book and headings for avail, 
+// title, month and year
+void Periodical::printHeader() const
+{
+	cout << "---------------" << endl;
+	cout << HEADER << endl;
+	cout << "---------------" << endl;
+	cout << "AVAIL" << "   " << left  << setw(TITLE_SPACE_LENGTH) << 
+		"TITLE" << left << setw(MONTH_SPACE_LENGTH) << 
+		"MONTH" << right << setw(YEAR_SPACE_LENGTH) << "YEAR" << endl;
+	return;
 }

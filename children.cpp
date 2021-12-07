@@ -170,6 +170,11 @@ void Children::setData( string author, string title ){
 	bookType = 'C';
 }
 
+void Children::setData(string, int, int)
+{
+	return;
+}
+
 //----------------------------------------------------------------------------
 //print():
 // @pre:
@@ -178,6 +183,20 @@ void Children::print( ostream& out ) const
 {
 	out << numInLib << "      " << setw(AUTHOR_SPACE_LENGTH);
 	out << left << author << setw(TITLE_SPACE_LENGTH); 
-	out << right << title << setw(YEAR_SPACE_LENGTH);
+	out << left << title << setw(YEAR_SPACE_LENGTH);
 	out << right << year;
+}
+
+//----------------------------------------------------------------------------
+// printHeader(): method to print the genre of book and headings for avail, 
+// author, title, and year
+void Children::printHeader() const
+{
+	cout << "---------------" << endl;
+	cout << HEADER << endl;
+	cout << "---------------" << endl;
+	cout << "AVAIL" << "   " << left << setw(AUTHOR_SPACE_LENGTH) << 
+		"AUTHOR" << setw(TITLE_SPACE_LENGTH) << 
+		"TITLE" << right << setw(YEAR_SPACE_LENGTH) << "YEAR" << endl;
+	return;
 }

@@ -6,7 +6,7 @@
 @Authors: Shushmitha Radjaram and Amanda Todakonzie
 @How code is used:
 */
-//-----------------------------------------------------------------------------
+//------------------------------------------------------------------------------
 #ifndef BOOK_H
 #define BOOK_H
 
@@ -16,8 +16,8 @@
 using namespace std;
 
 //global constants to be used in derived classes
-const int AUTHOR_SPACE_LENGTH = 10; //size of the space after author output
-const int TITLE_SPACE_LENGTH = 10;  //size of the space after title output
+const int AUTHOR_SPACE_LENGTH = 26; //size of the space after author output
+const int TITLE_SPACE_LENGTH = 33;  //size of the space after title output
 const int MONTH_SPACE_LENGTH = 10; //size of the space after month output
 const int YEAR_SPACE_LENGTH = 10;  //size of the space after year output
 
@@ -29,14 +29,15 @@ class Book : public Item
 
 public:
     Book();
-    virtual ~Book();
-    virtual char returnItemType() const = 0;
-    virtual char returnItemType_Genre() const = 0;
-    virtual Item* create() const = 0;
-    virtual void setData( istream& ) = 0;
+    virtual ~Book();							// virtual destructor
+    virtual char returnItemType() const = 0;	// virtual returnItemType funct
+    virtual char returnItemType_Genre() const = 0; // virtual returnItemType_Genre funct
+    virtual Item* create() const = 0;			  // virtual create function
+    virtual void setData( istream& ) = 0;         // virtual setData function
     virtual void setData(string, int, int) = 0;	  // virtual setData function
     virtual void setData(string, string) = 0;	  // virtual setData function
-    virtual void print( ostream& os ) const = 0;
+    virtual void print( ostream& os ) const = 0; // virtual print function
+	virtual void printHeader() const = 0;  // virtual print header function
 
     //virtual comparison operators
     virtual Item& operator=( const Item& ) = 0;
@@ -51,7 +52,7 @@ protected:
     int year;
     char bookType;
 };
-
+//------------------------------------------------------------------------------
 #endif
 // Override compare opperator in the 3 type so that if they 
 // encounter the first equal comparing, then move to the next criteria.

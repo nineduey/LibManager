@@ -25,7 +25,9 @@ public:
     virtual Item* create() const;
     virtual void setData( istream& );
     virtual void setData( string, int, int );
+	virtual void setData(string, string);
     virtual void print( ostream&) const;
+	virtual void printHeader() const;
 
     // virtual comparison operators
     virtual Item& operator=( const Item& );
@@ -36,6 +38,7 @@ public:
 
 private:
     int month; // month of book published
+	string const HEADER = "PERIODICALS";
 };
 
 #endif

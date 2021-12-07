@@ -183,6 +183,14 @@ bool BinTree::retrieve(Item* target, Item*& retrieverItem) const{
 }
 
 //----------------------------------------------------------------------------
+// printHeader(): method to call on Item's virtual printHeader() function
+void BinTree::printHeader()
+{
+	root->itemPtr->printHeader();
+	return;
+}
+
+//----------------------------------------------------------------------------
 //retrieveHelper(): Private helper function of retrieve, recursively searches
 // the Bintree to find target
 // Pre-conditions: Pointer to an item needs to be passed in as arguement

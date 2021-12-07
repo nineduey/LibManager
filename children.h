@@ -16,7 +16,6 @@ using namespace std;
 
 class Children : public Book
 {
-    friend ostream& operator<<( ostream&, const Children& );
 
 public:
     Children();
@@ -26,8 +25,10 @@ public:
     virtual Item* create() const;
     virtual void setData( istream& );
     virtual void setData( string, string );
+	virtual void setData( string, int, int);
     virtual void print( ostream& os ) const;
-
+	virtual void printHeader() const;
+	
     //virtual comparison operators
     virtual Item& operator=( const Item& );
     virtual bool operator==( const Item& ) const;
@@ -37,6 +38,7 @@ public:
 
 private:
     string author; // author of children book
+	string const HEADER = "CHILDRENS BOOKS";
 };
 
 #endif

@@ -27,7 +27,9 @@ public:
     virtual Item* create() const;
     virtual void setData( istream& );
     virtual void setData( string, string );
+	virtual void setData(string, int, int);
     virtual void print( ostream& os ) const;
+	virtual void printHeader() const;
 
     // virtual comparison operators
     virtual Item& operator=( const Item& );
@@ -38,7 +40,7 @@ public:
 
 private:
     string author;
-
+	string const HEADER = "FICTION BOOKS";
 };
 
 #endif
