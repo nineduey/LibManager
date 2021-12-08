@@ -8,7 +8,6 @@
 //-----------------------------------------------------------------------------
 #ifndef PERIODICAL_H
 #define PERIODICAL_H
-
 #include <iostream>
 #include <string>
 #include "book.h"
@@ -24,9 +23,10 @@ public:
     virtual char returnItemType_Genre() const;
     virtual Item* create() const;
     virtual void setData( istream& );
-    virtual void setData( string, int, int );
-    virtual void setData( string, string );
+    virtual void setData( string, int, int, char );
+    virtual void setData( string, string, char );
     virtual void print( ostream& ) const;
+    virtual void printHeader() const;
 
     // virtual comparison operators
     virtual Item& operator=( const Item& );
@@ -37,6 +37,7 @@ public:
 
 private:
     int month; // month of book published
+    string const HEADER = "PERIODICALS";
 };
 
 #endif

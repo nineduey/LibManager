@@ -52,8 +52,6 @@ void LibraryManager::readInventory(istream& inFile){
 		item->setData( inFile );
 		catalogue.append( item );
 	 }
-
-	 cout << catalogue;
 }
 
 //----------------------------------------------------------------------------
@@ -81,8 +79,6 @@ void LibraryManager::readPatrons(istream& inFile){
 			continue;
 		}
 	}
-
-	cout << patronsMap;
 }
 
 //----------------------------------------------------------------------------

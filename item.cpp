@@ -25,6 +25,8 @@ Item::Item(){
 	//itemFormat = "";
 	maxNumInLib = 5;
 	itemType = 'I';
+	itemFormats[0] = 'H';   //represents hardcopy item
+	itemFormat = ' ';
 }
 
 //----------------------------------------------------------------------------
@@ -42,7 +44,7 @@ void Item::checkOut(){
 		numInLib--;
 		return;
 	}
-	cout << "Error: Cannot check out, no more copies available." << endl;
+	cout << "ERROR: Cannot Checkout item, no more copies available." << endl;
 }
 
 
@@ -56,7 +58,7 @@ void Item::checkIn(){
 		numInLib++;
 		return;
 	}
-	cout << "Error: Cannot check in, no room in Library." << endl;
+	cout << "ERROR: Cannot Check In item, no room in Library." << endl;
 }
 
 //----------------------------------------------------------------------------

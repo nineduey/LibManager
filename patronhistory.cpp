@@ -37,16 +37,19 @@ void PatronHistory::doTransaction( Storage& catalogue, HashMap& patronsMap )
 
 	if(thePatron == nullptr)
 	{
-		cout << "Error, Patron not found in records, cannot display history." << endl;
+		cout << "ERROR: Patron with ID " << this->patronID 
+			<< " not found in records, cannot display Patron's History." << endl;
 		return;
 	}
+	else
+	{
+		//display patron's ID and name
+		cout << *thePatron << "    " << endl;;
 
-	//display patron's ID and name
-	cout << *thePatron << "    " << endl;;
-
-	//display the patron's history
-	thePatron->printHistory(thePatron->getHistory());
-	cout << endl;
+		//display the patron's history 
+		thePatron->printHistory( thePatron->getHistory() );
+		cout << endl;
+	}
 
 	return;
 }

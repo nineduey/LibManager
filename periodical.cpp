@@ -50,6 +50,7 @@ Item& Periodical::operator=( const Item& item )
 	this->title = aPeriodical.title;
 	this->month = aPeriodical.month;
 	this->year = aPeriodical.year;
+	this->itemFormat = aPeriodical.itemFormat;
 
 	return *this;
 }
@@ -83,26 +84,30 @@ bool Periodical::operator!=( const Item& item ) const
 // @post:
 bool Periodical::operator<( const Item& item ) const
 {
-	//sorted by date (year, then month), then by title 
-
-	//if (this->operator==( item ) || this->operator>( item ))
-	//{
-	//	return false;
-	//}
-
 	const Periodical& aPeriodical = static_cast<const Periodical&>(item);
 
 	if (this->year < aPeriodical.year)
 	{
 		return true;
 	}
-	else if (this->month < aPeriodical.month)
+	else if (this->year == aPeriodical.year)
 	{
-		return true;
+		if (this->month < aPeriodical.month)
+		{
+			return true;
+		}
+		else if (this->month == aPeriodical.month)
+		{
+			return (this->title < aPeriodical.title);
+		}
+		else
+		{
+			return false;
+		}
 	}
 	else
 	{
-		return (this->title < aPeriodical.title);
+		return false;
 	}
 
 	return false;
@@ -114,27 +119,30 @@ bool Periodical::operator<( const Item& item ) const
 // @post:
 bool Periodical::operator>( const Item& item ) const
 {
-
-	//sorted by date (year, then month), then by title 
-
-	//if (this->operator==( item ) || this->operator<( item ))
-	//{
-	//	return false;
-	//}
-
 	const Periodical& aPeriodical = static_cast<const Periodical&>(item);
 
 	if (this->year > aPeriodical.year)
 	{
 		return true;
 	}
-	else if (this->month > aPeriodical.month)
+	else if (this->year == aPeriodical.year)
 	{
-		return true;
+		if (this->month > aPeriodical.month)
+		{
+			return true;
+		}
+		else if (this->month == aPeriodical.month)
+		{
+			return (this->title > aPeriodical.title);
+		}
+		else
+		{
+			return false;
+		}
 	}
 	else
 	{
-		return (this->title > aPeriodical.title);
+		return false;
 	}
 
 	return false;
@@ -171,7 +179,7 @@ void Periodical::setData( istream& infile )
 	numInLib = 5;     // setting numer of Book copies -> Item class
 	bookType = 'P';   // setting bookType -> Book class
 	maxNumInLib = 5;	// setting the max number of book copies in library
-	bookFormatType = bookFormatTypes[0];   //setting the format type of the book
+	itemFormat = itemFormats[0];   //setting the format type of the book
 }
 
 //----------------------------------------------------------------------------
@@ -179,16 +187,17 @@ void Periodical::setData( istream& infile )
 // data members
 // @pre:
 // @post:
-void Periodical::setData( string title, int month, int year )
+void Periodical::setData( string title, int month, int year, char itemFormat )
 {
 	this->title = title;
 	this->month = month;
 	this->year = year;
+	this->itemFormat = itemFormat;
 	itemType = 'B';
 	bookType = 'P';
 }
 
-void Periodical::setData( string author, string title)
+void Periodical::setData( string author, string title, char itemFormat)
 {
 	return;
 }
@@ -203,6 +212,20 @@ void Periodical::print( ostream& out ) const
 {
 	out << numInLib << "      " << setw( TITLE_SPACE_LENGTH );
 	out << left << title << setw( MONTH_SPACE_LENGTH );
-	out << right << month << setw( YEAR_SPACE_LENGTH );
+	out << left << month << setw( YEAR_SPACE_LENGTH );
 	out << right << year;
+}
+
+//----------------------------------------------------------------------------
+// printHeader(): method to print the genre of book and headings for avail, 
+// title, month and year
+void Periodical::printHeader() const
+{
+	cout << "---------------" << endl;
+	cout << HEADER << endl;
+	cout << "---------------" << endl;
+	cout << "AVAIL" << "   " << left << setw( TITLE_SPACE_LENGTH ) <<
+		"TITLE" << left << setw( MONTH_SPACE_LENGTH ) <<
+		"MONTH" << right << setw( YEAR_SPACE_LENGTH ) << "YEAR" << endl;
+	return;
 }

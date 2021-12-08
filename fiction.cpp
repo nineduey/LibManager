@@ -52,6 +52,7 @@ Item& Fiction::operator=( const Item& item )
 	this->year = aFiction.year;
 	this->author = aFiction.author;
 	this->numInLib = aFiction.numInLib;
+	this->itemFormat = aFiction.itemFormat;
 
 	return *this;
 }
@@ -155,7 +156,7 @@ void Fiction::setData( istream& infile )
 	numInLib = 5;     // setting numer of Book copies -> Item class
 	bookType = 'F';   // setting bookType -> Book class
 	maxNumInLib = 5;	// setting the max number of book copies in library
-	bookFormatType = bookFormatTypes[0];   //setting the format type of the book
+	itemFormat = itemFormats[0];   //setting the format type of the book
 }
 
 //----------------------------------------------------------------------------
@@ -163,15 +164,16 @@ void Fiction::setData( istream& infile )
 // data members
 // @pre:
 // @post:
-void Fiction::setData( string author, string title )
+void Fiction::setData( string author, string title, char itemFormat )
 {
 	this->title = title;
 	this->author = author;
+	this->itemFormat = itemFormat;
 	itemType = 'B';
 	bookType = 'F';
 }
 
-void Fiction::setData( string title, int month, int year )
+void Fiction::setData( string title, int month, int year, char itemFormat )
 {
 	return;
 }
@@ -184,6 +186,20 @@ void Fiction::print( ostream& out ) const
 {
 	out << numInLib << "      " << setw( AUTHOR_SPACE_LENGTH );
 	out << left << author << setw( TITLE_SPACE_LENGTH );
-	out << right << title << setw( YEAR_SPACE_LENGTH );
+	out << left << title << setw( YEAR_SPACE_LENGTH );
 	out << right << year;
+}
+
+//----------------------------------------------------------------------------
+// printHeader(): method to print the genre of book and headings for avail, 
+// author, title, and year
+void Fiction::printHeader() const
+{
+	cout << "---------------" << endl;
+	cout << HEADER << endl;
+	cout << "---------------" << endl;
+	cout << "AVAIL" << "   " << left << setw( AUTHOR_SPACE_LENGTH ) <<
+		"AUTHOR" << setw( TITLE_SPACE_LENGTH ) <<
+		"TITLE" << right << setw( YEAR_SPACE_LENGTH ) << "YEAR" << endl;
+	return;
 }

@@ -36,6 +36,7 @@ public:
 	bool find( Item* ); //Conducts a search an item object from the BinTree
 	// Retrieves an Item from the BinTree
 	bool retrieve( Item* target, Item*& retrieverItem ) const;
+	void printHeader();
 
 
 private:

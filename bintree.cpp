@@ -181,6 +181,7 @@ bool BinTree::find( Item* target )
 // as an argument is returned
 bool BinTree::retrieve( Item* target, Item*& retrieverItem ) const
 {
+
 	Node* current = root;
 	// if root is target, return root's itemPtr
 	if (*root->itemPtr == *target)
@@ -195,8 +196,16 @@ bool BinTree::retrieve( Item* target, Item*& retrieverItem ) const
 		retrieverItem = retrieverNode->itemPtr;
 		return true;
 	}
-	cout << "Error: Item not found." << endl;
+	cout << "ERROR: Item not found in Catalogue." << endl;
 	return false;
+}
+
+//----------------------------------------------------------------------------
+// printHeader(): method to call on Item's virtual printHeader() function
+void BinTree::printHeader()
+{
+	root->itemPtr->printHeader();
+	return;
 }
 
 //----------------------------------------------------------------------------

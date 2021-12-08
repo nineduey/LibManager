@@ -20,6 +20,9 @@ to be built, holding specific kinds of Node Data derived classes
 
 using namespace std;
 
+//forward referencing
+//class Book;
+
 class Item
 {
 	friend class BinTree;
@@ -35,9 +38,10 @@ public:
 	virtual char returnItemType_Genre() const = 0;// returns the Type of ItemType
 	virtual Item* create() const = 0;		  // virtual create function
 	virtual void setData( istream& ) = 0;	  // virtual setData function
-	virtual void setData( string, int, int ) = 0;	  // virtual setData function
-	virtual void setData( string, string ) = 0;	  // virtual setData function
+	virtual void setData( string, int, int, char ) = 0;	  // virtual setData function
+	virtual void setData( string, string, char ) = 0;	  // virtual setData function
 	virtual void print( ostream& os ) const = 0;// virtual print function
+	virtual void printHeader() const = 0;  // virtual print header function
 
 	//virtual comparison operators
 	virtual Item& operator=( const Item& ) = 0;
@@ -51,6 +55,8 @@ protected:
 	int numInLib; // number of current copies of item in library
 	int maxNumInLib; // max number of copies of item in library
 	char itemType;	 // added this data member to store the type of item the instance is
+	char itemFormats[5];
+	char itemFormat;
 	bool validate() const;  	//check whether the input content is valid
 
 };

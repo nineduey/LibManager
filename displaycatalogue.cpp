@@ -33,6 +33,9 @@ bool DisplayCatalogue::setData( istream& inFile )
 // @post:
 void DisplayCatalogue::doTransaction( Storage& catalogue, HashMap& patronsMap )
 {
+	cout << endl;
+	cout << "LIBRARY CATALOGUE:" << endl;
+	cout << endl;
 	cout << catalogue;
 	return;
 }

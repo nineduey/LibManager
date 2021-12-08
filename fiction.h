@@ -16,8 +16,6 @@ using namespace std;
 
 class Fiction : public Book
 {
-    //const string fictionBookDeclar = "FICTION BOOK";
-
 
 public:
     Fiction();
@@ -26,9 +24,10 @@ public:
     virtual char returnItemType_Genre() const;
     virtual Item* create() const;
     virtual void setData( istream& );
-    virtual void setData( string, string );
-    virtual void setData( string, int, int );
+    virtual void setData( string, string, char );
+    virtual void setData( string, int, int, char );
     virtual void print( ostream& os ) const;
+    virtual void printHeader() const;
 
     // virtual comparison operators
     virtual Item& operator=( const Item& );
@@ -39,6 +38,7 @@ public:
 
 private:
     string author;
+    string const HEADER = "FICTION BOOKS";
 
 };
 

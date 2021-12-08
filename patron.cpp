@@ -54,8 +54,9 @@ void Patron::printHistory( vector<pair<Item*, char>> historyVec ) const{
 	
 	for(int i = 0; i < historyVec.size(); i++){
 
+		cout << historyVec[i].second << "   ";
 		std::stringstream itemDataSS;
-		itemDataSS << *historyVec[i].first << std::endl;
+		itemDataSS << *historyVec[i].first;
 		string itemData = itemDataSS.str();
 		itemData.erase( 0,7);
 		cout << itemData << endl;

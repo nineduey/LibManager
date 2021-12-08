@@ -23,9 +23,9 @@ bool Return::setData( istream& inFile )
 {
 	int patID;
 	char itemType_Genre;
-	char itemType_Format;
+	char itemFormat;
 
-	inFile >> patID >> itemType_Genre >> itemType_Format;
+	inFile >> patID >> itemType_Genre >> itemFormat;
 	// if BookType is periodical
 	if (itemType_Genre == 'P')
 	{
@@ -38,7 +38,7 @@ bool Return::setData( istream& inFile )
 		theItem = facDriver.createItem( 'B', itemType_Genre );
 		if (theItem != nullptr)
 		{
-			theItem->setData( title, month, year );
+			theItem->setData( title, month, year, itemFormat );
 			patronID = patID;
 			return true;
 		}
@@ -54,7 +54,7 @@ bool Return::setData( istream& inFile )
 		theItem = facDriver.createItem( 'B', itemType_Genre );
 		if (theItem != nullptr)
 		{
-			theItem->setData( author, title );
+			theItem->setData( author, title, itemFormat );
 			patronID = patID;
 			return true;
 		}
@@ -70,7 +70,7 @@ bool Return::setData( istream& inFile )
 		theItem = facDriver.createItem( 'B', itemType_Genre );
 		if (theItem != nullptr)
 		{
-			theItem->setData( author, title );
+			theItem->setData( author, title, itemFormat );
 			patronID = patID;
 			return true;
 		}
@@ -102,7 +102,8 @@ void Return::doTransaction( Storage& catalogue, HashMap& patronsMap )
 		Patron* thePatron = patronsMap.getPatron( patronID );
 		if (thePatron == nullptr)
 		{
-			cout << "Error, Patron not found in records, cannot process return." << endl;
+			cout << "ERROR: Patron with ID " << this->patronID
+				<< " not found in records, cannot process Return." << endl;
 			return;
 		}
 		else
@@ -112,7 +113,7 @@ void Return::doTransaction( Storage& catalogue, HashMap& patronsMap )
 	}
 	else
 	{
-		cout << "Error, Item not found in Catalogue, cannot process return." << endl;
+		cout << "ERROR: Item not found in Catalogue, cannot process Return." << endl;
 	}
 
 	return;

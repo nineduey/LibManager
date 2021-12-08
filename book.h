@@ -16,8 +16,8 @@
 using namespace std;
 
 //global constants to be used in derived classes
-const int AUTHOR_SPACE_LENGTH = 10; //size of the space after author output
-const int TITLE_SPACE_LENGTH = 10;  //size of the space after title output
+const int AUTHOR_SPACE_LENGTH = 26; //size of the space after author output
+const int TITLE_SPACE_LENGTH = 33;  //size of the space after title output
 const int MONTH_SPACE_LENGTH = 10; //size of the space after month output
 const int YEAR_SPACE_LENGTH = 10;  //size of the space after year output
 
@@ -33,9 +33,10 @@ public:
     virtual char returnItemType_Genre() const = 0;
     virtual Item* create() const = 0;
     virtual void setData( istream& ) = 0;
-    virtual void setData( string, int, int ) = 0;	  // virtual setData function
-    virtual void setData( string, string ) = 0;	  // virtual setData function
+    virtual void setData( string, int, int, char ) = 0;	  // virtual setData function
+    virtual void setData( string, string, char ) = 0;	  // virtual setData function
     virtual void print( ostream& os ) const = 0;
+    virtual void printHeader() const = 0;  // virtual print header function
 
     //virtual comparison operators
     virtual Item& operator=( const Item& ) = 0;
@@ -49,8 +50,6 @@ protected:
     string title;
     int year;
     char bookType;
-    char bookFormatTypes[5];
-    char bookFormatType;
 };
 
 #endif
