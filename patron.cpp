@@ -2,6 +2,7 @@
 
 
 Patron::Patron(){
+
 	lastName = "";
 	firstName = "";
 }
@@ -35,12 +36,12 @@ void Patron::setData( int patronID, istream& inFile){
 	}
 }
 
-void Patron::addToHistory( Item* item, char transType){
+void Patron::addToHistory( Item* item, string transType){
 
 	patronHistory.push_back( make_pair(item,transType) );
 }
 
-vector<pair<Item*, char>> Patron::getHistory() const{
+vector<pair<Item*, string>> Patron::getHistory() const{
 	
 	return patronHistory;
 }
@@ -50,7 +51,7 @@ void Patron::print( ostream& out ) const{
 	out << patronID << "   " << lastName << ",  " << firstName;
 }
 
-void Patron::printHistory( vector<pair<Item*, char>> historyVec ) const{
+void Patron::printHistory( vector<pair<Item*, string>> historyVec ) const{
 	
 	for(int i = 0; i < historyVec.size(); i++){
 
