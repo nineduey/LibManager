@@ -30,13 +30,11 @@ and interacts with the user/driver code
 #include "item.h"
 #include "transfactory.h"
 #include <iostream>
+#include <vector>
 using namespace std;
 
 class LibraryManager
 {
-	//friend class Transaction;
-	//friend class Checkout;
-	//friend class Return;
 
 public:
 

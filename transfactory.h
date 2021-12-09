@@ -15,7 +15,7 @@ Transaction object of the indicated Type & Genre.
 #include "return.h"
 #include "displaycatalogue.h"
 #include "patronhistory.h"
-#include <map>
+#include <unordered_map>
 #include <vector>
 using namespace std;
 
@@ -30,11 +30,11 @@ public:
 
 private:
 
-	std::map<char, int> transMap;	//HashMap with keys equal to char variables of every
+	unordered_map<char, int> transMap;	//HashMap with keys equal to char variables of every
 									//possible book type and values equal to integers
 									//ranging from 0  to the number of transaction types - 1.
 
-	std::vector<Transaction*> transFac;	//vector with elements that are initialized as new
+	vector<Transaction*> transFac;	//vector with elements that are initialized as new
 									//Transaction objects of every possible transaction type
 };
 

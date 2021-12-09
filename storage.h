@@ -17,7 +17,7 @@ retrieveItem() function.
 #define STORAGE_H
 #include "bintree.h"
 #include "item.h"
-#include <map>
+#include <unordered_map>
 #include <iostream>
 using namespace std;
 
@@ -104,7 +104,7 @@ private:
 	//BinTree object.
 	//Values are BinTree objects containing Item objects that are all have the 
 	//same Item type and subtype
-	map<string, BinTree*> binTreeMap;
+	unordered_map<string, BinTree*> binTreeMap;
 
 };
 

@@ -20,7 +20,7 @@ class to create an Item of the specified type
 #include "itemfactory.h"
 #include "bookfactory.h"
 #include "item.h"
-#include <map>
+#include <unordered_map>
 #include <vector>
 #include <string>
 using namespace std;
@@ -61,7 +61,7 @@ private:
 	//keys are chars indicating the type of Item, values are ints indicating which 
 	//index in the factories vector an ItemFactory object
 	//contains a ItemFactory object of type specified by the key
-	std::map<char, int> factoryTypeMap;		
+	std::unordered_map<char, int> factoryTypeMap;
 
 	//contains objects of derived classes of ItemFactory 
 	vector<ItemFactory*> factories;

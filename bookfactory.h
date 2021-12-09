@@ -20,7 +20,7 @@ Book object of the indicated genre.
 #include "periodical.h"
 #include "fiction.h"
 #include "children.h"
-#include <map>
+#include <unordered_map>
 #include <vector>
 
 class BookFactory : public ItemFactory 
@@ -55,7 +55,7 @@ public:
 
 private:
 
-	std::map<char, int> bookMap;	//HashMap with keys equal to char variables of every 
+	unordered_map<char, int> bookMap;	//HashMap with keys equal to char variables of every 
 									//possible book type and values equal to integers 
 									//ranging from 0  to the number of book types - 1. 
 	
