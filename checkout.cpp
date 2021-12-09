@@ -105,7 +105,8 @@ void Checkout::doTransaction( Storage& catalogue, HashMap& patronsMap )
 		}
 		else
 		{
-			thePatron->addToHistory( foundItem, "Checkout" );
+			//Checkout* checkoutToAdd;
+			thePatron->addToHistory( this );
 		}
 	}
 	else

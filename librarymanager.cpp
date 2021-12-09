@@ -115,7 +115,5 @@ void LibraryManager::readTransactions(istream& inFile) {
 		{
 			command->doTransaction( catalogue, patronsMap );
 		}
-
-		allTransactonsVec.push_back( command );
 	}
 }
