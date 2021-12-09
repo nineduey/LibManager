@@ -82,8 +82,6 @@ private:
 
 	Storage catalogue;	//contains map of BinTree objects that each contain Items of 
 						//a specific type
-
-	vector<Transaction*> allTransactonsVec;
 	
 };
 #endif

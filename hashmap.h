@@ -15,7 +15,7 @@
 using namespace std;
 
 // global variable -- size of patrons array
-int const BUCKETS = 397; //prime number for hashify function
+int const BUCKETS = 11197; //prime number for hashify function
 
 class HashMap
 {

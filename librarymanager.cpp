@@ -109,7 +109,7 @@ void LibraryManager::readTransactions(istream& inFile) {
 			getline( inFile, invalidLine );
 			continue;
 		}
-		inFile.get();
+		inFile.get(); //>> skips over white space, deal with in trans classes
 
 		if(command->setData( inFile ))
 		{
@@ -118,11 +118,4 @@ void LibraryManager::readTransactions(istream& inFile) {
 
 		allTransactonsVec.push_back( command );
 	}
-
-	for(int i = 0; i < allTransactonsVec.size(); i++){
-
-		delete allTransactonsVec[i];
-		allTransactonsVec[i] = nullptr;
-	}
-
 }
