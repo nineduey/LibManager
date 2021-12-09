@@ -62,7 +62,7 @@ void Checkout::doTransaction( Storage& catalogue, HashMap& patronsMap )
 		foundItem->checkOut();
 		//adding transaction to patron histroy vector
 		Patron* thePatron = patronsMap.getPatron( patronID );
-		if(thePatron == nullptr)
+		if (thePatron == nullptr)
 		{
 			cout << "ERROR: Patron with ID " << this->patronID
 				<< " not found in records, cannot process Checkout." << endl;
@@ -70,8 +70,7 @@ void Checkout::doTransaction( Storage& catalogue, HashMap& patronsMap )
 		}
 		else
 		{
-			//Checkout* checkoutToAdd;
-			thePatron->addToHistory( this );
+			thePatron->addToHistory( foundItem, "Checkout" );
 		}
 	}
 	else

@@ -64,8 +64,7 @@ void Return::doTransaction( Storage& catalogue, HashMap& patronsMap )
 		}
 		else
 		{
-			//Return* returnToAdd;
-			thePatron->addToHistory( this );
+			thePatron->addToHistory( foundItem, "Return" );
 		}
 	}
 	else
