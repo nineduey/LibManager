@@ -164,15 +164,10 @@ Item* Periodical::create() const
 // @post:
 void Periodical::setData( istream& infile )
 {
-
 	getline( infile, title, ',' );// input author, looks for comma terminator
-
 	infile.get();                // get (and ignore) blank before month
-
 	infile >> month;
-
 	infile.get();               // get (and ignore) blank before year
-
 	infile >> year;             // input year
 
 	itemType = 'B';   // setting itemType -> Item class
@@ -187,21 +182,14 @@ void Periodical::setData( istream& infile )
 // data members
 // @pre:
 // @post:
-void Periodical::setData( string title, int month, int year, char itemFormat )
+void Periodical::setDataInput( istream& infile )
 {
-	this->title = title;
-	this->month = month;
-	this->year = year;
-	this->itemFormat = itemFormat;
+	infile >> itemFormat >> year >> month;
+	infile.get();
+	getline( infile, title, ',' );
 	itemType = 'B';
 	bookType = 'P';
 }
-
-void Periodical::setData( string author, string title, char itemFormat)
-{
-	return;
-}
-
 
 //----------------------------------------------------------------------------
 // print(): method to print the data members of fiction class & its base class
@@ -227,5 +215,4 @@ void Periodical::printHeader() const
 	cout << "AVAIL" << "   " << left << setw( TITLE_SPACE_LENGTH ) <<
 		"TITLE" << left << setw( MONTH_SPACE_LENGTH ) <<
 		"MONTH" << right << setw( YEAR_SPACE_LENGTH ) << "YEAR" << endl;
-	return;
 }

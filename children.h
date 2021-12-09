@@ -23,8 +23,7 @@ public:
     virtual char returnItemType_Genre() const;
     virtual Item* create() const;
     virtual void setData( istream& );
-    virtual void setData( string, int, int, char );
-    virtual void setData( string, string, char );
+    virtual void setDataInput( istream& );
     virtual void print( ostream& os ) const;
     virtual void printHeader() const;
 

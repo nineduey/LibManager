@@ -145,11 +145,8 @@ Item* Fiction::create() const
 void Fiction::setData( istream& infile )
 {
 	getline( infile, author, ',' );// input author, looks for comma terminator
-
 	infile.get();                 // get (and ignore) blank before title
-
 	getline( infile, title, ',' );// input title
-
 	infile >> year;               // input year
 
 	itemType = 'B';   // setting itemType -> Item class
@@ -160,22 +157,18 @@ void Fiction::setData( istream& infile )
 }
 
 //----------------------------------------------------------------------------
-// setData():
+// setDataInput():
 // data members
 // @pre:
 // @post:
-void Fiction::setData( string author, string title, char itemFormat )
-{
-	this->title = title;
-	this->author = author;
-	this->itemFormat = itemFormat;
+void Fiction::setDataInput( istream& infile ){
+	infile >> itemFormat;
+	infile.get();
+	getline( infile, title, ',' );
+	infile.get();
+	getline( infile, author, ',' );
 	itemType = 'B';
 	bookType = 'F';
-}
-
-void Fiction::setData( string title, int month, int year, char itemFormat )
-{
-	return;
 }
 
 //----------------------------------------------------------------------------

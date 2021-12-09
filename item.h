@@ -38,8 +38,7 @@ public:
 	virtual char returnItemType_Genre() const = 0;// returns the Type of ItemType
 	virtual Item* create() const = 0;		  // virtual create function
 	virtual void setData( istream& ) = 0;	  // virtual setData function
-	virtual void setData( string, int, int, char ) = 0;	  // virtual setData function
-	virtual void setData( string, string, char ) = 0;	  // virtual setData function
+	virtual void setDataInput( istream& ) = 0;	  // virtual setData function
 	virtual void print( ostream& os ) const = 0;// virtual print function
 	virtual void printHeader() const = 0;  // virtual print header function
 

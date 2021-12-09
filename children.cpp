@@ -143,14 +143,10 @@ Item* Children::create() const
 //setData() : 
 //@pre:
 //@post:
-void Children::setData( istream& infile )
-{
+void Children::setData( istream& infile ){
 	getline( infile, author, ',' );     // input author, looks for comma terminator
-
 	infile.get();                     // get (and ignore) blank before title
-
 	getline( infile, title, ',' );      // input title
-
 	infile >> year;                   // input year
 
 	itemType = 'B';   // setting itemType -> Item class
@@ -160,21 +156,17 @@ void Children::setData( istream& infile )
 	itemFormat = itemFormats[0];   //setting the format type of the book
 }
 
-void Children::setData( string title, int month, int year, char itemFormat)
-{
-	return;
-}
-
 //----------------------------------------------------------------------------
-// setData():
+// setDataInput():
 // data members
 // @pre:
 // @post:
-void Children::setData( string author, string title, char itemFormat )
-{
-	this->title = title;
-	this->author = author;
-	this->itemFormat = itemFormat;
+void Children::setDataInput( istream& infile ){
+	infile >> itemFormat;
+	infile.get();
+	getline( infile, title, ',' );
+	infile.get();
+	getline( infile, author, ',' );
 	itemType = 'B';
 	bookType = 'C';
 }
