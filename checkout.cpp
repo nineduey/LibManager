@@ -17,7 +17,7 @@ Checkout::~Checkout()
 	theItem = nullptr;
 }
 
-bool Checkout::setData( istream& inFile)
+bool Checkout::setData( istream& inFile)	
 {
 	int patID;
 	char itemType_Genre;
@@ -105,8 +105,7 @@ void Checkout::doTransaction( Storage& catalogue, HashMap& patronsMap )
 		}
 		else
 		{
-			//Checkout* checkoutToAdd;
-			thePatron->addToHistory( this );
+			thePatron->addToHistory( foundItem, "Checkout" );
 		}
 	}
 	else

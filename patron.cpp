@@ -1,5 +1,4 @@
 #include "patron.h"
-#include "transaction.h"
 
 
 Patron::Patron(){
@@ -11,10 +10,8 @@ Patron::Patron(){
 Patron::~Patron(){
 
 	int i;
-	for (i = 0; i < patronHistory.size(); i++)
-	{
-		delete patronHistory[i];
-		patronHistory[i] = nullptr;
+	for (i = 0; i < patronHistory.size(); i++){
+		patronHistory[i].first = nullptr;
 	}
 }
 
@@ -38,12 +35,12 @@ void Patron::setData( int patronID, istream& inFile){
 	}
 }
 
-void Patron::addToHistory(Transaction* trans){
+void Patron::addToHistory( Item* item, string transType){
 
-	patronHistory.push_back( trans );
+	patronHistory.push_back( make_pair(item,transType) );
 }
 
-vector<Transaction*> Patron::getHistory() const{
+vector<pair<Item*, string>> Patron::getHistory() const{
 	
 	return patronHistory;
 }
@@ -53,11 +50,12 @@ void Patron::print( ostream& out ) const{
 	out << patronID << "   " << lastName << ",  " << firstName;
 }
 
-void Patron::printHistory( vector<Transaction*> historyVec ) const{
+void Patron::printHistory( vector<pair<Item*, string>> historyVec ) const{
 	
 	for(int i = 0; i < historyVec.size(); i++){
 
-		cout << historyVec[i] << endl;
+		cout << historyVec[i].second << "   ";
+		cout << *historyVec[i].first << endl;
 	} 
 }
 

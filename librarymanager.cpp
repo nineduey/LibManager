@@ -87,8 +87,8 @@ void LibraryManager::readPatrons(istream& inFile){
 //.txt file must be passed in
 //Post-conditions: Performs transactions on data of objects in the Library using 
 //details of transactions given in passed in .txt file
-void LibraryManager::readTransactions(istream& inFile) {
-
+void LibraryManager::readTransactions( istream& inFile )
+{
 	char commandType;
 	Transaction* command;
 
@@ -109,11 +109,20 @@ void LibraryManager::readTransactions(istream& inFile) {
 			getline( inFile, invalidLine );
 			continue;
 		}
-		inFile.get(); //>> skips over white space, deal with in trans classes
+		inFile.get();
 
-		if(command->setData( inFile ))
+		if (command->setData( inFile ))
 		{
 			command->doTransaction( catalogue, patronsMap );
 		}
+
+		allTransactonsVec.push_back( command );
 	}
+
+	for (int i = 0; i < allTransactonsVec.size(); i++)
+	{
+		delete allTransactonsVec[i];
+		allTransactonsVec[i] = nullptr;
+	}
+
 }

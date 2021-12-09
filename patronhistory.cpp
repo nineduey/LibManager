@@ -2,14 +2,11 @@
 
 //----------------------------------------------------------------------------
 //Default Constructor
-PatronHistory::PatronHistory()
-{
-}
+PatronHistory::PatronHistory() {}
 
 //----------------------------------------------------------------------------
 //Destructor
-PatronHistory::PatronHistory( Patron* )
-{
+PatronHistory::~PatronHistory() {
 	patronID = -1;
 }
 

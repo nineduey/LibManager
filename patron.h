@@ -12,8 +12,6 @@
 #include "item.h"
 using namespace std;
 
-class Transaction;
-
 class Patron
 {
 	friend class HashMap;
@@ -26,7 +24,7 @@ public:
 
 	//------------------------------------------------------------------
 	//destructor, this method will export the record of this Patron to a data file before it deletes the data members of the Patron object and empty and erase the the Transaction objects that are stored in the custHistory vector
-	~Patron();
+	virtual ~Patron();
 
 	//public methods
 	//------------------------------------------------------------------
@@ -39,18 +37,18 @@ public:
 	//addToHistory(): method to add Transaction objects to a Patron’s  //Transaction history vector
 	//@pre: Called on a Patron object. Transaction passed should only be // of type Checkout or Return
 	//@post: Modified history vector, adding the passed Transaction.
-	void addToHistory( Transaction* ); 
+	void addToHistory( Item*, string ); 
 
 	//------------------------------------------------------------------
 	//getHistory(): method to retrieve transaction history of a certain //patron. Returns pointer to 1st element of transaction history 
 	//vector
 	//@pre: Called on a Patron object
 	//@post: returns a pointer to an array of Transactions representing  // this patrons transaction history, this is unchanged
-	vector<Transaction*> getHistory() const; 
+	vector<pair<Item*, string>> getHistory() const; 
 
 	void print( ostream& ) const;
 
-	void printHistory( vector<Transaction*> ) const;
+	void printHistory( vector<pair<Item*, string>> ) const;
 
 	void setPatronID( int patronID );
 
@@ -63,7 +61,7 @@ private:
 	string lastName;       // Patrons last name
 
 	//private vector holding Patron’s transaction history
-	vector<Transaction*> patronHistory;
+	vector<pair<Item*, string>> patronHistory;
 };
 #endif
 

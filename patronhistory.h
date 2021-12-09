@@ -12,7 +12,7 @@ private:
 
 public:
     PatronHistory();  		 // constructor for class PatronHistory
-    PatronHistory( Patron* ); // constructor for PatronHistorym, takes a Patron*
+    virtual ~PatronHistory(); // constructor for PatronHistorym, takes a Patron*
     bool setData( istream& );  // setData() method that sets up thePatron* to Patron* param
     virtual Transaction* create() const;
     virtual void doTransaction( Storage&, HashMap& );  // calls display on our patron pointer

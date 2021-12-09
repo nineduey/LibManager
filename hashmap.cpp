@@ -2,7 +2,7 @@
 
 HashMap::HashMap(){
 
-	for(int i = 0; i < 397; i++){
+	for(int i = 0; i < BUCKETS; i++){
 
 		patronsArray[i] = nullptr;
 	}
@@ -10,7 +10,7 @@ HashMap::HashMap(){
 
 HashMap::~HashMap(){
 
-	for(int i = 0; i < 397; i++){
+	for(int i = 0; i < BUCKETS; i++){
 		delete patronsArray[i];
 		patronsArray[i] = nullptr;
 	}

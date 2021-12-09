@@ -12,9 +12,8 @@ of the Transaction class
 #include <string>
 #include "storage.h"
 #include "hashmap.h"
+#include "patron.h"
 using namespace std;
-
-class Patron;
 
 class Transaction
 {
