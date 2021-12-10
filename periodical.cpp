@@ -13,7 +13,6 @@
 // Default Constructor
 Periodical::Periodical()
 {
-
 	month = 0;
 }
 
@@ -23,7 +22,6 @@ Periodical::Periodical()
 // @post:
 char Periodical::returnItemType() const
 {
-
 	return itemType;
 }
 
@@ -33,7 +31,6 @@ char Periodical::returnItemType() const
 // @post:
 char Periodical::returnItemType_Genre() const
 {
-
 	return bookType;
 }
 
@@ -44,7 +41,6 @@ char Periodical::returnItemType_Genre() const
 // @post:
 Item& Periodical::operator=( const Item& item )
 {
-
 	const Periodical& aPeriodical = static_cast<const Periodical&>(item);
 
 	this->title = aPeriodical.title;
@@ -162,19 +158,39 @@ Item* Periodical::create() const
 // data members
 // @pre:
 // @post:
-void Periodical::setData( istream& infile )
+bool Periodical::setData( istream& infile )
 {
 	getline( infile, title, ',' );// input author, looks for comma terminator
+	if (title.size() < 1){
+		cout << "Title of book not given." << endl;
+		string invalidLine = "";
+		getline( infile, invalidLine );
+		return false;
+	}
+
 	infile.get();                // get (and ignore) blank before month
 	infile >> month;
+	if(month < 1 || month > 12){
+		cout << "Valid month number is not given." << endl;
+		string invalidLine = "";
+		getline( infile, invalidLine );
+		return false;
+	}
+
 	infile.get();               // get (and ignore) blank before year
 	infile >> year;             // input year
+	if (year == 0){
+		cout << "Year the book was published is not given." << endl;
+		string invalidLine = "";
+		getline( infile, invalidLine );
+		return false;
+	}
 
-	itemType = 'B';   // setting itemType -> Item class
 	numInLib = 5;     // setting numer of Book copies -> Item class
 	bookType = 'P';   // setting bookType -> Book class
 	maxNumInLib = 5;	// setting the max number of book copies in library
 	itemFormat = itemFormats[0];   //setting the format type of the book
+	return true;
 }
 
 //----------------------------------------------------------------------------
@@ -182,13 +198,52 @@ void Periodical::setData( istream& infile )
 // data members
 // @pre:
 // @post:
-void Periodical::setDataInput( istream& infile )
+bool Periodical::setDataInput( istream& infile )
 {
-	infile >> itemFormat >> year >> month;
+	infile >> itemFormat;
+	bool itemFormatIsValid = false;;
+	for (int i : itemFormats){
+		if (itemFormat == itemFormats[0]){
+			itemFormatIsValid = true;
+			break;
+		}
+	}
+	if (!itemFormatIsValid){
+		cout << "The given item format " << itemFormat
+			<< " is not valid." << endl;
+		string invalidLine = "";
+		getline( infile, invalidLine );
+		return false;
+	}
+
+	infile >> year;
+	if (year == 0){
+		cout << "Year the book was published is not given." << endl;
+		string invalidLine = "";
+		getline( infile, invalidLine );
+		return false;
+	}
+
+	infile.get();
+	infile >> month;
+	if (month < 1 || month > 12){
+		cout << "Valid month number is not given." << endl;
+		string invalidLine = "";
+		getline( infile, invalidLine );
+		return false;
+	}
+
 	infile.get();
 	getline( infile, title, ',' );
-	itemType = 'B';
+	if (title.size() < 1){
+		cout << "Title of book not given." << endl;
+		string invalidLine = "";
+		getline( infile, invalidLine );
+		return false;
+	}
+
 	bookType = 'P';
+	return true;
 }
 
 //----------------------------------------------------------------------------

@@ -54,15 +54,18 @@ FactoryDriver::~FactoryDriver(){
 //Post-conditions: An Item object of the specified type is instantiated. 
 Item* FactoryDriver::createItem( char itemType, char itemType_Genre) const{
     
-    int subscript = factoryTypeMap.at( itemType );
-    Item* itemCreated = factories[subscript]->createItem( itemType_Genre );
-
-    if (itemCreated == nullptr){
-        
+    if(factoryTypeMap.find(itemType) == factoryTypeMap.end()){
         return nullptr;
     }
     else{
+        int subscript = factoryTypeMap.at( itemType );
+        Item* itemCreated = factories[subscript]->createItem( itemType_Genre );
 
-        return itemCreated;
+        if (itemCreated == nullptr){
+            return nullptr;
+        }
+        else{
+            return itemCreated;
+        }
     }
 }

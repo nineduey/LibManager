@@ -88,7 +88,9 @@ bool BinTree::insert( Item* toInsertPtr )
 	//search for duplicate first
 	if (find( toInsertPtr ))
 	{
-		cout << "ERROR: Insertion failed. Item already exists." << endl;
+		cout << "ERROR: Insertion failed." << endl;
+		toInsertPtr->printKeyInfo();
+		cout << endl << "already exists." << endl;
 		return false;
 	}
 	// check to see if BinTree is empty
@@ -109,8 +111,7 @@ bool BinTree::insert( Item* toInsertPtr )
 		while (!inserted)
 		{
 			if (*toInsertPtr < *current->itemPtr)
-			{ // virtual <
-// at leaf, insert left
+			{ // virtual <  // at leaf, insert left
 				if (current->left == nullptr)
 				{
 					Node* temp = new Node();

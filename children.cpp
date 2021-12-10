@@ -143,17 +143,65 @@ Item* Children::create() const
 //setData() : 
 //@pre:
 //@post:
-void Children::setData( istream& infile ){
+bool Children::setData( istream& infile ){
+
 	getline( infile, author, ',' );     // input author, looks for comma terminator
+	if(author.size() < 1){
+		cout << "Name of author not given." << endl;
+		string invalidLine = "";
+		getline( infile, invalidLine );
+		return false;
+	}
+
 	infile.get();                     // get (and ignore) blank before title
 	getline( infile, title, ',' );      // input title
-	infile >> year;                   // input year
+	if (title.size() < 1){
+		cout << "Title of book not given." << endl;
+		string invalidLine = "";
+		getline( infile, invalidLine );
+		return false;
+	}
 
-	itemType = 'B';   // setting itemType -> Item class
+	/*char temp;
+	infile >> temp;
+	if(temp == '\n'){
+		return false;
+	}*/
+
+	//infile.get();
+	//string tempyear = to_string(year);
+	//getline( infile, tempyear, '\n' );
+
+	//infile >> year;                   // input year
+	//infile.get();
+
+	//getline( infile, tempyear, '\n' );
+
+	//if()
+
+	string tempYear;
+	infile >> tempYear;
+
+
+	if(year == 0){
+		cout << "Year the book was published is not given." << endl;
+		//string invalidLine;
+		/*getline( infile, invalidLine );
+		cin.ignore();*/
+		//infile.ignore( std::numeric_limits<std::streamsize>::max(), '\n' );
+		//char test;
+		//infile >> test;
+		//getline( infile, invalidLine, '\n' );
+
+		if()
+		return false;
+	}
+
 	numInLib = 5;     // setting numer of Book copies -> Item class
 	bookType = 'C';   // setting bookType -> Book class
 	maxNumInLib = 5;	// setting the max number of book copies in library
 	itemFormat = itemFormats[0];   //setting the format type of the book
+	return true;
 }
 
 //----------------------------------------------------------------------------
@@ -161,14 +209,44 @@ void Children::setData( istream& infile ){
 // data members
 // @pre:
 // @post:
-void Children::setDataInput( istream& infile ){
+bool Children::setDataInput( istream& infile ){
+	
 	infile >> itemFormat;
+	bool itemFormatIsValid = false;;
+	for(int i : itemFormats){
+		if(itemFormat == itemFormats[0]){
+			itemFormatIsValid = true;
+			break;
+		}
+	}
+	if(!itemFormatIsValid){
+		cout << "The given item format " << itemFormat 
+			<< " is not valid." << endl;
+		string invalidLine = "";
+		getline( infile, invalidLine );
+		return false;
+	}
+
 	infile.get();
-	getline( infile, title, ',' );
-	infile.get();
-	getline( infile, author, ',' );
-	itemType = 'B';
+	getline( infile, title, ',' );     // input author, looks for comma terminator
+	if (author.size() < 1){
+		cout << "Title of book not given." << endl;
+		string invalidLine = "";
+		getline( infile, invalidLine );
+		return false;
+	}
+
+	infile.get();                     // get (and ignore) blank before title
+	getline( infile, author, ',' );      // input title
+	if (title.size() < 1){
+		cout << "Author name not given." << endl;
+		string invalidLine = "";
+		getline( infile, invalidLine );
+		return false;
+	}
+
 	bookType = 'C';
+	return true;
 }
 
 //----------------------------------------------------------------------------

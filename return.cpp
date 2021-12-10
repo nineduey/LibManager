@@ -26,16 +26,16 @@ bool Return::setData( istream& inFile )
 	inFile >> patID >> itemType_Genre;
 
 	theItem = facDriver.createItem( 'B', itemType_Genre );
-	if (theItem != nullptr)	{
-		theItem->setDataInput( inFile );
-		patronID = patID;
-		return true;
+	if (theItem != nullptr){
+		if (theItem->setDataInput( inFile )){
+			patronID = patID;
+			return true;
+		}
 	}
-	else{
-		string invalidLine = "";
-		getline( inFile, invalidLine );
-		return false;
-	}
+
+	string invalidLine = "";
+	getline( inFile, invalidLine );
+	return false;
 }
 
 //----------------------------------------------------------------------------
@@ -59,8 +59,8 @@ void Return::doTransaction( Storage& catalogue, HashMap& patronsMap ){
 
 		//check if there are already max copies of the item in the library
 		if(!(foundItem->checkIn())){
-			cout << "ERROR: Cannot Check In ";
-			theItem->printKeyInfo();
+			cout << "ERROR: Cannot Check In   ";
+			foundItem->printKeyInfo();
 			cout << endl << "The library holds the maximum number of copies " 
 				<< "of this Item." << endl;
 			return;
@@ -69,7 +69,7 @@ void Return::doTransaction( Storage& catalogue, HashMap& patronsMap ){
 		Patron* thePatron = patronsMap.getPatron( patronID );
 		if (thePatron == nullptr){
 			cout << "ERROR: Patron with ID " << this->patronID
-				<< " not found in records, cannot process Return." << endl;
+				<< " not found in records. Cannot process Return." << endl;
 			return;
 		}
 	
@@ -77,8 +77,8 @@ void Return::doTransaction( Storage& catalogue, HashMap& patronsMap ){
 		//output error message
 		if(!(thePatron->transExists(foundItem, "Checkout"))){
 			cout << "ERROR: Patron with ID " << this->patronID
-				<< " is trying to Return " ;
-			theItem->printKeyInfo();
+				<< " is trying to Return " << endl;
+			foundItem->printKeyInfo();
 			cout << endl << "which was not previously Checked Out by them. "
 				<< "Cannot process Return." << endl;
 			return;
@@ -90,7 +90,8 @@ void Return::doTransaction( Storage& catalogue, HashMap& patronsMap ){
 	else{
 		cout << "ERROR: The Item ";
 		theItem->printKeyInfo();
-		cout << " is not found in Catalogue, cannot process Return." << endl;
+		cout << " is not found in Catalogue. " << endl;
+		cout << "Cannot process Return." << endl;
 	}
 
 	return;

@@ -43,14 +43,18 @@ void LibraryManager::readInventory(istream& inFile){
 		itemType = 'B';
 		item = this->facdriver.createItem( itemType, itemType_type );
 		if(item == nullptr){
-
-			string invalidLine = "";
+			string invalidLine;
 			getline( inFile, invalidLine );
 			continue;
 		}
 		inFile.get();
-		item->setData( inFile );
-		catalogue.append( item );
+		if(item->setData( inFile )){
+			catalogue.append( item );
+		}
+		else{
+			delete item;
+			item = nullptr;
+		}
 	 }
 }
 
@@ -79,8 +83,6 @@ void LibraryManager::readPatrons(istream& inFile){
 			continue;
 		}
 	}
-
-	cout << patronsMap << endl;
 }
 
 //----------------------------------------------------------------------------

@@ -135,18 +135,38 @@ Item* Fiction::create() const
 //setData() : 
 //@pre:
 //@post:
-void Fiction::setData( istream& infile )
-{
-	getline( infile, author, ',' );// input author, looks for comma terminator
-	infile.get();                 // get (and ignore) blank before title
-	getline( infile, title, ',' );// input title
-	infile >> year;               // input year
+bool Fiction::setData( istream& infile ){
 
-	itemType = 'B';   // setting itemType -> Item class
+	getline( infile, author, ',' );     // input author, looks for comma terminator
+	if (author.size() < 1){
+		cout << "Name of author not given." << endl;
+		string invalidLine = "";
+		getline( infile, invalidLine );
+		return false;
+	}
+
+	infile.get();                     // get (and ignore) blank before title
+	getline( infile, title, ',' );      // input title
+	if (title.size() < 1){
+		cout << "Title of book not given." << endl;
+		string invalidLine = "";
+		getline( infile, invalidLine );
+		return false;
+	}
+
+	infile >> year;                   // input year
+	if (year == 0){
+		cout << "Year the book was published is not given." << endl;
+		string invalidLine = "";
+		getline( infile, invalidLine );
+		return false;
+	}
+
 	numInLib = 5;     // setting numer of Book copies -> Item class
 	bookType = 'F';   // setting bookType -> Book class
 	maxNumInLib = 5;	// setting the max number of book copies in library
 	itemFormat = itemFormats[0];   //setting the format type of the book
+	return true;
 }
 
 //----------------------------------------------------------------------------
@@ -154,22 +174,52 @@ void Fiction::setData( istream& infile )
 // data members
 // @pre:
 // @post:
-void Fiction::setDataInput( istream& infile ){
+bool Fiction::setDataInput( istream& infile ){
+
 	infile >> itemFormat;
+	bool itemFormatIsValid = false;;
+	for (int i : itemFormats){
+
+		if (itemFormat == itemFormats[0]){
+			itemFormatIsValid = true;
+			break;
+		}
+	}
+	if (!itemFormatIsValid){
+		cout << "The given item format " << itemFormat
+			<< " is not valid." << endl;
+		string invalidLine = "";
+		getline( infile, invalidLine );
+		return false;
+	}
+
 	infile.get();
-	getline( infile, author, ',' );
-	infile.get();
-	getline( infile, title, ',' );
-	itemType = 'B';
+	getline( infile, author, ',' );     // input author, looks for comma terminator
+	if (author.size() < 1){
+		cout << "Name of author not given." << endl;
+		string invalidLine = "";
+		getline( infile, invalidLine );
+		return false;
+	}
+
+	infile.get();                     // get (and ignore) blank before title
+	getline( infile, title, ',' );      // input title
+	if (title.size() < 1){
+		cout << "Title of book not given." << endl;
+		string invalidLine = "";
+		getline( infile, invalidLine );
+		return false;
+	}
+
 	bookType = 'F';
+	return true;
 }
 
 //----------------------------------------------------------------------------
 //print():
 // @pre:
 // @post:
-void Fiction::print( ostream& out ) const
-{
+void Fiction::print( ostream& out ) const{
 	out << numInLib << "      " << setw( AUTHOR_SPACE_LENGTH );
 	out << left << author << setw( TITLE_SPACE_LENGTH );
 	out << left << title << setw( YEAR_SPACE_LENGTH );

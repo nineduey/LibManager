@@ -69,7 +69,7 @@ void Storage::append( Item* item )
 	if (!(retrieveBinTree( item, toRetrieve )))
 	{
 		BinTree* binTree = new BinTree();
-		binTree->insert( item );
+		if(binTree->insert( item ));
 		binTreeMap.insert( { key, binTree } );
 	}
 	else

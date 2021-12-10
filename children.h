@@ -22,8 +22,8 @@ public:
     virtual char returnItemType() const;
     virtual char returnItemType_Genre() const;
     virtual Item* create() const;
-    virtual void setData( istream& );
-    virtual void setDataInput( istream& );
+    virtual bool setData( istream& );
+    virtual bool setDataInput( istream& );
     virtual void print( ostream& os ) const;
     virtual void printHeader() const;
     virtual void printKeyInfo() const;

@@ -32,8 +32,8 @@ public:
     virtual char returnItemType() const = 0;
     virtual char returnItemType_Genre() const = 0;
     virtual Item* create() const = 0;
-    virtual void setData( istream& ) = 0;
-    virtual void setDataInput( istream& ) = 0;
+    virtual bool setData( istream& ) = 0;
+    virtual bool setDataInput( istream& ) = 0;
     virtual void print( ostream& os ) const = 0;
     virtual void printHeader() const = 0;  // virtual print header function
     virtual void printKeyInfo() const = 0;

@@ -28,17 +28,16 @@ bool Checkout::setData( istream& inFile)
 	inFile >> patID >> itemType_Genre;
 
 	theItem = facDriver.createItem( 'B', itemType_Genre );
-
 	if (theItem != nullptr)	{
-		theItem->setDataInput( inFile );
-		patronID = patID;
-		return true;
+		if (theItem->setDataInput( inFile )){
+			patronID = patID;
+			return true;
+		}
 	}
-	else{
-		string invalidLine = "";
-		getline( inFile, invalidLine );
-		return false;
-	}
+
+	string invalidLine = "";
+	getline( inFile, invalidLine );
+	return false;
 }
 
 
@@ -65,8 +64,8 @@ void Checkout::doTransaction( Storage& catalogue, HashMap& patronsMap ){
 		
 		//check if there are no more copies available in the library
 		if(!(foundItem->checkOut())){
-			cout << "ERROR: Cannot Checkout ";
-			theItem->printKeyInfo();
+			cout << "ERROR: Cannot Checkout   ";
+			foundItem->printKeyInfo();
 			cout << endl << "There are more copies available for Checkout." << endl;
 			return;
 		}
@@ -76,7 +75,7 @@ void Checkout::doTransaction( Storage& catalogue, HashMap& patronsMap ){
 		
 		if (thePatron == nullptr){
 			cout << "ERROR: Patron with ID " << this->patronID
-				<< " not found in records, cannot process Checkout." << endl;
+				<< " not found in records. Cannot process Checkout." << endl;
 			return;
 		}
 		else{
@@ -86,7 +85,8 @@ void Checkout::doTransaction( Storage& catalogue, HashMap& patronsMap ){
 	else{
 		cout << "ERROR: The Item ";
 		theItem->printKeyInfo();  
-		cout << " is not found in Catalogue, cannot process Checkout." << endl;
+		cout << " is not found in Catalogue." << endl;
+		cout << "Cannot process Checkout." << endl;
 	}
 
 	return;

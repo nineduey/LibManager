@@ -25,13 +25,13 @@ bool Patron::setData( int patronID, istream& inFile){
 	this->patronID = patronID;
 
 	inFile.get();
-	getline( inFile, this->lastName, ' ' );
+	inFile >> this->lastName;
 	if(lastName.size() < 1){
 		cout << "ERROR: Patron's Last Name is not given." << endl;
 		return false;
 	}
 
-	inFile >> this->firstName;
+	getline(inFile, this->firstName);
 	if(firstName.size() < 1){
 		cout << "ERROR: Patron's First Name is not given." << endl;
 		return false;
