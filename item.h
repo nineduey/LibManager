@@ -56,8 +56,6 @@ protected:
 	char itemType;	 // added this data member to store the type of item the instance is
 	char itemFormats[5];
 	char itemFormat;
-	bool validate() const;  	//check whether the input content is valid
-
 };
 
 #endif

@@ -31,8 +31,11 @@ bool Return::setData( istream& inFile )
 		patronID = patID;
 		return true;
 	}
-
-	return false;
+	else{
+		string invalidLine = "";
+		getline( inFile, invalidLine );
+		return false;
+	}
 }
 
 //----------------------------------------------------------------------------

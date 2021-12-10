@@ -28,13 +28,17 @@ bool Checkout::setData( istream& inFile)
 	inFile >> patID >> itemType_Genre;
 
 	theItem = facDriver.createItem( 'B', itemType_Genre );
+
 	if (theItem != nullptr)	{
 		theItem->setDataInput( inFile );
 		patronID = patID;
 		return true;
 	}
-
-	return false;
+	else{
+		string invalidLine = "";
+		getline( inFile, invalidLine );
+		return false;
+	}
 }
 
 

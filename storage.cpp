@@ -74,7 +74,7 @@ void Storage::append( Item* item )
 	}
 	else
 	{	//the appropriate bintree exists in the binTreeMap
-		binTreeMap.at( key )->insert( item );
+		binTreeMap.at( key )->insert( item ); //returns a bool - 
 	}
 }
 

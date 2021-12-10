@@ -83,13 +83,6 @@ bool Fiction::operator!=( const Item& item ) const
 //@post:
 bool Fiction::operator<( const Item& item ) const
 {
-	//sorted by author, then title
-
-	//if (this->operator==( item ))
-	//{
-	//	return false;
-	//}
-
 	const Fiction& aFiction = static_cast<const Fiction&>(item);
 
 	if (this->author < aFiction.author)

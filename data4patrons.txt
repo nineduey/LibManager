@@ -1,17 +1,14 @@
+9999 Duck Donald
 3333 Witch Wicked
-3333 Foot Big
 8888 Pig Porky
-4444 Moose Bullwinkle
-123 Wrong Num
-9999 Duck Daffy
-6666 Donkey Darrell
-4444 Wolf Bad
+2222 Rella Cindy
 7777 Spider Sammy
-1000002 Too Big
 1111 Mouse Mickey
 1000 Mouse Minnie
-9000 Lizard Larry
--1 What No
 8000 Wacky Wally
-5000 Frog Freddie
-2000 Duck Donald
+7000 Squirrel Rocky
+6000 Frog Freddie
+5000 Moose Bullwinkle
+3000 Lizard Larry
+2000 Bear Bertha
+

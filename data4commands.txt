@@ -1,10 +1,23 @@
-C 8000 F H Kerouac Jack, On the Road,
-H 8000
-C 1000 F H Kerouac Jack, On the Road,
+C 5000 F H Lewis Sinclair, Babbitt,
+C 5000 X H Lewis Sinclair, Babbitt,
+C 2222 C H Danny Dunn & the Homework Machine, Williams Jay,
+C 1234 P H 2010 1 Communications of the ACM,
+C 1000 C H Bogus Title, Bogus Author,
+R 1000 C H Bogus Title, Bogus Author,
+X 1000 C H Bogus Title, Bogus Author,
+C 5000 F H Higgins Colin, Harold and Maude,
+C 8888 F H Higgins Colin, Harold and Maude,
+C 1000 F H Higgins Colin, Harold and Maude,
+C 1111 F H Higgins Colin, Harold and Maude,
+C 3000 F H Higgins Colin, Harold and Maude,
+C 6000 F H Higgins Colin, Harold and Maude,
+C 2000 F H Higgins Colin, Harold and Maude,
+R 2222 F H Higgins Colin, Harold and Maude,
+D
 H 1000
-C 8888 F H Kerouac Jack, On the Road,
-H 8888
-R 1111 F H Kerouac Jack, On the Road,
 H 1111
+H 5000
+H 8888
+
 
 

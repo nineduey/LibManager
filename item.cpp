@@ -63,15 +63,3 @@ bool Item::checkIn(){
 	return false;
 }
 
-//----------------------------------------------------------------------------
-// validate(): method to validate contained within object is valid
-// @pre:
-// @post:
-bool Item::validate() const{
-	
-	if (numInLib >= 0 && numInLib <= maxNumInLib){
-		return true;
-	}
-	return false;
-}
-
