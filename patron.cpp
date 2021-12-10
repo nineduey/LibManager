@@ -50,6 +50,17 @@ vector<pair<Item*, string>> Patron::getHistory() const{
 	return patronHistory;
 }
 
+bool Patron::transExists(Item* item, string transType)
+{
+	for(int i = 0; i < patronHistory.size(); i++){
+
+		if(patronHistory[i].first == item && patronHistory[i].second == transType){
+			return true;
+		}
+	}
+	return false;
+}
+
 void Patron::print( ostream& out ) const{
 
 	out << patronID << "   " << lastName << ",  " << firstName;
@@ -57,6 +68,11 @@ void Patron::print( ostream& out ) const{
 
 void Patron::printHistory( vector<pair<Item*, string>> historyVec ) const{
 	
+	if(historyVec.empty()){
+		cout << "Patron has not made any valid transactions." << endl;
+		return;
+	}
+
 	for(int i = 0; i < historyVec.size(); i++){
 
 		cout << historyVec[i].second << "   ";

@@ -32,14 +32,12 @@ void PatronHistory::doTransaction( Storage& catalogue, HashMap& patronsMap )
 	//find patron* in the patron hashmap
 	Patron* thePatron = patronsMap.getPatron( this->patronID );
 
-	if(thePatron == nullptr)
-	{
+	if(thePatron == nullptr){
 		cout << "ERROR: Patron with ID " << this->patronID 
 			<< " not found in records, cannot display Patron's History." << endl;
 		return;
 	}
-	else
-	{
+	else{
 		//display patron's ID and name
 		cout << *thePatron << "    " << endl;;
 

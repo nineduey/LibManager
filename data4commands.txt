@@ -4,22 +4,6 @@ C 1000 F H Kerouac Jack, On the Road,
 H 1000
 C 8888 F H Kerouac Jack, On the Road,
 H 8888
-C 1111 F H Kerouac Jack, On the Road,
-H 1111
-C 1111 F H Kerouac Jack, On the Road,
-H 1111
-C 1111 F H Kerouac Jack, On the Road,
-H 1111
-R 8000 F H Kerouac Jack, On the Road,
-H 8000
-R 1000 F H Kerouac Jack, On the Road,
-H 1000
-R 8888 F H Kerouac Jack, On the Road,
-H 8888
-R 1111 F H Kerouac Jack, On the Road,
-H 1111
-R 1111 F H Kerouac Jack, On the Road,
-H 1111
 R 1111 F H Kerouac Jack, On the Road,
 H 1111
 

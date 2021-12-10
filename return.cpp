@@ -55,25 +55,30 @@ void Return::doTransaction( Storage& catalogue, HashMap& patronsMap ){
 	if (found == true){
 
 		//check if there are already max copies of the item in the library
-		if(!foundItem->checkIn()){
+		if(!(foundItem->checkIn())){
 			return;
 		}
 
-		//adding transaction to patron histroy vector
 		Patron* thePatron = patronsMap.getPatron( patronID );
-		if (thePatron == nullptr)
-		{
+		if (thePatron == nullptr){
 			cout << "ERROR: Patron with ID " << this->patronID
 				<< " not found in records, cannot process Return." << endl;
 			return;
 		}
-		else
-		{
-			thePatron->addToHistory( foundItem, "Return" );
+	
+		//if Patron did not previously checkout the book they are trying to return,
+		//output error message
+		if(!(thePatron->transExists(foundItem, "Checkout"))){
+			cout << "ERROR: The item that the Patron with ID " << this->patronID
+				<< " is trying to Return was not previously Checked Out by them. "
+				<< "Cannot process Return." << endl;
+			return;
 		}
+
+		//adding transaction to patron histroy vector
+		thePatron->addToHistory( foundItem, "Return" );
 	}
-	else
-	{
+	else{
 		cout << "ERROR: Item not found in Catalogue, cannot process Return." << endl;
 	}
 

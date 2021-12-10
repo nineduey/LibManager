@@ -60,7 +60,7 @@ void Checkout::doTransaction( Storage& catalogue, HashMap& patronsMap ){
 	if (found == true){
 		
 		//check if there are no more copies available in the library
-		if(!foundItem->checkOut()){
+		if(!(foundItem->checkOut())){
 			return;
 		}
 

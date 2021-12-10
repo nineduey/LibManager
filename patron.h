@@ -46,7 +46,7 @@ public:
 	//@post: returns a pointer to an array of Transactions representing  // this patrons transaction history, this is unchanged
 	vector<pair<Item*, string>> getHistory() const; 
 
-	//bool itemExistsInHistory()
+	bool transExists(Item*, string);
 
 	void print( ostream& ) const;
 
