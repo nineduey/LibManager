@@ -31,7 +31,7 @@ public:
 	//setData(): sets all data members in Patron object
 	//@pre: Called on a Patron object. Int passed must be 4 digits long  // and strings passed must be valid
 	//@post: Modifies customerID, firstName, lastName to passed variables // if valid
-	void setData( int patronID, istream& );
+	bool setData( int patronID, istream& );
 
 	//------------------------------------------------------------------
 	//addToHistory(): method to add Transaction objects to a Patron’s  //Transaction history vector
@@ -45,6 +45,8 @@ public:
 	//@pre: Called on a Patron object
 	//@post: returns a pointer to an array of Transactions representing  // this patrons transaction history, this is unchanged
 	vector<pair<Item*, string>> getHistory() const; 
+
+	//bool itemExistsInHistory()
 
 	void print( ostream& ) const;
 

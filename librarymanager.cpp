@@ -79,6 +79,8 @@ void LibraryManager::readPatrons(istream& inFile){
 			continue;
 		}
 	}
+
+	cout << patronsMap << endl;
 }
 
 //----------------------------------------------------------------------------

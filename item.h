@@ -32,8 +32,8 @@ public:
 
 	Item();			  // default constructor
 	virtual ~Item(); // destructor
-	void checkOut(); // check out an Item from the BinTree
-	void checkIn();  // check in an Item from the BinTree
+	bool checkOut(); // check out an Item from the BinTree
+	bool checkIn();  // check in an Item from the BinTree
 	virtual char returnItemType() const = 0; // returns ItemType
 	virtual char returnItemType_Genre() const = 0;// returns the Type of ItemType
 	virtual Item* create() const = 0;		  // virtual create function

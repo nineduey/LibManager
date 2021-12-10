@@ -3,7 +3,6 @@
 HashMap::HashMap(){
 
 	for(int i = 0; i < BUCKETS; i++){
-
 		patronsArray[i] = nullptr;
 	}
 }
@@ -28,13 +27,31 @@ HashMap::~HashMap(){
 bool HashMap::addPatron( int patronID, istream& inFile ){
 
 	Patron* patronToAdd = new Patron();
-	patronToAdd->setData( patronID, inFile );
 
-	if(patronID != -1){
-		patronsArray[hashify( patronID )] = patronToAdd;
-		return true;
+	if(patronToAdd->setData( patronID, inFile )){
+
+		int indexToInsertIn = hashify( patronID );
+
+		//ensure that a duplicate patron does not exist in patronsArray before insertion
+		if (patronsArray[indexToInsertIn] != nullptr){
+
+			if (!(patronsArray[indexToInsertIn]->patronID == patronID)){
+				patronsArray[indexToInsertIn] = patronToAdd;
+				return true;
+			}
+			else{
+				cout << "ERROR: Patron with ID " << patronToAdd->patronID << 
+					" already exists in the system." << endl;
+			}
+		}
+		else{
+			patronsArray[indexToInsertIn] = patronToAdd;
+			return true;
+		}
 	}
-	
+
+	delete patronToAdd;
+	patronToAdd = nullptr;
 	return false;
 }
 
@@ -83,7 +100,7 @@ ostream& operator<<( ostream& out, const HashMap& h ){
 
 void HashMap::print( ostream& out ) const{
 	
-	for(int i = 0; i < 397; i++){
+	for(int i = 0; i < BUCKETS; i++){
 
 		if(patronsArray[i] != nullptr){
 

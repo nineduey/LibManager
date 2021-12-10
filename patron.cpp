@@ -15,24 +15,29 @@ Patron::~Patron(){
 	}
 }
 
-void Patron::setData( int patronID, istream& inFile){
+bool Patron::setData( int patronID, istream& inFile){
 	
 	if (patronID < 1000 || patronID > 9999){
-		cout << "Patron ID is not valid." << endl;
+		cout << "ERROR: Patron ID " << patronID << " is not valid." << endl;
 		this->patronID = -1;
+		return false;
 	}
 	this->patronID = patronID;
 
 	inFile.get();
 	getline( inFile, this->lastName, ' ' );
 	if(lastName.size() < 1){
-		cout << "No value is entered for Patron last name." << endl;
+		cout << "ERROR: Patron's Last Name is not given." << endl;
+		return false;
 	}
 
 	inFile >> this->firstName;
 	if(firstName.size() < 1){
-		cout << "No value is entered for Patron first name." << endl;
+		cout << "ERROR: Patron's First Name is not given." << endl;
+		return false;
 	}
+
+	return true;
 }
 
 void Patron::addToHistory( Item* item, string transType){

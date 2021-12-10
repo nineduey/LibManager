@@ -51,30 +51,32 @@ Transaction* Checkout::create() const
 // doTransaction() : method that performs the checkout on the Book
 // in its designated BinTree, will add this Checkout object to the
 // Patron's history vector of Transaction objects
-void Checkout::doTransaction( Storage& catalogue, HashMap& patronsMap )
-{
+void Checkout::doTransaction( Storage& catalogue, HashMap& patronsMap ){
+
 	//finding item from binary trees
 	Item* foundItem;
 	bool found = catalogue.retrieveItem( this->theItem, foundItem );
 	// if item found, proceed to checkIn()
-	if (found == true)
-	{
-		foundItem->checkOut();
+	if (found == true){
+		
+		//check if there are no more copies available in the library
+		if(!foundItem->checkOut()){
+			return;
+		}
+
 		//adding transaction to patron histroy vector
 		Patron* thePatron = patronsMap.getPatron( patronID );
-		if (thePatron == nullptr)
-		{
+		
+		if (thePatron == nullptr){
 			cout << "ERROR: Patron with ID " << this->patronID
 				<< " not found in records, cannot process Checkout." << endl;
 			return;
 		}
-		else
-		{
+		else{
 			thePatron->addToHistory( foundItem, "Checkout" );
 		}
 	}
-	else
-	{
+	else{
 		cout << "ERROR: Item not found in Catalogue, cannot process Checkout." << endl;
 		cout << endl;
 	}

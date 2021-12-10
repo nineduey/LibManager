@@ -66,18 +66,11 @@ void Storage::append( Item* item )
 	BinTree* toRetrieve;
 	auto key = std::string( 1, item->returnItemType() ) + item->returnItemType_Genre();
 
-	/*char key[2] = {};
-	key[0] = ;
-	key[1] = ;*/
-
 	if (!(retrieveBinTree( item, toRetrieve )))
 	{
 		BinTree* binTree = new BinTree();
 		binTree->insert( item );
 		binTreeMap.insert( { key, binTree } );
-		/*binTreeMap.at( key )->retrieve( item )->print();
-		cout << endl;*/
-		//cout << binTreeMap.size() << "   " << endl;
 	}
 	else
 	{	//the appropriate bintree exists in the binTreeMap
@@ -100,15 +93,15 @@ bool Storage::retrieveBinTree( Item* item, BinTree*& retriever ) const
 {
 	auto key = std::string( 1, item->returnItemType() ) + item->returnItemType_Genre(); 
 
-	if (!(binTreeMap.find( key ) == binTreeMap.end()))
-	{
-		retriever = (binTreeMap.at( key ));
-		return true;
-	}
-	else
+	if (binTreeMap.find( key ) == binTreeMap.end())
 	{
 		retriever = nullptr;
 		return false;
+	}
+	else
+	{
+		retriever = (binTreeMap.at( key ));
+		return true;
 	}
 
 }

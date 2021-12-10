@@ -164,9 +164,9 @@ void Fiction::setData( istream& infile )
 void Fiction::setDataInput( istream& infile ){
 	infile >> itemFormat;
 	infile.get();
-	getline( infile, title, ',' );
-	infile.get();
 	getline( infile, author, ',' );
+	infile.get();
+	getline( infile, title, ',' );
 	itemType = 'B';
 	bookType = 'F';
 }

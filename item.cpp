@@ -38,13 +38,14 @@ Item::~Item(){}
 // checkOut(): method to check out an Item contained in Library catalogue
 // @pre:
 // @post:
-void Item::checkOut(){
+bool Item::checkOut(){
 	
 	if (numInLib > 0){
 		numInLib--;
-		return;
+		return true;
 	}
 	cout << "ERROR: Cannot Checkout item, no more copies available." << endl;
+	return false;
 }
 
 
@@ -52,13 +53,14 @@ void Item::checkOut(){
 // checkIn(): method to check out an Item contained in Library catalogue
 // @pre:
 // @post:
-void Item::checkIn(){
+bool Item::checkIn(){
 	
 	if (numInLib < maxNumInLib){
 		numInLib++;
-		return;
+		return true;
 	}
 	cout << "ERROR: Cannot Check In item, no room in Library." << endl;
+	return false;
 }
 
 //----------------------------------------------------------------------------

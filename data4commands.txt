@@ -1,14 +1,26 @@
-C 1000 C H Bogus Title, Bogus Author,
-R 1000 C H Bogus Title, Bogus Author,
-C 5000 F H Higgins Colin, Harold and Maude,
-C 8888 F H Higgins Colin, Harold and Maude,
-C 1000 F H Higgins Colin, Harold and Maude,
-C 1111 F H Higgins Colin, Harold and Maude,
-D
-C 3000 F H Higgins Colin, Harold and Maude,
-C 6000 F H Higgins Colin, Harold and Maude,
-C 2000 F H Higgins Colin, Harold and Maude,
-R 2222 F H Higgins Colin, Harold and Maude,
-
+C 8000 F H Kerouac Jack, On the Road,
+H 8000
+C 1000 F H Kerouac Jack, On the Road,
+H 1000
+C 8888 F H Kerouac Jack, On the Road,
+H 8888
+C 1111 F H Kerouac Jack, On the Road,
+H 1111
+C 1111 F H Kerouac Jack, On the Road,
+H 1111
+C 1111 F H Kerouac Jack, On the Road,
+H 1111
+R 8000 F H Kerouac Jack, On the Road,
+H 8000
+R 1000 F H Kerouac Jack, On the Road,
+H 1000
+R 8888 F H Kerouac Jack, On the Road,
+H 8888
+R 1111 F H Kerouac Jack, On the Road,
+H 1111
+R 1111 F H Kerouac Jack, On the Road,
+H 1111
+R 1111 F H Kerouac Jack, On the Road,
+H 1111
 
 
