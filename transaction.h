@@ -1,10 +1,10 @@
 /*
-@File contents: Function and variable declarations
-of the Transaction class
-@Purpose:
-@Assumptions
+@File contents: Function and variable declarations of the Transaction class
+@Purpose: Transaction class serves as an abstract class for the derived classes
+that handle commands being read into the program from the readTransaction()
+method of the libraryManager class.
+@Assumptions:
 @Authors: Shushmitha Radjaram and Amanda Todakonzie
-@How code is used:
 */
 #ifndef TRANSACTION_H
 #define TRANSACTION_H
@@ -15,17 +15,16 @@ of the Transaction class
 #include "patron.h"
 using namespace std;
 
-//class HashMap;
-
 class Transaction
 {
 
 public:
-	Transaction(); // default constructor
-	virtual ~Transaction(); // virtual destructor
-	virtual Transaction* create() const = 0; //virtual create method to return a pointer to the certain transaction type object
-	virtual bool setData(istream&) = 0; // virtual set data method
-	virtual void doTransaction(Storage&, HashMap&) = 0;   // performs whichever transaction based on the type of derived class created
+    Transaction(); // default constructor
+    virtual ~Transaction(); // virtual destructor
+    virtual Transaction* create() const = 0; //virtual create method
+    virtual bool setData( istream& ) = 0; // virtual set data method
+     // virtual doTransaction method
+    virtual void doTransaction( Storage&, HashMap& ) = 0;
 };
 
 #endif
