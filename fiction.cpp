@@ -139,7 +139,7 @@ bool Fiction::setData( istream& infile ){
 
 	getline( infile, author, ',' );     // input author, looks for comma terminator
 	if (author.size() < 1){
-		cout << "Name of author not given." << endl;
+		cout << "ERROR: Name of author not given." << endl;
 		string invalidLine = "";
 		getline( infile, invalidLine );
 		return false;
@@ -148,19 +148,17 @@ bool Fiction::setData( istream& infile ){
 	infile.get();                     // get (and ignore) blank before title
 	getline( infile, title, ',' );      // input title
 	if (title.size() < 1){
-		cout << "Title of book not given." << endl;
+		cout << "ERROR: Title of book not given." << endl;
 		string invalidLine = "";
 		getline( infile, invalidLine );
 		return false;
 	}
 
-	infile >> year;                   // input year
-	if (year == 0){
-		cout << "Year the book was published is not given." << endl;
-		string invalidLine = "";
-		getline( infile, invalidLine );
+	if (infile.peek() == '\n'){
+		cout << "ERROR: Year the book was published is not given." << endl;
 		return false;
 	}
+	infile >> year;                   // input year
 
 	numInLib = 5;     // setting numer of Book copies -> Item class
 	bookType = 'F';   // setting bookType -> Book class

@@ -162,8 +162,8 @@ bool Periodical::setData( istream& infile )
 {
 	getline( infile, title, ',' );// input author, looks for comma terminator
 	if (title.size() < 1){
-		cout << "Title of book not given." << endl;
-		string invalidLine = "";
+		cout << "ERROR: Title of book not given." << endl;
+		string invalidLine;
 		getline( infile, invalidLine );
 		return false;
 	}
@@ -171,20 +171,18 @@ bool Periodical::setData( istream& infile )
 	infile.get();                // get (and ignore) blank before month
 	infile >> month;
 	if(month < 1 || month > 12){
-		cout << "Valid month number is not given." << endl;
-		string invalidLine = "";
+		cout << "ERROR: Valid month number is not given." << endl;
+		string invalidLine;
 		getline( infile, invalidLine );
 		return false;
 	}
 
-	infile.get();               // get (and ignore) blank before year
-	infile >> year;             // input year
-	if (year == 0){
-		cout << "Year the book was published is not given." << endl;
-		string invalidLine = "";
-		getline( infile, invalidLine );
+	infile.get();
+	if (infile.peek() == '\n'){
+		cout << "ERROR: Year the book was published is not given." << endl;
 		return false;
 	}
+	infile >> year;                   // input year
 
 	numInLib = 5;     // setting numer of Book copies -> Item class
 	bookType = 'P';   // setting bookType -> Book class
@@ -211,7 +209,7 @@ bool Periodical::setDataInput( istream& infile )
 	if (!itemFormatIsValid){
 		cout << "The given item format " << itemFormat
 			<< " is not valid." << endl;
-		string invalidLine = "";
+		string invalidLine;
 		getline( infile, invalidLine );
 		return false;
 	}
@@ -219,7 +217,7 @@ bool Periodical::setDataInput( istream& infile )
 	infile >> year;
 	if (year == 0){
 		cout << "Year the book was published is not given." << endl;
-		string invalidLine = "";
+		string invalidLine;
 		getline( infile, invalidLine );
 		return false;
 	}
@@ -228,7 +226,7 @@ bool Periodical::setDataInput( istream& infile )
 	infile >> month;
 	if (month < 1 || month > 12){
 		cout << "Valid month number is not given." << endl;
-		string invalidLine = "";
+		string invalidLine;
 		getline( infile, invalidLine );
 		return false;
 	}
@@ -237,7 +235,7 @@ bool Periodical::setDataInput( istream& infile )
 	getline( infile, title, ',' );
 	if (title.size() < 1){
 		cout << "Title of book not given." << endl;
-		string invalidLine = "";
+		string invalidLine;
 		getline( infile, invalidLine );
 		return false;
 	}

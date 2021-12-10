@@ -145,57 +145,28 @@ Item* Children::create() const
 //@post:
 bool Children::setData( istream& infile ){
 
-	getline( infile, author, ',' );     // input author, looks for comma terminator
+	getline( infile, author, ',' );  // input author, looks for comma terminator
 	if(author.size() < 1){
-		cout << "Name of author not given." << endl;
-		string invalidLine = "";
+		cout << "ERROR: Name of author not given." << endl;
+		string invalidLine;
 		getline( infile, invalidLine );
 		return false;
 	}
 
-	infile.get();                     // get (and ignore) blank before title
+	infile.get();                    // get (and ignore) blank before title
 	getline( infile, title, ',' );      // input title
 	if (title.size() < 1){
-		cout << "Title of book not given." << endl;
-		string invalidLine = "";
+		cout << "ERROR: Title of book not given." << endl;
+		string invalidLine;
 		getline( infile, invalidLine );
 		return false;
 	}
 
-	/*char temp;
-	infile >> temp;
-	if(temp == '\n'){
-		return false;
-	}*/
-
-	//infile.get();
-	//string tempyear = to_string(year);
-	//getline( infile, tempyear, '\n' );
-
-	//infile >> year;                   // input year
-	//infile.get();
-
-	//getline( infile, tempyear, '\n' );
-
-	//if()
-
-	string tempYear;
-	infile >> tempYear;
-
-
-	if(year == 0){
-		cout << "Year the book was published is not given." << endl;
-		//string invalidLine;
-		/*getline( infile, invalidLine );
-		cin.ignore();*/
-		//infile.ignore( std::numeric_limits<std::streamsize>::max(), '\n' );
-		//char test;
-		//infile >> test;
-		//getline( infile, invalidLine, '\n' );
-
-		if()
+	if(infile.peek() == '\n'){
+		cout << "ERROR: Year the book was published is not given." << endl;
 		return false;
 	}
+	infile >> year;                   // input year
 
 	numInLib = 5;     // setting numer of Book copies -> Item class
 	bookType = 'C';   // setting bookType -> Book class
@@ -222,7 +193,7 @@ bool Children::setDataInput( istream& infile ){
 	if(!itemFormatIsValid){
 		cout << "The given item format " << itemFormat 
 			<< " is not valid." << endl;
-		string invalidLine = "";
+		string invalidLine;
 		getline( infile, invalidLine );
 		return false;
 	}
@@ -231,7 +202,7 @@ bool Children::setDataInput( istream& infile ){
 	getline( infile, title, ',' );     // input author, looks for comma terminator
 	if (author.size() < 1){
 		cout << "Title of book not given." << endl;
-		string invalidLine = "";
+		string invalidLine;
 		getline( infile, invalidLine );
 		return false;
 	}
@@ -240,7 +211,7 @@ bool Children::setDataInput( istream& infile ){
 	getline( infile, author, ',' );      // input title
 	if (title.size() < 1){
 		cout << "Author name not given." << endl;
-		string invalidLine = "";
+		string invalidLine;
 		getline( infile, invalidLine );
 		return false;
 	}
