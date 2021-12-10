@@ -39,7 +39,7 @@ void PatronHistory::doTransaction( Storage& catalogue, HashMap& patronsMap )
 	}
 	else{
 		//display patron's ID and name
-		cout << *thePatron << "    " << endl;;
+		cout << *thePatron << ":" << endl;;
 
 		//display the patron's history 
 		thePatron->printHistory( thePatron->getHistory() );

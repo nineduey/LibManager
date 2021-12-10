@@ -27,6 +27,7 @@ public:
     virtual void setDataInput( istream& infile );
     virtual void print( ostream& os ) const;
     virtual void printHeader() const;
+    virtual void printKeyInfo() const;
 
     // virtual comparison operators
     virtual Item& operator=( const Item& );

@@ -74,9 +74,8 @@ void Patron::printHistory( vector<pair<Item*, string>> historyVec ) const{
 	}
 
 	for(int i = 0; i < historyVec.size(); i++){
-
 		cout << historyVec[i].second << "   ";
-		cout << *historyVec[i].first << endl;
+		cout << left << *historyVec[i].first << endl;
 	} 
 }
 

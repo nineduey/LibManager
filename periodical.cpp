@@ -216,3 +216,8 @@ void Periodical::printHeader() const
 		"TITLE" << left << setw( MONTH_SPACE_LENGTH ) <<
 		"MONTH" << right << setw( YEAR_SPACE_LENGTH ) << "YEAR" << endl;
 }
+
+void Periodical::printKeyInfo() const{
+
+	cout << this->title << "     " << this->month << "     " << this->year;
+}

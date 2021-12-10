@@ -59,6 +59,10 @@ void Return::doTransaction( Storage& catalogue, HashMap& patronsMap ){
 
 		//check if there are already max copies of the item in the library
 		if(!(foundItem->checkIn())){
+			cout << "ERROR: Cannot Check In ";
+			theItem->printKeyInfo();
+			cout << endl << "The library holds the maximum number of copies " 
+				<< "of this Item." << endl;
 			return;
 		}
 
@@ -72,8 +76,10 @@ void Return::doTransaction( Storage& catalogue, HashMap& patronsMap ){
 		//if Patron did not previously checkout the book they are trying to return,
 		//output error message
 		if(!(thePatron->transExists(foundItem, "Checkout"))){
-			cout << "ERROR: The item that the Patron with ID " << this->patronID
-				<< " is trying to Return was not previously Checked Out by them. "
+			cout << "ERROR: Patron with ID " << this->patronID
+				<< " is trying to Return " ;
+			theItem->printKeyInfo();
+			cout << endl << "which was not previously Checked Out by them. "
 				<< "Cannot process Return." << endl;
 			return;
 		}
@@ -82,7 +88,9 @@ void Return::doTransaction( Storage& catalogue, HashMap& patronsMap ){
 		thePatron->addToHistory( foundItem, "Return" );
 	}
 	else{
-		cout << "ERROR: Item not found in Catalogue, cannot process Return." << endl;
+		cout << "ERROR: The Item ";
+		theItem->printKeyInfo();
+		cout << " is not found in Catalogue, cannot process Return." << endl;
 	}
 
 	return;

@@ -44,7 +44,7 @@ bool Item::checkOut(){
 		numInLib--;
 		return true;
 	}
-	cout << "ERROR: Cannot Checkout item, no more copies available." << endl;
+
 	return false;
 }
 
@@ -59,7 +59,6 @@ bool Item::checkIn(){
 		numInLib++;
 		return true;
 	}
-	cout << "ERROR: Cannot Check In item, no room in Library." << endl;
 	return false;
 }
 

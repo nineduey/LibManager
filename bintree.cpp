@@ -196,7 +196,7 @@ bool BinTree::retrieve( Item* target, Item*& retrieverItem ) const
 		retrieverItem = retrieverNode->itemPtr;
 		return true;
 	}
-	cout << "ERROR: Item not found in Catalogue." << endl;
+
 	return false;
 }
 

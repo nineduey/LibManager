@@ -41,6 +41,7 @@ public:
 	virtual void setDataInput( istream& ) = 0;	  // virtual setData function
 	virtual void print( ostream& os ) const = 0;// virtual print function
 	virtual void printHeader() const = 0;  // virtual print header function
+	virtual void printKeyInfo() const = 0;
 
 	//virtual comparison operators
 	virtual Item& operator=( const Item& ) = 0;

@@ -65,6 +65,9 @@ void Checkout::doTransaction( Storage& catalogue, HashMap& patronsMap ){
 		
 		//check if there are no more copies available in the library
 		if(!(foundItem->checkOut())){
+			cout << "ERROR: Cannot Checkout ";
+			theItem->printKeyInfo();
+			cout << endl << "There are more copies available for Checkout." << endl;
 			return;
 		}
 
@@ -81,8 +84,9 @@ void Checkout::doTransaction( Storage& catalogue, HashMap& patronsMap ){
 		}
 	}
 	else{
-		cout << "ERROR: Item not found in Catalogue, cannot process Checkout." << endl;
-		cout << endl;
+		cout << "ERROR: The Item ";
+		theItem->printKeyInfo();  
+		cout << " is not found in Catalogue, cannot process Checkout." << endl;
 	}
 
 	return;

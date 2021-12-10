@@ -196,3 +196,8 @@ void Children::printHeader() const
 		"TITLE" << right << setw( YEAR_SPACE_LENGTH ) << "YEAR" << endl;
 	return;
 }
+
+void Children::printKeyInfo() const{
+
+	cout << this->author << "    " << this->title << "    " << this->year;
+}
