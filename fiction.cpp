@@ -1,19 +1,32 @@
 /*
-@File contents: Fiction.cpp function definitions
-@Purpose:
-@Assumptions:
+@File contents: Children class function and variable declarations
+
+@Purpose: The Children Class is a derived class of Book and Item, thus can be
+stored inside of BinTree's Nodes. Children holds a only a couple private data
+members annd all of definitions for the virtual functions declared in its Base
+classes Book & Item
+
+@Assumptions: The Base class of Item and Book are defined
+
 @Authors: Shushmitha Radjaram and Amanda Todakonzie
-@How code is used:
+
+@How code is used: Chidren objects are instantiated within the FacDriver class
+to create new empty children object that can be inserted into a BinTree.
+Children class defines all the virtual functions of its Base classes Item and
+Book. Children methods include create() to instantiate a children object,
+setData to set the private and protected data members of the object, and a few
+different print functions for displaying the catalogue of the library, to
+display the header of the book type contained
 */
 //-----------------------------------------------------------------------------
 #include "fiction.h"
 #include <iomanip>
 
-
-//sorted by title, then author
-
-
+//-----------------------------------------------------------------------------
 // Default Constructor
+// @Pre: None
+// @Post: a new Fiction object is created that is empty, only holds default 
+// values
 Fiction::Fiction()
 {
 	author = "";
@@ -21,29 +34,38 @@ Fiction::Fiction()
 
 //----------------------------------------------------------------------------
 // Destructor
+// @Pre: None
+// @Post: Fiction object and its private & protected data members are erased
+// from memory
 Fiction::~Fiction() {}
 
 //----------------------------------------------------------------------------
-// returnItemType():
-// @pre:
-// @post:
+//returnItemType() : method to return the itemType of the Item object, for
+// implementation, this should return 'B' for book. The data member itemType
+// is stored within Fiction's base class ->Item
+//@pre: None
+//@post: Returns a char stored in the data member variable called ItemType
 char Fiction::returnItemType() const
 {
 	return itemType;
 }
 //----------------------------------------------------------------------------
-// returnItemType_Genre():
-// @pre:
-// @post:
+//returnItemType_Genre() : method to return the bookType of the Book object, 
+// for implementation, this should return 'F' for Fiction. The data member 
+// itemType is stored within Fiction's base class ->Book
+// @Pre: None
+// @Post: Returns a char stord in the data member variable called bookType
 char Fiction::returnItemType_Genre() const
 {
 	return bookType;
 }
 //----------------------------------------------------------------------------
 // operator = : Assignment operator, creates deep copy of the Item& anItem
-// passed in
-// @pre:
-//@post:
+// passed in. Uses static casting for comparison of base class object to 
+// derived class object. 
+// @pre: Function's argument must be a referenced Item object
+// @post:  Returns a referenced Item object ( current object) that
+// hold the same values of the data members of the argument passed in
 Item& Fiction::operator=( const Item& item )
 {
 	const Fiction& aFiction = static_cast<const Fiction&>(item);
@@ -58,9 +80,12 @@ Item& Fiction::operator=( const Item& item )
 }
 
 //----------------------------------------------------------------------------
-//operator == : 
-//@pre:
-//@post:
+//operator == : method to compare current object (derived class of Item) to 
+// another Item object for equality. Uses static casting for compaison of 
+// base class object to derived class object. 
+//@pre:  Function's argument must be a referenced Item object
+//@post: Returns a boolean value based on if the Item object is equivalent to
+// to the current object (which is a derived class of Item)
 bool Fiction::operator==( const Item& item ) const
 {
 	const Fiction& aFiction = static_cast<const Fiction&>(item);
@@ -69,18 +94,24 @@ bool Fiction::operator==( const Item& item ) const
 }
 
 //----------------------------------------------------------------------------
-//operator != : 
-//@pre:
-//@post:
+//operator != : method to compare current object (derived class of Item) for
+// in equality. Uses static casting for compaison of base class object to 
+// derived class object
+//@pre: Function's argument must be a referenced Item object
+//@post: Returns a boolean value determined by if the current object is not 
+// equivalent to the item passed in as an arguement
 bool Fiction::operator!=( const Item& item ) const
 {
 	return !this->operator==( item );
 }
 
 //----------------------------------------------------------------------------
-//operator < : 
-//@pre:
-//@post:
+//operator < : method to compare current object (derived class of Item) for
+// lesser than item being passed in as arg. Uses static casting for compaison 
+// of base class object to  derived class object.
+//@pre:   Function's argument must be a referenced Item object
+//@post: Returns a boolean value determined by if the current object is lesser 
+// than the item passed in as an argument
 bool Fiction::operator<( const Item& item ) const
 {
 	const Fiction& aFiction = static_cast<const Fiction&>(item);
@@ -98,9 +129,12 @@ bool Fiction::operator<( const Item& item ) const
 }
 
 //----------------------------------------------------------------------------
-//operator > : 
-//@pre:
-//@post:
+//operator > : method to compare current object (derived class of Item) for
+// greater than item being passed in as arg. Uses static casting for comparison 
+// of base class object to derived class object
+// @pre: Function's argument must be a referenced Item object
+// @post: Returns a boolean value determined by if the current object is greater 
+// than the item passed in as an arguement
 bool Fiction::operator>( const Item& item ) const
 {
 	const Fiction& aFiction = static_cast<const Fiction&>(item);
@@ -123,84 +157,95 @@ bool Fiction::operator>( const Item& item ) const
 }
 
 //----------------------------------------------------------------------------
-//create() : 
-//@pre:
-//@post:
+// create() : method to create a new Fiction object
+// @Pre: None
+// @Post: Returns a pointer to a new Fiction object
 Item* Fiction::create() const
 {
 	return new Fiction;
 }
 
 //----------------------------------------------------------------------------
-//setData() : 
-//@pre:
-//@post:
+// setData() : method to set the private and protected data member of the 
+// current Children object. Private data members of the current object are set
+// to the data that in pulled in from the istream.  Each piece of data is 
+// tested for validity before it moved on to the next piece of data. 
+// @Pre: Function takes a referenced istream object
+// @Post: Private data members of the current object are set to the data that
+// in pulled in from the istream. Boolean value is return if the data pulled
+// in was valid and set correctly
 bool Fiction::setData( istream& infile ){
 
-	getline( infile, author, ',' );     // input author, looks for comma terminator
-	if (author.size() < 1){
-		cout << "ERROR: Name of author not given." << endl;
-		string invalidLine = "";
-		getline( infile, invalidLine );
-		return false;
-	}
+	 getline(infile, author, ',');     // input author, looks for comma terminator
+	 if (author.size() < 1) {
+		  cout << "ERROR: Name of author not given." << endl;
+		  string invalidLine = "";
+		  getline(infile, invalidLine);
+		  return false;
+	 }
 
-	infile.get();                     // get (and ignore) blank before title
-	getline( infile, title, ',' );      // input title
-	if (title.size() < 1){
-		cout << "ERROR: Title of book not given." << endl;
-		string invalidLine = "";
-		getline( infile, invalidLine );
-		return false;
-	}
+	 infile.get();                     // get (and ignore) blank before title
+	 getline(infile, title, ',');      // input title
+	 if (title.size() < 1) {
+		  cout << "ERROR: Title of book not given." << endl;
+		  string invalidLine = "";
+		  getline(infile, invalidLine);
+		  return false;
+	 }
 
-	if (infile.peek() == '\n'){
-		cout << "ERROR: Year the book was published is not given." << endl;
-		return false;
-	}
-	infile >> year;                   // input year
+	 if (infile.peek() == '\n') {
+		  cout << "ERROR: Year the book was published is not given." << endl;
+		  return false;
+	 }
+	 infile >> year;                   // input year
 
-	numInLib = 5;     // setting numer of Book copies -> Item class
-	bookType = 'F';   // setting bookType -> Book class
-	maxNumInLib = 5;	// setting the max number of book copies in library
-	itemFormat = itemFormats[0];   //setting the format type of the book
-	return true;
+	 numInLib = 5;     // setting numer of Book copies -> Item class
+	 bookType = 'F';   // setting bookType -> Book class
+	 maxNumInLib = 5;	// setting the max number of book copies in library
+	 itemFormat = itemFormats[0];   //setting the format type of the book
+	 return true;
 }
 
 //----------------------------------------------------------------------------
-// setDataInput():
-// data members
-// @pre:
-// @post:
-bool Fiction::setDataInput( istream& infile ){
+// setSearchData(): method to set a limited number of private data members of
+// the current Children object to enable a search to be conducted in the
+// data structure that holds it. 
+// @Pre: Function takes a referenced istream object
+// @Post: Private data members of the current object are set to the data that
+// in pulled in from the istream. Boolean value is return if the data pulled
+// in was valid and set correctly
+bool Fiction::setSearchData( istream& infile ){
 
-	infile >> itemFormat;
-	bool itemFormatIsValid = false;;
-	for (int i : itemFormats){
-		if (itemFormat == itemFormats[0]){
-			itemFormatIsValid = true;
-			break;
-		}
-	}
-	if (!itemFormatIsValid){
-		cout << "ERROR: The given item format " << itemFormat
-			<< " is not valid." << endl;
-		return false;
-	}
+	 infile >> itemFormat;
+	 bool itemFormatIsValid = false;;
+	 for (int i : itemFormats) {
+		  if (itemFormat == itemFormats[0]) {
+				itemFormatIsValid = true;
+				break;
+		  }
+	 }
+	 if (!itemFormatIsValid) {
+		  cout << "ERROR: The given item format " << itemFormat
+				<< " is not valid." << endl;
+		  return false;
+	 }
 
-	infile.get();
-	getline( infile, author, ',' );
-	infile.get();
-	getline( infile, title, ',' );
-	bookType = 'F';
-	return true;
+	 infile.get();
+	 getline(infile, author, ',');
+	 infile.get();
+	 getline(infile, title, ',');
+	 bookType = 'F';
+	 return true;
 }
 
 //----------------------------------------------------------------------------
-//print():
-// @pre:
-// @post:
-void Fiction::print( ostream& out ) const{
+//print(): method to print the private and protected data members of current
+// object being held within the Children class and its base classes. 
+// @Pre: Funtion takes a referenced ostream object to send the data memeber
+// to the ostream with << 
+// @Post: Private and protected data memeber are send to ostream with <<,
+// returns void
+void Fiction::printItem( ostream& out ) const{
 	out << numInLib << "      " << setw( AUTHOR_SPACE_LENGTH );
 	out << left << author << setw( TITLE_SPACE_LENGTH );
 	out << left << title << setw( YEAR_SPACE_LENGTH );
@@ -208,8 +253,11 @@ void Fiction::print( ostream& out ) const{
 }
 
 //----------------------------------------------------------------------------
-// printHeader(): method to print the genre of book and headings for avail, 
+// printHeader(): method to print the genre of book and headings for avail,
 // author, title, and year
+// @Pre: None
+// @Post: Private HEADER constant variable along with identifying data names
+// are sent to cout <<  for display
 void Fiction::printHeader() const
 {
 	cout << "---------------" << endl;
@@ -221,6 +269,11 @@ void Fiction::printHeader() const
 	return;
 }
 
+//----------------------------------------------------------------------------
+// printKeyInfo() : method to print only select private data members
+// considered key for error messages and error checking purposes
+// @Pre: None
+// @Post: Select data memebrs are sent to cout <<  for display
 void Fiction::printKeyInfo() const{
 
 	cout << this->author << "    " << this->title << "    " << this->year;

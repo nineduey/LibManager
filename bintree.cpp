@@ -1,9 +1,26 @@
 /*
-@File contents: BinTree.cpp function definitions
-@Purpose:
-@Assumptions:
+@File contents: Function defintions and variable initializations of the
+BinTree class
+
+@Purpose: The BinTree class is a Binary Search Tree structure used to store and
+retrieve Item objects of a specific type. Item is the Base class for an
+assortment of different types and genres of items held in the library. For our
+design, Book is a derived class of Item, thus the BinTree will hold Book objects
+and any type of derived classes of Book. The BinTree acts as a container for
+Item, BinTree does not know or share information about Item.
+
+@Assumptions: The Item objects stored in the BinTree are properly
+intialized and contain the data they need to determine where they should
+be store in the tree.
+
 @Authors: Shushmitha Radjaram and Amanda Todakonzie
-@How code is used:
+
+@How code is used: A BinTree object holds Nodes that contain Item objects. In
+our design, Item class is an abstract class that holds minimal information about
+a certain item stored in the library's catalogue of items. Item objects are
+compared against other item objects in the BinTree (if there are other item
+objects in the tree) and are stored in the appropriate, sortedlocation. An
+inorder traversal of the tree displays the item objects in sorted order.
 */
 //-----------------------------------------------------------------------------
 #include "bintree.h"
@@ -12,13 +29,13 @@ using namespace std;
 
 
 //----------------------------------------------------------------------------
-//operator<<(): Overloaded << to displays tree data using inorder traversal.
-//The appropriate Book class is responsible for dispslaying its own data.
-//Uses helper function - inorderHelper()
-//Pre-conditions: Pass in ostream& object and BookBinTree& to be displayed.
-//Post-conditions: Book objects' details are displayed inorder - defined by
-//the sorting criteria of the type of Book object
-//BinTree remains unchanged.
+// operator<<(): Overloaded << to displays tree data using inorder traversal.
+// The appropriate Item class is responsible for dispslaying its own data.
+// Uses helper function - inorderHelper()
+// @Pre: Pass in ostream& object and BookBinTree& to be displayed.
+// @Post: Book objects' details are displayed inorder - defined by
+// the sorting criteria of the type of Item object
+// BinTree remains unchanged.
 ostream& operator<<( ostream& out, const BinTree& T )
 {
 	T.print( out );
@@ -26,18 +43,15 @@ ostream& operator<<( ostream& out, const BinTree& T )
 }
 
 //----------------------------------------------------------------------------
-//BinTree(): Default constructor for BinTree
-//Pre-conditions: None
-//Post-conditions: BinTree is intialized, its root is set to NULL
-BinTree::BinTree() : root( nullptr )
-{
-
-}
+// BinTree(): Default constructor for BinTree
+// @Pre: None
+// @Post: BinTree is intialized, its root is set to NULL
+BinTree::BinTree() : root( nullptr ){}
 
 //----------------------------------------------------------------------------
-//~BinTree(): Destructor that deletes all Nodes in BinTree
-//Pre-conditions: None
-//Post-conditions: Data in BookBinTree is deleted from memory
+// ~BinTree(): Destructor that deletes all Nodes in BinTree
+// @Pre: None
+// @Post: Node containing Items in BookBinTree is deleted from memory
 BinTree::~BinTree()
 {
 	makeEmpty( root );
@@ -45,10 +59,10 @@ BinTree::~BinTree()
 }
 
 //----------------------------------------------------------------------------
-//isEmpty(): Determines if BinTree is empty
-//Pre-conditions: None
-//Post-conditions: Returns true if BookBinTree is empty, returns false
-//if BookBinTree contains data
+// isEmpty(): Determines if BinTree is empty
+// @Pre: None
+// @Post: Returns true if BookBinTree is empty, returns false if BookBinTree
+// contains data
 bool BinTree::isEmpty() const
 {
 	if (root == nullptr)
@@ -59,9 +73,9 @@ bool BinTree::isEmpty() const
 }
 
 //----------------------------------------------------------------------------
-//makeEmpty(): Deletes data from BinTree
-//Pre-conditions: None
-//Post-conditions: BookBinTree is empty/does not contain any data
+// makeEmpty(): Deletes Nodes containing Items from the BinTree
+// @Pre: None
+// @Post: BookBinTree is empty/does not contain any Nodes containing Itemsa
 void BinTree::makeEmpty( Node*& ptr )
 {
 	if (ptr != nullptr)
@@ -76,12 +90,12 @@ void BinTree::makeEmpty( Node*& ptr )
 }
 
 //----------------------------------------------------------------------------
-//insert(): Inserts Book object into BinTree
-//Pre-conditions:The function's argument must be a pointer to a book object of
-//the same type of book object that the BookBinTree holds book objects of
-//Post-conditions: Book object of appropriate type is inserted into the tree in
-//a location that abides by the rules of a Binary Search Tree. Function returns
-//true if book object was sucessfuly inserted, returns false if not
+// insert(): Inserts Item object into BinTree
+// @Pre: The function's argument must be a pointer to an item object or any of
+// its derived classes
+// @Post: Item object of appropriate type is inserted into the tree in
+// a location that abides by the rules of a Binary Search Tree. Function returns
+// true if item object was sucessfuly inserted, returns false if not
 bool BinTree::insert( Item* toInsertPtr )
 {
 	//search for duplicate first
@@ -143,9 +157,11 @@ bool BinTree::insert( Item* toInsertPtr )
 }
 
 //----------------------------------------------------------------------------
-//find() : Conducts a search in the BinTree to find a particular Item
-//Pre:
-//Post:
+// find() : Conducts a search in the BinTree to find a particular Item
+// @Pre: The function's arguments must be a pointer to an Item object or any of
+// its derived classes
+// @Post: Returns a boolean value determined by if the Item object is found that
+// matches the target Item object passed in. Returns true if found, false if not
 bool BinTree::find( Item* target )
 {
 	Node* current = root;
@@ -201,20 +217,12 @@ bool BinTree::retrieve( Item* target, Item*& retrieverItem ) const
 }
 
 //----------------------------------------------------------------------------
-// printHeader(): method to call on Item's virtual printHeader() function
-void BinTree::printHeader()
-{
-	root->itemPtr->printHeader();
-	return;
-}
-
-//----------------------------------------------------------------------------
-//retrieveHelper(): Private helper function of retrieve, recursively searches
-// the Bintree to find target
-// Pre-conditions: Pointer to an item needs to be passed in as arguement
-// to keep track of root of Bintre, and another pointer referenced Item arg
+// retrieveHelper(): Private helper function of retrieve(), recursively searches
+// the Bintree to find target Item
+// @Pre: Pointer to an Item object needs to be passed in as arguement
+// to keep track of root of Bintree, and another pointer referenced Item arg
 // which is the target
-// Post-conditions: Returns a referenced Item pointer to the Item that was found
+// @Post: Returns a Node pointer to the Item that was found
 // in the BinTree
 BinTree::Node* BinTree::retrieveHelper( Node*& current, Item* target ) const
 {
@@ -237,10 +245,23 @@ BinTree::Node* BinTree::retrieveHelper( Node*& current, Item* target ) const
 }
 
 //----------------------------------------------------------------------------
-//print(): Private method for ostream operator<< to call on, when called to
-// print the BinTree object
-//Pre-conditions:
-//Post-conditions:
+// printHeader(): method to call on Item's virtual printHeader() function
+// @Pre: None
+// @Post: Calls the printHeader() method of the Item class, displaying a Header
+// for output formatting purposes
+void BinTree::printHeader()
+{
+	root->itemPtr->printHeader();
+	return;
+}
+
+//----------------------------------------------------------------------------
+// print(): Private method for ostream operator<< to call on, when called to
+// print the BinTree Item objects. This method uses a stack to perform an
+// inorder traversal of the BinTree.
+// @Pre: The functions takes a referecned ostream object
+// @Post: The contents of the Node's Item pointers will be sent out to the
+// ostream object, returns void.
 void BinTree::print( ostream& out ) const
 {
 	stack<Node*> nodeStack;
