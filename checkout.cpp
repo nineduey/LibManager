@@ -1,16 +1,33 @@
+/*
+@File contents: Function defintions of the Checkout class
+
+@Purpose: Represents a command to checkout a particular book from the
+library catalogue.
+
+@Assumptions: The the library's catalogue has been populated with items
+and patrons have been registered in the library system
+
+@Authors: Shushmitha Radjaram and Amanda Todakonzie
+*/
+
 #include"checkout.h"
 
 //----------------------------------------------------------------------------
 // Default Constructor
+//@pre: None
+//@post: A checkout object is instantiated. function calls by it can be used
+// to sets its data and perform a checkout transaction. theItem data 
+// and patronID data members are intialized
 Checkout::Checkout()
 {
 	theItem = nullptr;
 	patronID = -1;
-	//thePatron = nullptr;
 }
 
 //----------------------------------------------------------------------------
 // Destructor
+//@pre: A checkout object has been instantiated
+//@post: The memory allocated for 'theItem' data member is freed
 Checkout::~Checkout()
 {
 	delete theItem;
@@ -18,9 +35,15 @@ Checkout::~Checkout()
 }
 
 //----------------------------------------------------------------------------
-// setData(): 
-//@pre:
-//@post:
+// setData(): sets data for item and patron involved in the checkout  
+// transaction
+//@pre: The file must be formatted in the same way indicated in the 
+// assignment instructions. setSearchData() for derived item 
+// classes properly sets the data for the item so it can be used
+// to perform checkout action
+//@post: If the data given for the checkout action contains 
+// valid item data, data will be set for the item and function will
+// return true. If it is not, function will return false
 bool Checkout::setData( istream& inFile)
 {
 	int patID;
@@ -29,7 +52,7 @@ bool Checkout::setData( istream& inFile)
 
 	theItem = facDriver.createItem( 'B', itemType_Genre );
 	if (theItem != nullptr)	{
-		if (theItem->setDataInput( inFile )){
+		if (theItem->setSearchData()( inFile )){
 			patronID = patID;
 			return true;
 		}
@@ -42,18 +65,25 @@ bool Checkout::setData( istream& inFile)
 
 
 //----------------------------------------------------------------------------
-// create(): 
-//@pre:
-//@post:
+// create(): creates and returns new Checkout object
+//@pre: None
+//@post: A new Checkout object is returned 
 Transaction* Checkout::create() const
 {
 	return new Checkout;
 }
 
 //----------------------------------------------------------------------------
-// doTransaction() : method that performs the checkout on the Book
-// in its designated BinTree, will add this Checkout object to the
-// Patron's history vector of Transaction objects
+// doTransaction() : performs checkout on book and adds checkout details to 
+// patronHistory vector of patron whose ID is equal to Checkout class's private 
+// variable 'patronID' 
+//@pre: The data for 'this' checkout object must be set and varified to be valid.
+// catalogue and patronsMap arguments must contain data on library items
+// and patrons
+//@post: A checkout transaction is performed and added to patron's history 
+// vector. If checkout is not able to be performed, user will be notified
+// the error and library catalogue and hashmap/table storing patrons will 
+// not be modified
 void Checkout::doTransaction( Storage& catalogue, HashMap& patronsMap ){
 
 	//finding item from binary trees
@@ -73,12 +103,15 @@ void Checkout::doTransaction( Storage& catalogue, HashMap& patronsMap ){
 		//adding transaction to patron histroy vector
 		Patron* thePatron = patronsMap.getPatron( patronID );
 		
+		//the patron cannot be found and is therefore not registered in the
+//library system
 		if (thePatron == nullptr){
 			cout << "ERROR: Patron with ID " << this->patronID
 				<< " not found in records. Cannot process Checkout." << endl;
 			return;
 		}
 		else{
+			//adding transaction to patron history vector
 			thePatron->addToHistory( foundItem, "Checkout" );
 		}
 	}

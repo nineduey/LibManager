@@ -1,3 +1,12 @@
+/*@File Contents : Function definitions of the HashMap class
+* @Description : This Class is designed to
+* handle the methods of reading a datafile containing all Patron
+* information, and building the database of Patron objects via a
+* hashing algorithm.
+* @Assumptions: the datafiles being passed in
+* are correctly formatted for this program to build the Patron Hashmap
+* @Authors : Amanda Todakonzie and Shushmitha Radjaram
+*/
 #include "hashmap.h"
 
 HashMap::HashMap(){
@@ -92,12 +101,25 @@ Patron* HashMap::getAllPatrons() const{
 	return *patronsArray;
 }
 
+//-------------------------------------------------------------------
+//operator<<: displays data of patrons stored in the patronsArray
+//@pre: the print() function of the HashMap class functions correctly 
+//@post: The print function of this class is called on by the 
+//reference to the HashMap object passed. The ID, firstnames and 
+//lastNames of the patrons stored in the patronsArray are displayed.
 ostream& operator<<( ostream& out, const HashMap& h ){
 	
 	h.print( out );
 	return out;
 }
 
+//----------------------------------------------------------------------------
+//print(): sends patron data stored in the patronsArray to a ostream object 
+//reference. This function will be called by the overloaded operator<< to 
+//display patrons' data
+//@pre: Patron objects are is intialized with valid ID, firstName, and lastName
+//@post: reference to ostream object 'out' will contain a formatted line of the 
+//containing the each patron's ID, firstName, and lastName
 void HashMap::print( ostream& out ) const{
 	
 	for(int i = 0; i < BUCKETS; i++){

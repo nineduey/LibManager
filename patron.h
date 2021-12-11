@@ -1,7 +1,16 @@
-//-------------------------------------------------------------------
-/*@File Contents: Patron Class Header
-*@Description: Represents a customer of the SHHH library system. Stored within is the customers first name, last name, and a unique ID number. Also stored is that customer’s transaction history.
-*@Authors: Amanda Todakonzie and Shushmitha Radjaram
+/*
+@File contents: Function and variable declarations of the Patron class
+
+@Purpose: Represents a Patron of the Library who is able to check out
+and return library items 
+
+@Assumptions: Each patron will have a valid patronID, firstName and lastName
+
+@Authors: Shushmitha Radjaram and Amanda Todakonzie
+
+@How code will be used: A file containing data on patrons will be used to 
+instantiate a patron and sets its data. The patron will be registered in 
+the library administrative system.
 */
 #ifndef PATRON_H
 #define PATRON_H
@@ -15,45 +24,42 @@ using namespace std;
 class Patron
 {
 	friend class HashMap;
-	friend ostream& operator<<( ostream&, const Patron& );
+	friend ostream& operator<<( ostream&, const Patron& );//outputs patron data 
 
 public:
 
 	//constructor, creates empty Patron object
 	Patron();
-
-	//------------------------------------------------------------------
-	//destructor, this method will export the record of this Patron to a data file before it deletes the data members of the Patron object and empty and erase the the Transaction objects that are stored in the custHistory vector
+	
+	// Sets the pointers to item objects that are stored in the patronHistory 
+	// vector to nullptr so their memory is freed
 	virtual ~Patron();
 
-	//public methods
-	//------------------------------------------------------------------
-	//setData(): sets all data members in Patron object
-	//@pre: Called on a Patron object. Int passed must be 4 digits long  // and strings passed must be valid
-	//@post: Modifies customerID, firstName, lastName to passed variables // if valid
+	//setData(): sets values of all data members in Patron object
 	bool setData( int patronID, istream& );
 
-	//------------------------------------------------------------------
-	//addToHistory(): method to add Transaction objects to a Patron’s  //Transaction history vector
-	//@pre: Called on a Patron object. Transaction passed should only be // of type Checkout or Return
-	//@post: Modified history vector, adding the passed Transaction.
+	//addToHistory(): function to add Transaction data to patron's transaction
+	//history vector. The item involved in the transaction and a string indicated
+	//what type of transaction was performed are the function parameters
 	void addToHistory( Item*, string ); 
 
-	//------------------------------------------------------------------
-	//getHistory(): method to retrieve transaction history of a certain //patron. Returns pointer to 1st element of transaction history 
-	//vector
-	//@pre: Called on a Patron object
-	//@post: returns a pointer to an array of Transactions representing  // this patrons transaction history, this is unchanged
+	//getHistory(): method to retrieve transaction history of a certain 
+	//patron. Returns pointer to 1st element of transaction history vector
 	vector<pair<Item*, string>> getHistory() const; 
 
+	//checks if patron performed a transaction that is logged in their transaction
+	//history vector
 	bool transExists(Item*, string);
 
+	//sends patron data to be outputted to a ostream object reference and will
+	//be called by the overloaded operator<< to display patron data
 	void print( ostream& ) const;
 
+	//prints the details of the transactions performed by the patron in the same
+	//order the patron performed them
 	void printHistory( vector<pair<Item*, string>> ) const;
 
-	void setPatronID( int patronID );
-
+	//returns patron's ID 
 	int getPatronID(); 
 
 private:
@@ -62,7 +68,7 @@ private:
 	string firstName;      // Patron's first name
 	string lastName;       // Patrons last name
 
-	//private vector holding Patron’s transaction history
+	//private vector holding Patron’s transaction history data
 	vector<pair<Item*, string>> patronHistory;
 };
 #endif

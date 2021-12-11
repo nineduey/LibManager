@@ -1,7 +1,22 @@
+/*
+@File contents: Function defintions of the Return class
+
+@Purpose: Represents a command to return a previously checked out 
+book to the library catalogue.
+
+@Assumptions: The the library's catalogue has been populated with items
+and patrons have been registered in the library system
+
+@Authors: Shushmitha Radjaram and Amanda Todakonzie
+*/
 #include"return.h"
 
 //----------------------------------------------------------------------------
 // Default Constructor
+//@pre: None
+//@post: A return object is instantiated. Function calls by it can be used
+// to sets its data and perform a return transaction theItem data 
+// and patronID data members are intialized
 Return::Return()
 {
 	theItem = nullptr;
@@ -10,15 +25,24 @@ Return::Return()
 
 //----------------------------------------------------------------------------
 // Destructor
+//@pre: A return object has been instantiated
+//@post: The memory allocated for 'theItem' data member is freed
 Return::~Return()
 {
 	delete theItem;
 	theItem = nullptr;
 }
 
-///----------------------------------------------------------------------------
-// setData(): virtual method that akes an istream object and sets the data within
-// to the private data members of Return
+//----------------------------------------------------------------------------
+// setData(): sets data for item and patron involved in the return  
+// action
+//@pre: The file must be formatted in the same way indicated in the 
+// assignment instructions. setSearchData() for derived item 
+// classes properly sets the data for the item so it can be used
+// to perform return action
+//@post: If the data given for the return action contains 
+// valid item data, data will be set for the item and function will
+// return true. If it is not, function will return false
 bool Return::setData( istream& inFile )
 {
 	int patID;
@@ -27,7 +51,7 @@ bool Return::setData( istream& inFile )
 
 	theItem = facDriver.createItem( 'B', itemType_Genre );
 	if (theItem != nullptr){
-		if (theItem->setDataInput( inFile )){
+		if (theItem->setSearchData()( inFile )){
 			patronID = patID;
 			return true;
 		}
@@ -39,15 +63,26 @@ bool Return::setData( istream& inFile )
 }
 
 //----------------------------------------------------------------------------
+// create(): creates and returns new Return object
+//@pre: None
+//@post: A pointer to new Return object is returned 
 Transaction* Return::create() const
 {
 	return new Return;
 }
 
 //----------------------------------------------------------------------------
-// doTransaction() : method that performs the checkout on the Book
-// in its designated BinTree, will add this Checkout object to the
-// Patron's history vector of Transaction objects
+// doTransaction(): performs return on book and adds return details to 
+// patronHistory vector of patron whose ID is equal to Return class's private 
+// variable 'patronID' 
+//@pre: The data for 'this' return object must be set and varified to be valid.
+// catalogue and patronsMap arguments must contain data on library items
+// and patrons. The item being returned must have already been checked out by 
+// the patron.
+//@post: A return transaction is performed and added to patron's history 
+// vector. If return is not able to be performed, user will be notified
+// the error and library catalogue and hashmap/table storing patrons will 
+// not be modified
 void Return::doTransaction( Storage& catalogue, HashMap& patronsMap ){
 
 	//finding item from binary trees
@@ -66,6 +101,8 @@ void Return::doTransaction( Storage& catalogue, HashMap& patronsMap ){
 			return;
 		}
 
+		//the patron cannot be found and is therefore not registered in the
+		//library system
 		Patron* thePatron = patronsMap.getPatron( patronID );
 		if (thePatron == nullptr){
 			cout << "ERROR: Patron with ID " << this->patronID
@@ -84,7 +121,7 @@ void Return::doTransaction( Storage& catalogue, HashMap& patronsMap ){
 			return;
 		}
 
-		//adding transaction to patron histroy vector
+		//adding transaction to patron history vector
 		thePatron->addToHistory( foundItem, "Return" );
 	}
 	else{
