@@ -20,6 +20,8 @@ bool Patron::setData( int patronID, istream& inFile){
 	if (patronID < 1000 || patronID > 9999){
 		cout << "ERROR: Patron ID " << patronID << " is not valid." << endl;
 		this->patronID = -1;
+		string invalidLine = "";
+		getline( inFile, invalidLine );
 		return false;
 	}
 	this->patronID = patronID;
@@ -28,12 +30,16 @@ bool Patron::setData( int patronID, istream& inFile){
 	inFile >> this->lastName;
 	if(lastName.size() < 1){
 		cout << "ERROR: Patron's Last Name is not given." << endl;
+		string invalidLine = "";
+		getline( inFile, invalidLine );
 		return false;
 	}
 
 	getline(inFile, this->firstName);
 	if(firstName.size() < 1){
 		cout << "ERROR: Patron's First Name is not given." << endl;
+		string invalidLine = "";
+		getline( inFile, invalidLine );
 		return false;
 	}
 

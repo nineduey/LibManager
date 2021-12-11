@@ -15,15 +15,11 @@ objects in sorted order.
 
 #ifndef BINTREE_H
 #define BINTREE_H
-#include "item.h"
 #include <iostream>
-
-//forward referencing for Item Class
-class Item;
+#include "item.h"
 
 class BinTree
 {
-	friend class Item;
 	struct Node;
 	friend ostream& operator<<( ostream&, const BinTree& );
 

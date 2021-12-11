@@ -33,7 +33,7 @@ bool Return::setData( istream& inFile )
 		}
 	}
 
-	string invalidLine = "";
+	string invalidLine;
 	getline( inFile, invalidLine );
 	return false;
 }

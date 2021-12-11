@@ -35,7 +35,7 @@ bool Checkout::setData( istream& inFile)
 		}
 	}
 
-	string invalidLine = "";
+	string invalidLine;
 	getline( inFile, invalidLine );
 	return false;
 }
@@ -66,7 +66,7 @@ void Checkout::doTransaction( Storage& catalogue, HashMap& patronsMap ){
 		if(!(foundItem->checkOut())){
 			cout << "ERROR: Cannot Checkout   ";
 			foundItem->printKeyInfo();
-			cout << endl << "There are more copies available for Checkout." << endl;
+			cout << endl << "There are no more copies available for Checkout." << endl;
 			return;
 		}
 

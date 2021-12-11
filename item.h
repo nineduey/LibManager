@@ -13,15 +13,10 @@ to be built, holding specific kinds of Node Data derived classes
 //-----------------------------------------------------------------------------
 #ifndef ITEM_H
 #define ITEM_H
-
 #include <iostream>
 #include <string>
-#include <iostream>
 
 using namespace std;
-
-//forward referencing
-//class Book;
 
 class Item
 {

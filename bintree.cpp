@@ -7,7 +7,6 @@
 */
 //-----------------------------------------------------------------------------
 #include "bintree.h"
-#include "item.h"
 #include <stack>
 using namespace std;
 

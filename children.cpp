@@ -193,29 +193,13 @@ bool Children::setDataInput( istream& infile ){
 	if(!itemFormatIsValid){
 		cout << "ERROR: The given item format " << itemFormat 
 			<< " is not valid." << endl;
-		string invalidLine;
-		getline( infile, invalidLine );
 		return false;
 	}
 
 	infile.get();
 	getline( infile, title, ',' );     // input author, looks for comma terminator
-	if (author.size() < 1){
-		cout << "ERROR: Title of book not given." << endl;
-		string invalidLine;
-		getline( infile, invalidLine );
-		return false;
-	}
-
 	infile.get();                     // get (and ignore) blank before title
 	getline( infile, author, ',' );      // input title
-	if (title.size() < 1){
-		cout << "ERROR: Author name not given." << endl;
-		string invalidLine;
-		getline( infile, invalidLine );
-		return false;
-	}
-
 	bookType = 'C';
 	return true;
 }

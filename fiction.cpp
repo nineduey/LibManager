@@ -177,7 +177,6 @@ bool Fiction::setDataInput( istream& infile ){
 	infile >> itemFormat;
 	bool itemFormatIsValid = false;;
 	for (int i : itemFormats){
-
 		if (itemFormat == itemFormats[0]){
 			itemFormatIsValid = true;
 			break;
@@ -186,29 +185,13 @@ bool Fiction::setDataInput( istream& infile ){
 	if (!itemFormatIsValid){
 		cout << "ERROR: The given item format " << itemFormat
 			<< " is not valid." << endl;
-		string invalidLine = "";
-		getline( infile, invalidLine );
 		return false;
 	}
 
 	infile.get();
-	getline( infile, author, ',' );     // input author, looks for comma terminator
-	if (author.size() < 1){
-		cout << "ERROR: Name of author not given." << endl;
-		string invalidLine = "";
-		getline( infile, invalidLine );
-		return false;
-	}
-
-	infile.get();                     // get (and ignore) blank before title
-	getline( infile, title, ',' );      // input title
-	if (title.size() < 1){
-		cout << "ERROR: Title of book not given." << endl;
-		string invalidLine = "";
-		getline( infile, invalidLine );
-		return false;
-	}
-
+	getline( infile, author, ',' );
+	infile.get();
+	getline( infile, title, ',' );
 	bookType = 'F';
 	return true;
 }

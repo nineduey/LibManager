@@ -209,36 +209,12 @@ bool Periodical::setDataInput( istream& infile )
 	if (!itemFormatIsValid){
 		cout << "ERROR: The given item format " << itemFormat
 			<< " is not valid." << endl;
-		string invalidLine;
-		getline( infile, invalidLine );
 		return false;
 	}
 
-	infile >> year;
-	if (year == 0){
-		cout << "ERROR: Year the book was published is not given." << endl;
-		string invalidLine;
-		getline( infile, invalidLine );
-		return false;
-	}
-
-	infile.get();
-	infile >> month;
-	if (month < 1 || month > 12){
-		cout << "ERROR: Valid month number is not given." << endl;
-		string invalidLine;
-		getline( infile, invalidLine );
-		return false;
-	}
-
+	infile >> year >> month;
 	infile.get();
 	getline( infile, title, ',' );
-	if (title.size() < 1){
-		cout << "ERROR: Title of book not given." << endl;
-		string invalidLine;
-		getline( infile, invalidLine );
-		return false;
-	}
 
 	bookType = 'P';
 	return true;
