@@ -24,7 +24,7 @@ create new empty book objects that can be inserted into a BinTree
 // @Post: Method called print function on the Book object, taking the ostream
 // as an argument, and allows the Book's contents to be displayed to the screen
 ostream& operator<<( ostream& out, const Book& aBook ){
-    aBook.print( out );
+    aBook.printItem( out );
     return out;
 }
 

@@ -37,7 +37,7 @@ public:
     virtual char returnItemType_Genre() const;// return ItemType genre method
     virtual Item* create() const;              // create method
     virtual bool setData( istream& );          // setData method
-    virtual bool setSearchData( istream& infile ); // set search data method
+    virtual bool setSearchData( istream&  ); // set search data method
     virtual void printItem( ostream& os ) const; // print item method
     virtual void printHeader() const;          // print header method
     virtual void printKeyInfo() const;         // print key info method

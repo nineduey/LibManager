@@ -172,7 +172,6 @@ Item* Children::create() const
 // in was valid and set correctly
 bool Children::setData( istream& infile ){
 
-
 	 getline(infile, author, ',');  // input author, looks for comma terminator
 	 if (author.size() < 1) {
 		  cout << "ERROR: Name of author not given." << endl;

@@ -206,26 +206,38 @@ Item* Periodical::create() const
 // in was valid and set correctly
 bool Periodical::setData( istream& infile )
 {
-	 infile >> itemFormat;
-	 bool itemFormatIsValid = false;;
-	 for (int i : itemFormats) {
-		  if (itemFormat == itemFormats[0]) {
-				itemFormatIsValid = true;
-				break;
-		  }
-	 }
-	 if (!itemFormatIsValid) {
-		  cout << "ERROR: The given item format " << itemFormat
-				<< " is not valid." << endl;
-		  return false;
-	 }
+	getline( infile, title, ',' );// input author, looks for comma terminator
+	if (title.size() < 1)
+	{
+		cout << "ERROR: Title of book not given." << endl;
+		string invalidLine;
+		getline( infile, invalidLine );
+		return false;
+	}
 
-	 infile >> year >> month;
-	 infile.get();
-	 getline(infile, title, ',');
+	infile.get();                // get (and ignore) blank before month
+	infile >> month;
+	if (month < 1 || month > 12)
+	{
+		cout << "ERROR: Valid month number is not given." << endl;
+		string invalidLine;
+		getline( infile, invalidLine );
+		return false;
+	}
 
-	 bookType = 'P';
-	 return true;
+	infile.get();
+	if (infile.peek() == '\n')
+	{
+		cout << "ERROR: Year the book was published is not given." << endl;
+		return false;
+	}
+	infile >> year;                   // input year
+
+	numInLib = 5;     // setting numer of Book copies -> Item class
+	bookType = 'P';   // setting bookType -> Book class
+	maxNumInLib = 5;	// setting the max number of book copies in library
+	itemFormat = itemFormats[0];   //setting the format type of the book
+	return true;
 }
 
 //----------------------------------------------------------------------------

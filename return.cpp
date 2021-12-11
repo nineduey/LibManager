@@ -51,7 +51,7 @@ bool Return::setData( istream& inFile )
 
 	theItem = facDriver.createItem( 'B', itemType_Genre );
 	if (theItem != nullptr){
-		if (theItem->setSearchData()( inFile )){
+		if (theItem->setSearchData(inFile )){
 			patronID = patID;
 			return true;
 		}

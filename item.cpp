@@ -22,7 +22,7 @@ create new empty objects of its derived classes that are defined.
 // @post: calls on the virtual print() method, particular to its defined
 // derived class
 ostream& operator<<( ostream& out, const Item& anItem ){
-	anItem.print( out );
+	anItem.printItem( out );
 	return out;
 }
 

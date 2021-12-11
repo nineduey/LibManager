@@ -29,7 +29,6 @@ const int YEAR_SPACE_LENGTH = 10;  //size of the space after year output
 
 class Book : public Item
 {
-
     friend ostream& operator<<( ostream&, const Book& );
 
 public:
